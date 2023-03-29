@@ -15,26 +15,38 @@ import {
 import { Box } from "@mui/system";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+import axios from "axios";
+import { checkUsernameAvailability, createUser } from "../../api/createUser";
 
 const FormularioSchema = Yup.object().shape({
-  nombre: Yup.string()
+  name: Yup.string()
     .min(4, "El nombre debe tener al menos 4 caracteres")
     .matches(
       /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
       "Solo se permiten letras"
     )
     .required("El nombre es obligatorio"),
-  dni: Yup.string()
+  DNI: Yup.string()
     .matches(/^\d{7,8}$/, "El DNI debe tener 7 u 8 números")
     .required("El DNI es obligatorio"),
   email: Yup.string()
     .email("El email no es válido")
     .required("El email es obligatorio"),
-  telefono: Yup.string(),
-  contraseña: Yup.string()
+  phone_number: Yup.string(),
+  password: Yup.string()
     .required("La contraseña es obligatoria")
     .min(4, "La contraseña debe tener más de 4 caracteres"),
-  direccion: Yup.string().required("La dirección es obligatoria"),
+  shipping_address: Yup.string().required("La dirección es obligatoria"),
+  username: Yup.string().required("El nombre de usuario es obligatorio").test(
+    "check-username-availability",
+    "El username ya está en uso",
+    async (value) => {
+      if (!value) return true;
+      const isAvailable = await checkUsernameAvailability(value);
+      return isAvailable;
+    }
+  ),
   termsAndConditions: Yup.boolean().oneOf(
     [true],
     "Debes aceptar los Términos y Condiciones"
@@ -53,6 +65,7 @@ const RegisterForm = () => {
     setOpen(true);
   };
   const navigate = useNavigate();
+  const registerMutation = useMutation(createUser);
   return (
     <Box
       flexDirection="column"
@@ -112,30 +125,33 @@ const RegisterForm = () => {
         </Box>
         <Formik
           initialValues={{
-            nombre: "",
-            dni: "",
+            name: "",
+            DNI: "",
             email: "",
-            telefono: "",
-            direccion: "",
+            phone_number: "",
+            shipping_address: "",
             termsAndConditions: false,
-            contraseña: "",
+            password: "",
+            username: "",
+            last_name: "sarasa",
           }}
           validationSchema={FormularioSchema}
           onSubmit={(values) => {
-            console.log(values);
+            const { termsAndConditions, ...rest } = values;
+            registerMutation.mutate(rest);
           }}
         >
           {({ errors, touched }) => (
             <Form style={{ width: "100%" }}>
               <Box sx={{ my: 2 }}>
-                <Field name="nombre">
+                <Field name="name">
                   {({ field }) => (
                     <TextField
                       fullWidth
                       label="Nombre completo"
                       variant="outlined"
                       {...field}
-                      error={errors.nombre && touched.nombre}
+                      error={errors.name && touched.name}
                       InputProps={{
                         style: {
                           fontFamily: "Poppins",
@@ -154,22 +170,56 @@ const RegisterForm = () => {
                     />
                   )}
                 </Field>
-                {errors.nombre && touched.nombre ? (
+                {errors.name && touched.name ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
-                    {errors.nombre}
+                    {errors.name}
                   </div>
                 ) : null}
               </Box>
 
               <Box sx={{ my: 2 }}>
-                <Field name="dni">
+                <Field name="username">
+                  {({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Nombre de usuario"
+                      variant="outlined"
+                      {...field}
+                      error={errors.username && touched.username}
+                      InputProps={{
+                        style: {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      sx={{
+                        fieldset: {
+                          borderWidth: 2,
+                          borderRadius: 10,
+                        },
+                        "& .MuiFormLabel-root": {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      size="small"
+                    />
+                  )}
+                </Field>
+                {errors.username && touched.username ? (
+                  <div style={{ color: "red", fontFamily: "Poppins" }}>
+                    {errors.username}
+                  </div>
+                ) : null}
+              </Box>
+
+              <Box sx={{ my: 2 }}>
+                <Field name="DNI">
                   {({ field }) => (
                     <TextField
                       fullWidth
                       label="DNI"
                       variant="outlined"
                       {...field}
-                      error={errors.dni && touched.dni}
+                      error={errors.DNI && touched.DNI}
                       InputProps={{
                         style: {
                           fontFamily: "Poppins",
@@ -189,9 +239,9 @@ const RegisterForm = () => {
                     />
                   )}
                 </Field>
-                {errors.dni && touched.dni ? (
+                {errors.DNI && touched.DNI ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
-                    {errors.dni}
+                    {errors.DNI}
                   </div>
                 ) : null}
               </Box>
@@ -232,7 +282,7 @@ const RegisterForm = () => {
               </Box>
 
               <Box sx={{ my: 2 }}>
-                <Field name="contraseña">
+                <Field name="password">
                   {({ field }) => (
                     <TextField
                       type="password"
@@ -240,7 +290,7 @@ const RegisterForm = () => {
                       label="Contraseña"
                       variant="outlined"
                       {...field}
-                      error={errors.contraseña && touched.contraseña}
+                      error={errors.password && touched.password}
                       InputProps={{
                         style: {
                           fontFamily: "Poppins",
@@ -260,22 +310,22 @@ const RegisterForm = () => {
                     />
                   )}
                 </Field>
-                {errors.contraseña && touched.contraseña ? (
+                {errors.password && touched.password ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
-                    {errors.contraseña}
+                    {errors.password}
                   </div>
                 ) : null}
               </Box>
 
               <Box sx={{ my: 2 }}>
-                <Field name="telefono">
+                <Field name="phone_number">
                   {({ field }) => (
                     <TextField
                       fullWidth
                       label="Teléfono"
                       variant="outlined"
                       {...field}
-                      error={errors.telefono && touched.telefono}
+                      error={errors.phone_number && touched.phone_number}
                       InputProps={{
                         style: {
                           fontFamily: "Poppins",
@@ -295,15 +345,15 @@ const RegisterForm = () => {
                     />
                   )}
                 </Field>
-                {errors.telefono && touched.telefono ? (
+                {errors.phone_number && touched.phone_number ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
-                    {errors.telefono}
+                    {errors.phone_number}
                   </div>
                 ) : null}
               </Box>
 
               <Box sx={{ my: 2 }}>
-                <Field name="direccion">
+                <Field name="shipping_address">
                   {({ field }) => (
                     <Box sx={{ display: "flex" }}>
                       <TextField
@@ -311,7 +361,9 @@ const RegisterForm = () => {
                         label="Dirección"
                         variant="outlined"
                         {...field}
-                        error={errors.direccion && touched.direccion}
+                        error={
+                          errors.shipping_address && touched.shipping_address
+                        }
                         InputProps={{
                           style: {
                             fontFamily: "Poppins",
@@ -366,9 +418,9 @@ const RegisterForm = () => {
                     </Box>
                   )}
                 </Field>
-                {errors.direccion && touched.direccion ? (
+                {errors.shipping_address && touched.shipping_address ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
-                    {errors.direccion}
+                    {errors.shipping_address}
                   </div>
                 ) : null}
               </Box>
