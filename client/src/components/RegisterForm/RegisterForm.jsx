@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import {
   Button,
   Checkbox,
+  CircularProgress,
   ClickAwayListener,
   FormControlLabel,
   TextField,
@@ -16,12 +17,19 @@ import { Box } from "@mui/system";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
-import axios from "axios";
-import { checkUsernameAvailability, createUser } from "../../api/createUser";
+import { createUser } from "../../api/createUser";
+import Swal from "sweetalert2";
 
 const FormularioSchema = Yup.object().shape({
   name: Yup.string()
     .min(4, "El nombre debe tener al menos 4 caracteres")
+    .matches(
+      /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
+      "Solo se permiten letras"
+    )
+    .required("El nombre es obligatorio"),
+  lastname: Yup.string()
+    .min(4, "El apellido debe tener al menos 4 caracteres")
     .matches(
       /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
       "Solo se permiten letras"
@@ -37,16 +45,11 @@ const FormularioSchema = Yup.object().shape({
   password: Yup.string()
     .required("La contraseña es obligatoria")
     .min(4, "La contraseña debe tener más de 4 caracteres"),
+  zip_code: Yup.string()
+    .matches(/^\d{3,5}$/, "El código postal debe tener 3 o 5 números")
+    .min(3, "El código postal debe tener más de 4 caracteres"),
   shipping_address: Yup.string().required("La dirección es obligatoria"),
-  username: Yup.string().required("El nombre de usuario es obligatorio").test(
-    "check-username-availability",
-    "El username ya está en uso",
-    async (value) => {
-      if (!value) return true;
-      const isAvailable = await checkUsernameAvailability(value);
-      return isAvailable;
-    }
-  ),
+  username: Yup.string().required("El nombre de usuario es obligatorio"),
   termsAndConditions: Yup.boolean().oneOf(
     [true],
     "Debes aceptar los Términos y Condiciones"
@@ -65,7 +68,28 @@ const RegisterForm = () => {
     setOpen(true);
   };
   const navigate = useNavigate();
-  const registerMutation = useMutation(createUser);
+  const registerMutation = useMutation(createUser, {
+    onSuccess: () => {
+      Swal.fire({
+        title: "Usuario creado",
+        text: `Te enviaremos un mail con un código de confirmación para terminar el registro`,
+        icon: "success",
+        confirmButtonText: "Cool",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          navigate("/password-validator");
+        }
+      });
+    },
+    onError: (data) => {
+      Swal.fire({
+        title: "Error",
+        text: data.response.data.message,
+        icon: "error",
+        confirmButtonText: "Volver a intentar",
+      });
+    },
+  });
   return (
     <Box
       flexDirection="column"
@@ -133,12 +157,14 @@ const RegisterForm = () => {
             termsAndConditions: false,
             password: "",
             username: "",
-            last_name: "sarasa",
+            lastname: "",
+            zip_code: null,
           }}
           validationSchema={FormularioSchema}
-          onSubmit={(values) => {
+          onSubmit={(values, { setSubmitting }) => {
             const { termsAndConditions, ...rest } = values;
             registerMutation.mutate(rest);
+            setSubmitting(false);
           }}
         >
           {({ errors, touched }) => (
@@ -148,7 +174,7 @@ const RegisterForm = () => {
                   {({ field }) => (
                     <TextField
                       fullWidth
-                      label="Nombre completo"
+                      label="Nombre"
                       variant="outlined"
                       {...field}
                       error={errors.name && touched.name}
@@ -173,6 +199,39 @@ const RegisterForm = () => {
                 {errors.name && touched.name ? (
                   <div style={{ color: "red", fontFamily: "Poppins" }}>
                     {errors.name}
+                  </div>
+                ) : null}
+              </Box>
+              <Box sx={{ my: 2 }}>
+                <Field name="lastname">
+                  {({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Apellido"
+                      variant="outlined"
+                      {...field}
+                      error={errors.lastname && touched.lastname}
+                      InputProps={{
+                        style: {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      sx={{
+                        fieldset: {
+                          borderWidth: 2,
+                          borderRadius: 10,
+                        },
+                        "& .MuiFormLabel-root": {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      size="small"
+                    />
+                  )}
+                </Field>
+                {errors.lastname && touched.lastname ? (
+                  <div style={{ color: "red", fontFamily: "Poppins" }}>
+                    {errors.lastname}
                   </div>
                 ) : null}
               </Box>
@@ -424,6 +483,40 @@ const RegisterForm = () => {
                   </div>
                 ) : null}
               </Box>
+              <Box sx={{ my: 2 }}>
+                <Field name="zip_code">
+                  {({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Código postal"
+                      variant="outlined"
+                      {...field}
+                      error={errors.zip_code && touched.zip_code}
+                      InputProps={{
+                        style: {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      sx={{
+                        fieldset: {
+                          borderWidth: 2,
+                          fontFamily: "Poppins",
+                          borderRadius: 10,
+                        },
+                        "& .MuiFormLabel-root": {
+                          fontFamily: "Poppins",
+                        },
+                      }}
+                      size="small"
+                    />
+                  )}
+                </Field>
+                {errors.DNI && touched.DNI ? (
+                  <div style={{ color: "red", fontFamily: "Poppins" }}>
+                    {errors.DNI}
+                  </div>
+                ) : null}
+              </Box>
               <Box>
                 <Field
                   type="checkbox"
@@ -442,15 +535,15 @@ const RegisterForm = () => {
                   </div>
                 ) : null}
               </Box>
-
               <Button
                 variant="contained"
                 color="primary"
                 type="submit"
                 sx={{ width: "100%", textTransform: "none" }}
+                disabled={registerMutation.isLoading ? true : false}
               >
                 <Typography variant="subtitle1" sx={{ fontFamily: "Poppins" }}>
-                  Enviar
+                  {registerMutation.isLoading ? <CircularProgress /> : "Enviar"}
                 </Typography>
               </Button>
             </Form>
