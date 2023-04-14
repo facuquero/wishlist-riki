@@ -15,6 +15,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useNavigate } from 'react-router-dom'
 import { useCreateUser } from '../../../api/useUsersAPI'
 import { NewUserSchema } from '../../utils/schemasForm'
+import { setNewFiumbiUserToCreate } from '../../utils/localStorageManagment'
 
 const RegisterFiumbi = ({
   wishlistName,
@@ -23,9 +24,7 @@ const RegisterFiumbi = ({
 }) => {
   const [open, setOpen] = useState(false)
 
-  const { data, execute, isLoading } = useCreateUser()
-
-  console.log('data', data)
+  const { execute, data, isLoading, isError, error } = useCreateUser()
 
   const handleTooltipClose = () => {
     setOpen(false)
@@ -44,10 +43,6 @@ const RegisterFiumbi = ({
     {
       field: 'lastname',
       label: 'Apellido',
-    },
-    {
-      field: 'username',
-      label: 'Nombre de usuario',
     },
     {
       field: 'DNI',
@@ -109,18 +104,28 @@ const RegisterFiumbi = ({
     },
   ]
 
-  const handleSubmitNewUser = ({ setSubmitting, newUser }) => {
+  const handleSubmitNewUser = ({ newUser }) => {
+    console.log('entro')
+    const data = { ...newUser, username: wishlistName }
     setWishlisUser(newUser)
     execute({
-      data: newUser,
+      data,
     })
   }
 
   useEffect(() => {
     if (data?.status === 201) {
+      setNewFiumbiUserToCreate({
+        username: wishlistName,
+        token: data.data.token,
+      })
       handleClickCreatUser()
+      return
     }
-  }, [data])
+    if (isError) {
+      console.log('error', error)
+    }
+  }, [data, isLoading, isError, error])
 
   return (
     <Box
@@ -145,9 +150,16 @@ const RegisterFiumbi = ({
           fontSize: { xs: '1.75rem', sm: '2.125rem' },
         }}
       >
-        Regístrata {wishlistName || ''} para poder crear tu lista de regalos
+        Regístra tu "{wishlistName || ''}" fuimbi para poder crear tu lista de
+        regalos
       </Typography>
-
+      <Box
+        sx={{
+          w: '100%',
+        }}
+      >
+        Recuerda de usuario sera "{wishlistName || ''}"*
+      </Box>
       <Formik
         initialValues={{
           name: '',
@@ -157,24 +169,33 @@ const RegisterFiumbi = ({
           shipping_address: '',
           termsAndConditions: false,
           password: '',
-          username: '',
           lastname: '',
           zip_code: '',
         }}
         validationSchema={NewUserSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
+          console.log('entro submit')
           handleSubmitNewUser({
             newUser: values,
-            setSubmitting,
           })
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched }) => (
           <Form style={{ width: '100%', fontFamily: 'Poppins' }}>
             {fieldInputsItems.map((fieldItem, index) => {
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
-                  <Field name={fieldItem.field}>
+                  {fieldItem.field === 'phone_number' && (
+                    <Box>Estos datos son para poder hacer la entrega </Box>
+                  )}
+
+                  {fieldItem.field === 'name' && (
+                    <Box>Estos datos son de quien recibira las entregas </Box>
+                  )}
+                  <Field
+                    name={fieldItem.field}
+                    validate={fieldItem.validate || null}
+                  >
                     {({ field }) => (
                       <Box sx={{ display: 'flex' }}>
                         <TextField
@@ -236,8 +257,8 @@ const RegisterFiumbi = ({
             >
               <Typography variant="subtitle1">
                 {!isLoading && 'Registrarse'}
-                {isLoading && <CircularProgress sx={{ color: 'white' }} />}
               </Typography>
+              {isLoading && <CircularProgress sx={{ color: 'white' }} />}
             </Button>
           </Form>
         )}

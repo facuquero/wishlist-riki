@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Button,
@@ -10,6 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const [wishlist, setWishlist] = useState('')
+  const [isFiumbiFree, setIsFiumbiFree] = useState(false)
 
   const onChangeWishlistName = (e) => {
     setWishlist(e.target.value)
@@ -21,6 +22,15 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   }
 
   const isDisabledSend = !wishlist || wishlist.length < 3
+
+  useEffect(() => {
+    setIsFiumbiFree(false)
+    const checking = setTimeout(async () => {
+      //const response = await get()
+      //setIsFiumbiFree(true)
+    }, 500)
+    return () => clearTimeout(checking)
+  }, [wishlist])
 
   return (
     <Box>

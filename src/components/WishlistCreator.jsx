@@ -15,6 +15,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import NewFiumbiUser from './createUser/NewFiumbiUser'
 import RegisterFiumbi from './createUser/RegisterFiumbi'
+import ValidateEmail from './createUser/validateEmail'
 
 const posibleViews = {
   createFiumbiName: 'createFiumbiName',
@@ -23,8 +24,6 @@ const posibleViews = {
 }
 
 const WishlistCreator = () => {
-  const theme = useTheme()
-  const navigate = useNavigate()
   const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
@@ -81,7 +80,12 @@ const WishlistCreator = () => {
             setWishlisUser={setWishlisUser}
           />
         )}
-        {activeStep == posibleViews.createFiumbiSuccess && <div>se creo</div>}
+        {activeStep == posibleViews.createFiumbiSuccess && (
+          <ValidateEmail
+            wishlistName={wishlistName}
+            wishlistUser={wishlistUser}
+          />
+        )}
       </Box>
     </Box>
   )

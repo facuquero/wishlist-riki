@@ -23,7 +23,8 @@ export const NewUserSchema = Yup.object().shape({
     .required('El email es obligatorio'),
   phone_number: Yup.string()
     .matches(/^\d{6,15}$/, 'Ingrese un numero de telefono valido')
-    .min(6, 'El numero de telefono debe tener más de 7 digitos'),
+    .min(6, 'El numero de telefono debe tener más de 7 digitos')
+    .required('El telefono es obligatorio'),
   password: Yup.string()
     .required('La contraseña es obligatoria')
     .min(4, 'La contraseña debe tener más de 4 caracteres'),
@@ -32,7 +33,6 @@ export const NewUserSchema = Yup.object().shape({
     .min(3, 'El código postal debe tener más de 4 caracteres')
     .required('El codigo postal es obligatorio'),
   shipping_address: Yup.string().required('La dirección es obligatoria'),
-  username: Yup.string().required('El nombre de usuario es obligatorio'),
   termsAndConditions: Yup.boolean().oneOf(
     [true],
     'Debes aceptar los Términos y Condiciones'

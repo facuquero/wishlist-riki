@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { axiosInstance } from './axiosRequest'
 export const usePost = ({ url }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -10,6 +10,7 @@ export const usePost = ({ url }) => {
     setIsLoading(true)
     setIsError(false)
     setError(undefined)
+    console.log("entro execute", data)
     try {
       const response = await axiosInstance.post(url, data)
       setData(response)

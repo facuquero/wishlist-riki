@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './routes/Home'
+import ValidatingFiumbiUser from './routes/ValidatingFiumbiUser'
 import './main.css'
 import {
   createBrowserRouter,
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/validatingFiumbiUser',
+    element: <ValidatingFiumbiUser />,
   },
 ])
 
