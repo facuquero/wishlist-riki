@@ -33,7 +33,6 @@ const ValidateEmail = ({ wishlistName }) => {
 
   useEffect(() => {
     if (data?.status === 200) {
-      console.log('data', data)
       const to = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${newFiumbiFormClientid}&redirect_uri=${newFiumbiFormRedirect_uri}&scope=${newFiumbiFormScope}`
 
       window.location.href = to

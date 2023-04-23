@@ -9,6 +9,8 @@ import {
   Route,
   createRoutesFromElements,
 } from 'react-router-dom'
+import FiumbiList, { getFiumbiList } from './routes/FiumbiList'
+import { getListByUsername } from '../api/fiumbiProducts'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,11 @@ const router = createBrowserRouter([
   {
     path: '/validatingFiumbiUser',
     element: <ValidatingFiumbiUser />,
+  },
+  {
+    path: '/:fiumbiListUsername',
+    element: <FiumbiList />,
+    loader: getFiumbiList,
   },
 ])
 

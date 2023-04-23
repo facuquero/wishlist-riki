@@ -10,7 +10,6 @@ export const usePost = ({ url }) => {
     setIsLoading(true)
     setIsError(false)
     setError(undefined)
-    console.log("entro execute", data)
     try {
       const response = await axiosInstance.post(url, data)
       setData(response)

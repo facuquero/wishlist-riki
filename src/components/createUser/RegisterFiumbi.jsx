@@ -105,7 +105,6 @@ const RegisterFiumbi = ({
   ]
 
   const handleSubmitNewUser = ({ newUser }) => {
-    console.log('entro')
     const data = { ...newUser, username: wishlistName }
     setWishlisUser(newUser)
     execute({
@@ -174,7 +173,6 @@ const RegisterFiumbi = ({
         }}
         validationSchema={NewUserSchema}
         onSubmit={(values) => {
-          console.log('entro submit')
           handleSubmitNewUser({
             newUser: values,
           })

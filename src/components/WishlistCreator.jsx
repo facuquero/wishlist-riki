@@ -1,18 +1,5 @@
 import React, { useState } from 'react'
-import {
-  Box,
-  Button,
-  InputAdornment,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import { useTheme } from '@mui/material/styles'
-import { useNavigate } from 'react-router-dom'
-
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
+import { Box } from '@mui/material'
 import NewFiumbiUser from './createUser/NewFiumbiUser'
 import RegisterFiumbi from './createUser/RegisterFiumbi'
 import ValidateEmail from './createUser/validateEmail'
