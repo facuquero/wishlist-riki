@@ -2,11 +2,7 @@ import React from 'react'
 import WishlistCreator from '../components/WishlistCreator'
 
 const Home = () => {
-  return (
-    <div>
-      <WishlistCreator />
-    </div>
-  )
+  return <WishlistCreator />
 }
 
 export default Home

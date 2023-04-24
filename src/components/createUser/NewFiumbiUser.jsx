@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  Button,
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Box, Button, InputAdornment, TextField } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import Typography from '../commons/Typography'
 
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const [wishlist, setWishlist] = useState('')

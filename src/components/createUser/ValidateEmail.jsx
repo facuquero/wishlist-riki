@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  Button,
-  CircularProgress,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Box, Button, CircularProgress, TextField } from '@mui/material'
 import { useValidateCode } from '../../../api/useUsersAPI'
 import {
   newFiumbiFormClientid,
   newFiumbiFormRedirect_uri,
   newFiumbiFormScope,
 } from '../../utils/globalConst'
+import Typography from '../commons/Typography'
 
 const ValidateEmail = ({ wishlistName }) => {
   const [emailInput, setEmailInput] = useState('')

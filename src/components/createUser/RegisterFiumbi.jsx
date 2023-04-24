@@ -7,8 +7,7 @@ import {
   ClickAwayListener,
   FormControlLabel,
   TextField,
-  Tooltip,
-  Typography,
+  Tooltip, 
 } from '@mui/material'
 import { Box } from '@mui/system'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -16,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCreateUser } from '../../../api/useUsersAPI'
 import { NewUserSchema } from '../../utils/schemasForm'
 import { setNewFiumbiUserToCreate } from '../../utils/localStorageManagment'
+import Typography from '../commons/Typography'
 
 const RegisterFiumbi = ({
   wishlistName,
@@ -149,7 +149,7 @@ const RegisterFiumbi = ({
           fontSize: { xs: '1.75rem', sm: '2.125rem' },
         }}
       >
-        Regístra tu "{wishlistName || ''}" fuimbi para poder crear tu lista de
+        Regístra tu "{wishlistName || 'fuimbi'}" para poder crear tu lista de
         regalos
       </Typography>
       <Box

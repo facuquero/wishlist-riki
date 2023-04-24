@@ -1,22 +1,16 @@
-import { Box, Button, Grid, TextField, Typography } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
+import { Button, Grid, TextField } from '@mui/material'
+import React, { useEffect, useRef } from 'react'
 import { generateLinkML } from '../../../api/fiumbiProducts'
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import Slide from '@mui/material/Slide'
-import { redirect } from 'react-router-dom'
-import styles from '../../assets/styles/fiumbiList.module.scss'
+import styles from '../../assets/styles/DialogFiumbi.module.scss'
+import { SlideTransition } from '../SlideTransition'
+import Typography from '../commons/Typography'
 
-export const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
-
-const ButtonFiumbiML = ({
+const DialogFiumbi = ({
   productID,
   fiumbiUsername,
   fiumbiTitle,
@@ -24,16 +18,18 @@ const ButtonFiumbiML = ({
   showModalML,
   handleClose,
 }) => {
-  const { execute, data, isLoading, isError, error } = generateLinkML()
+  const { execute, data, isLoading, isError } = generateLinkML()
   const handleClickFiumbiML = (e) => {
-    execute({ data: { username: fiumbiUsername, product_id: productID } })
+    const message = messageTextRef?.current?.value || ''
+    execute({
+      data: { username: fiumbiUsername, product_id: productID, message },
+    })
   }
 
   const messageTextRef = useRef(null)
 
   useEffect(() => {
     if (data?.status === 200) {
-      console.log('messageTextRef.current', messageTextRef.current.value)
       window.location.href = data.data.redirectURL
     }
   }, [isLoading, data])
@@ -41,7 +37,7 @@ const ButtonFiumbiML = ({
   return (
     <Dialog
       open={showModalML}
-      TransitionComponent={Transition}
+      TransitionComponent={SlideTransition}
       keepMounted
       onClose={handleClose}
       aria-describedby="alert-dialog-slide-description"
@@ -62,37 +58,44 @@ const ButtonFiumbiML = ({
         </Grid>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id={`alert-dialog-slide-description-${productID}`}>
-          <Grid container>
-            <Grid item xs={12} mb={2}>
-              Ingrese un mensaje en el Fiumbi
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                inputRef={messageTextRef}
-                id="outlined-multiline-static"
-                multiline
-                rows={4}
-                label="Aqui podes escribir un mensaje para para agregarle al Fiumbi"
-                defaultValue="Default Value"
-                sx={{
-                  width: '100%',
-                }}
-              />
-            </Grid>
+        <Grid container>
+          <Grid item xs={12} mb={2}>
+            <Typography> Agregar una nota para {fiumbiUsername} </Typography>
           </Grid>
-        </DialogContentText>
+          <Grid item xs={12}>
+            <TextField
+              inputRef={messageTextRef}
+              id="outlined-multiline-static"
+              multiline
+              rows={4}
+              sx={{
+                width: '100%',
+                display: data ? 'none' : 'flex',
+              }}
+            />
+          </Grid>
+          {isError && (
+            <Grid item xs={12}>
+              <Typography>
+                Algo ocurrio al intentar crear el Fiumbi, intente nuevamente
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
       </DialogContent>
       <DialogActions>
-        <Grid container justifyContent="center">
-          <Button onClick={handleClickFiumbiML}>
-            {!isLoading && 'Generar Fiumbi'}
-            {isLoading && <CircularProgress />}
-          </Button>
+        <Grid container justifyContent="center" mb={1}>
+          {!data && (
+            <Button onClick={handleClickFiumbiML}>
+              {!isLoading && 'Generar Fiumbi'}
+              {isLoading && <CircularProgress />}
+            </Button>
+          )}
+          {data && 'Preparando tu Fiumbi'}
         </Grid>
       </DialogActions>
     </Dialog>
   )
 }
 
-export default ButtonFiumbiML
+export default DialogFiumbi

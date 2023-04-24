@@ -7,7 +7,7 @@ const ValidatingFiumbiUser = () => {
   const location = useLocation()
   const params = new URLSearchParams(location.search)
 
-  const { execute, data, isLoading, isError, error } = exchangeCodeForToken()
+  const { execute, data } = exchangeCodeForToken()
 
   useEffect(() => {
     if (!data) {

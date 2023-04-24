@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useLoaderData, Navigate } from 'react-router-dom'
 import { getListByUsername } from '../../api/fiumbiProducts'
-import { Grid } from '@mui/material'
+import { Grid, useTheme } from '@mui/material'
 import ButtonFiumbiML from '../components/ButtonFiumbiML'
 import styles from '../assets/styles/fiumbiList.module.scss'
-
+import Typography from '../components/commons/Typography'
 const FiumbiList = () => {
   const loaderData = useLoaderData()
   const { execute, data, isLoading } = getListByUsername()
-
+  const theme = useTheme()
   useEffect(() => {
     execute({
       data: {
@@ -30,7 +30,7 @@ const FiumbiList = () => {
       container
     >
       <Grid item xs={12} sx={{ py: 2 }}>
-        Fiumbi favoritos
+        <Typography sx={{ color: 'white' }}>Fiumbi favoritos</Typography>
       </Grid>
       <Grid container sx={{ py: 2 }}>
         {data &&
@@ -52,13 +52,12 @@ const FiumbiList = () => {
                   className={styles.imageFavList}
                 />
               </Grid>
-
               <Grid
                 container
                 p={4}
                 sx={{ overflowWrap: 'break-word', width: 'auto' }}
               >
-                {fav.title} aasd
+                {fav.title}
               </Grid>
               <Grid item justifyContent="flex-end" ml="auto" mr={4}>
                 <ButtonFiumbiML
@@ -70,7 +69,6 @@ const FiumbiList = () => {
               </Grid>
             </Grid>
           ))}
-
         {isLoading && (
           <Grid container>
             <Grid item> Cargando</Grid>
