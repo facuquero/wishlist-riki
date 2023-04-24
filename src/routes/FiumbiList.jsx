@@ -32,7 +32,13 @@ const FiumbiList = () => {
       <Grid item xs={12} sx={{ py: 2 }}>
         <Typography sx={{ color: 'white' }}>Fiumbi favoritos</Typography>
       </Grid>
-      <Grid container sx={{ py: 2 }}>
+      <Grid
+        container
+        sx={{ py: 2 }}
+        flexDirection={{ xs: 'column', md: 'row' }}
+        justifyContent="center"
+        alignItems="center"
+      >
         {data &&
           data.data.listFav.length > 0 &&
           data.data.listFav.map((fav, index) => (
@@ -43,8 +49,16 @@ const FiumbiList = () => {
               borderRadius={4}
               m={2}
               alignItems="center"
+              width={{ xs: 'fit-content', md: '100%' }}
             >
-              <Grid item xs="auto" borderRadius={4}>
+              <Grid
+                container
+                borderRadius={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                width={{ xs: '100%', md: '15%' }}
+                maxWidth={{ xs: '100%', md: '200px' }}
+              >
                 <img
                   src={fav.thumbnail}
                   loading="lazy"
@@ -53,13 +67,26 @@ const FiumbiList = () => {
                 />
               </Grid>
               <Grid
-                container
+                item
+                borderRadius={4}
+                xs={12}
+                md={6}
                 p={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
                 sx={{ overflowWrap: 'break-word', width: 'auto' }}
               >
-                {fav.title}
+                <Typography>{fav.title}</Typography>
               </Grid>
-              <Grid item justifyContent="flex-end" ml="auto" mr={4}>
+              <Grid
+                item
+                xs={12}
+                md={2}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                ml="auto"
+                mr={{ xs: 'auto', md: 0 }}
+              >
                 <ButtonFiumbiML
                   fiumbiTitle={fav.title}
                   productID={fav.id}
@@ -71,7 +98,9 @@ const FiumbiList = () => {
           ))}
         {isLoading && (
           <Grid container>
-            <Grid item> Cargando</Grid>
+            <Grid item>
+              <Typography sx={{ color: 'white' }}>Cargando...</Typography>
+            </Grid>
           </Grid>
         )}
       </Grid>

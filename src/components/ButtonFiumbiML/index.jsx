@@ -22,7 +22,7 @@ const ButtonFiumbiML = ({
   return (
     <Box>
       <Button onClick={handleClickOpen}>
-        <CardGiftcardIcon />
+        <CardGiftcardIcon sx={{ fontSize: { xs: '5rem', md: '4rem' } }} />
       </Button>
       {showModalML && (
         <DialogFiumbi

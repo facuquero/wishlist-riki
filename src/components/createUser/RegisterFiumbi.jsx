@@ -7,7 +7,7 @@ import {
   ClickAwayListener,
   FormControlLabel,
   TextField,
-  Tooltip, 
+  Tooltip,
 } from '@mui/material'
 import { Box } from '@mui/system'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -184,11 +184,15 @@ const RegisterFiumbi = ({
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
                   {fieldItem.field === 'phone_number' && (
-                    <Box>Estos datos son para poder hacer la entrega </Box>
+                    <Typography>
+                      Estos datos son para poder hacer la entrega
+                    </Typography>
                   )}
 
                   {fieldItem.field === 'name' && (
-                    <Box>Estos datos son de quien recibira las entregas </Box>
+                    <Typography>
+                      Estos datos son de quien recibira las entregas
+                    </Typography>
                   )}
                   <Field
                     name={fieldItem.field}

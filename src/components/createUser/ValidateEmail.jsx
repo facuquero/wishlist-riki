@@ -41,7 +41,6 @@ const ValidateEmail = ({ wishlistName }) => {
       <Typography
         sx={{
           color: '#4f5bd5',
-          fontFamily: 'Poppins',
           textAlign: 'center',
           fontWeight: 700,
           fontSize: { xs: '1.25rem', md: '1.75rem' },
@@ -58,7 +57,7 @@ const ValidateEmail = ({ wishlistName }) => {
           sx={{
             fieldset: {
               borderWidth: 2,
-              fontFamily: 'Poppins',
+
               borderRadius: 10,
             },
           }}
