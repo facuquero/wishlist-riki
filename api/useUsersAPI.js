@@ -20,5 +20,7 @@ export const exchangeCodeForToken = () => {
   return usePost({ url })
 }
 
-
-
+export const useLogin = () => {
+  const url = '/login'
+  return usePost({ url })
+}

@@ -38,3 +38,8 @@ export const NewUserSchema = Yup.object().shape({
     'Debes aceptar los Términos y Condiciones'
   ),
 })
+
+export const LoginUserSchema = Yup.object().shape({
+  username: Yup.string().required('Usuario por favor'),
+  password: Yup.string().required('Contraseña por favor'),
+})
