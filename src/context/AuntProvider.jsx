@@ -11,8 +11,8 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
   const getUserLoged = () => {
     const username = getUsername()
-    const userToken = getUserToken()
-    if (username && userToken) return { username, userToken }
+    const token = getUserToken()
+    if (username && token) return { username, token }
     return {}
   }
 
@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
 
   const logIn = ({ newUsername, newUserToken, userdata = '' }) => {
     localStorageLogOut()
-    setNewFiumbiUserToCreate({ username: newUsername, userToken: newUserToken })
-    setAuth({ username: newUsername, userToken: newUserToken, userdata })
+    setNewFiumbiUserToCreate({ username: newUsername, token: newUserToken })
+    setAuth({ username: newUsername, token: newUserToken, userdata })
   }
 
   const setMLToken = ({ newTokenML }) => {

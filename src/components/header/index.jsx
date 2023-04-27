@@ -13,8 +13,8 @@ const Header = () => {
         <Typography>opciones</Typography>
       </Grid>
       <Grid item>
-        {!auth?.userToken && <LoginButton />}
-        {auth?.userToken && (
+        {!auth?.token && <LoginButton />}
+        {auth?.token && (
           <Button onClick={logOut}>Bienvenido de nuevo {auth.username}</Button>
         )}
       </Grid>
