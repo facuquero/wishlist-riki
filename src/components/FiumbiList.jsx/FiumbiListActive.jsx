@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Button, Grid } from '@mui/material'
 import Typography from '../commons/Typography'
 import ButtonFiumbiML from '../ButtonFiumbiML'
 import { getListActiveByUsername } from '../../../api/fiumbiProducts'
@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { Navigate, useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
+import DeleteFiumbiFavorite from '../DeleteFiumbiFavorite'
 
 const FiumbiListActive = () => {
   const { execute, data, isLoading } = getListActiveByUsername()
@@ -89,17 +91,13 @@ const FiumbiListActive = () => {
                   imgThumbnail={fav.thumbnail}
                 />
               )}
-              {isSameUserAsFiumbiUser && (
-                <Box>boton para sacar o no el item</Box>
-              )}
+              {isSameUserAsFiumbiUser && <DeleteFiumbiFavorite />}
             </Grid>
           </Grid>
         ))}
       {isLoading && (
-        <Grid container>
-          <Grid item>
-            <Typography sx={{ color: 'white' }}>Cargando...</Typography>
-          </Grid>
+        <Grid item>
+          <Typography sx={{ color: 'white' }}>Cargando...</Typography>
         </Grid>
       )}
     </Grid>

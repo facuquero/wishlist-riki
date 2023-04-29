@@ -48,30 +48,31 @@ const FiumbiList = () => {
           <Grid item>
             <Typography sx={{ color: 'white' }}>Fiumbi favoritos</Typography>
           </Grid>
-          {isSameUserAsFiumbiUser && (
-            <Grid item>
-              <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="fiumbiLabilListaActive">
-                  Fiumbi lista
-                </InputLabel>
-                <Select
-                  labelId="fiumbiLabilListaActive"
-                  value={viewRender}
-                  label="Fiumbi lista"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={viewsTypes.active}>
-                    {viewsTypes.active}
-                  </MenuItem>
-                  <MenuItem value={viewsTypes.inactive}>
-                    {viewsTypes.inactive}
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          )}
         </Grid>
       </Grid>
+
+      {isSameUserAsFiumbiUser && (
+        <Grid container>
+          <Grid item sx={{ backgroundColor: 'primary.light', borderRadius: 2 }}>
+            <FormControl sx={{ p: 1, minWidth: 120 }} variant="filled">
+              <InputLabel id="fiumbiLabilListaActive">Fiumbi lista</InputLabel>
+              <Select
+                labelId="fiumbiLabilListaActive"
+                value={viewRender}
+                label="Fiumbi lista"
+                onChange={handleChange}
+              >
+                <MenuItem value={viewsTypes.active}>
+                  {viewsTypes.active}
+                </MenuItem>
+                <MenuItem value={viewsTypes.inactive}>
+                  {viewsTypes.inactive}
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+      )}
       <Grid
         item
         xs={12}

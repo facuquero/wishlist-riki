@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
         <Header />
       </Grid>
       <Grid item xs={12}>
-        {children}
+        <Outlet />
       </Grid>
       <Grid item>footer</Grid>
     </Grid>
