@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Navigate, redirect, useLocation, useNavigate } from 'react-router-dom'
 import { exchangeCodeForToken } from '../../api/useUsersAPI'
-import { setTokenML } from '../utils/localStorageManagment'
+import useAuth from '../hooks/useAuth'
 
 const ValidatingFiumbiUser = () => {
   const location = useLocation()
   const params = new URLSearchParams(location.search)
-
+  const { auth, setMLToken } = useAuth()
   const { execute, data } = exchangeCodeForToken()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!data) {
@@ -26,10 +27,15 @@ const ValidatingFiumbiUser = () => {
 
   useEffect(() => {
     if (data?.status == 201) {
-      const tokenML = data.data.accessToken
-      setTokenML({ tokenML: tokenML })
+      const newTokenML = data.data.accessToken
+      setMLToken({ newTokenML })
+      navigate(`/${auth.username}`)
     }
   }, [data])
+
+  if (!auth.username) {
+    return <Navigate to="/" />
+  }
 
   return <div>validando informacion</div>
 }

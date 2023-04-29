@@ -29,3 +29,8 @@ export const reActiveProduct = () => {
   const url = '/delete-product'
   return usePost({ url })
 }
+
+export const SincFavMLProduct = () => {
+  const url = '/sync-favs'
+  return usePost({ url })
+}

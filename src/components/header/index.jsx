@@ -9,15 +9,15 @@ const Header = () => {
 
   return (
     <Grid container justifyContent="space-between" p={2} alignItems="center">
-      <Grid item>
+      <Grid item xs={4}>
         <NavLink to="/">logo</NavLink>
       </Grid>
       {auth?.token && (
-        <Grid>
+        <Grid item xs={4} display="flex" justifyContent="center">
           <Typography>Bienvenido {auth.username}</Typography>
         </Grid>
       )}
-      <Grid item>
+      <Grid item xs={4} display="flex" justifyContent="flex-end">
         {!auth?.token && <LoginButton />}
         {auth?.token && <Button onClick={logOut}>Cerrar sesion</Button>}
       </Grid>

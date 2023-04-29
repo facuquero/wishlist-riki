@@ -9,6 +9,7 @@ import Select from '@mui/material/Select'
 import { useLoaderData } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import FiumbiListInactive from '../components/FiumbiList.jsx/FiumbiListInactive'
+import SincFav from '../components/SincFav'
 
 const FiumbiList = () => {
   const loaderData = useLoaderData()
@@ -52,9 +53,17 @@ const FiumbiList = () => {
       </Grid>
 
       {isSameUserAsFiumbiUser && (
-        <Grid container>
-          <Grid item sx={{ backgroundColor: 'primary.light', borderRadius: 2 }}>
-            <FormControl sx={{ p: 1, minWidth: 120 }} variant="filled">
+        <Grid
+          container
+          justifyContent={{ xs: 'center', sm: 'space-between' }}
+          alignItems="center"
+          sx={{ backgroundColor: 'primary.light', borderRadius: 2, p: 1 }}
+        >
+          <Grid item xs={12} sm="auto">
+            <FormControl
+              sx={{ minWidth: 120, width: { xs: '100%', sm: 'auto' } }}
+              variant="filled"
+            >
               <InputLabel id="fiumbiLabilListaActive">Fiumbi lista</InputLabel>
               <Select
                 labelId="fiumbiLabilListaActive"
@@ -70,6 +79,9 @@ const FiumbiList = () => {
                 </MenuItem>
               </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>
+            <SincFav />
           </Grid>
         </Grid>
       )}

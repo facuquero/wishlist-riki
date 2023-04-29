@@ -8,6 +8,7 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
+  Outlet,
 } from 'react-router-dom'
 import FiumbiList, { getFiumbiList } from './routes/FiumbiList'
 
@@ -16,14 +17,16 @@ import Layout from './layout'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route path="/" element={<Home />} />
+    <Route path="/" element={<Outlet />}>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/:fiumbiListUsername"
+          element={<FiumbiList />}
+          loader={getFiumbiList}
+        />
+      </Route>
       <Route path="/validatingFiumbiUser" element={<ValidatingFiumbiUser />} />
-      <Route
-        path="/:fiumbiListUsername"
-        element={<FiumbiList />}
-        loader={getFiumbiList}
-      />
     </Route>
   )
 )
