@@ -1,4 +1,4 @@
-import { Box, Button, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import Typography from '../commons/Typography'
 import ButtonFiumbiML from '../ButtonFiumbiML'
 import { getListActiveByUsername } from '../../../api/fiumbiProducts'
@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { Navigate, useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
 import DeleteFiumbiFavorite from '../DeleteFiumbiFavorite'
 
 const FiumbiListActive = () => {
@@ -16,6 +15,9 @@ const FiumbiListActive = () => {
   const isSameUserAsFiumbiUser =
     auth?.username == loaderData?.params?.fiumbiListUsername
 
+  const isRenderFiumbiList =
+    data && data?.data?.listFav?.length > 0 && !isLoading
+
   useEffect(() => {
     execute({
       data: {
@@ -23,8 +25,17 @@ const FiumbiListActive = () => {
       },
     })
   }, [])
-  if (data && !data?.data.listFav) {
+
+  if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
     return <Navigate to="/" />
+  }
+
+  const reloadSearch = () => {
+    execute({
+      data: {
+        userId: loaderData.params.fiumbiListUsername,
+      },
+    })
   }
 
   return (
@@ -35,8 +46,7 @@ const FiumbiListActive = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {data &&
-        data.data.listFav.length > 0 &&
+      {isRenderFiumbiList &&
         data.data.listFav.map((fav, index) => (
           <Grid
             container
@@ -44,6 +54,7 @@ const FiumbiListActive = () => {
             className={styles.cardFavList}
             borderRadius={4}
             m={2}
+            p={2}
             alignItems="center"
             width={{ xs: 'fit-content', md: '100%' }}
           >
@@ -77,11 +88,11 @@ const FiumbiListActive = () => {
             <Grid
               item
               xs={12}
-              md={2}
+              md="auto"
               display={{ xs: 'flex', md: 'block' }}
               justifyContent="center"
               ml="auto"
-              mr={{ xs: 'auto', md: 0 }}
+              mr={{ xs: 'auto', md: 1 }}
             >
               {!isSameUserAsFiumbiUser && (
                 <ButtonFiumbiML
@@ -91,10 +102,23 @@ const FiumbiListActive = () => {
                   imgThumbnail={fav.thumbnail}
                 />
               )}
-              {isSameUserAsFiumbiUser && <DeleteFiumbiFavorite />}
+              {isSameUserAsFiumbiUser && (
+                <DeleteFiumbiFavorite
+                  id={fav.id}
+                  fiumbiTitle={fav.title}
+                  reloadSearch={reloadSearch}
+                />
+              )}
             </Grid>
           </Grid>
         ))}
+      {!isRenderFiumbiList && !isLoading && (
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Typography sx={{ color: 'white' }}>Sin favoritos</Typography>
+          </Grid>
+        </Grid>
+      )}
       {isLoading && (
         <Grid item>
           <Typography sx={{ color: 'white' }}>Cargando...</Typography>

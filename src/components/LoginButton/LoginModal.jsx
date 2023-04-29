@@ -41,12 +41,8 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
   ]
 
   useEffect(() => {
-    console.log('data', data)
     if (data?.status === 200) {
-      console.log('data', data.data.token)
-      usernameLogin
       logIn({ newUsername: usernameLogin, newUserToken: data.data.token })
-      console.log('data', logIn)
     }
   }, [isLoading, data])
 

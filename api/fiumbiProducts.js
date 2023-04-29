@@ -19,3 +19,13 @@ export const generateLinkML = () => {
   const url = '/generate-link'
   return usePost({ url })
 }
+
+export const deleteProduct = () => {
+  const url = '/delete-product'
+  return usePost({ url })
+}
+
+export const reActiveProduct = () => {
+  const url = '/delete-product'
+  return usePost({ url })
+}

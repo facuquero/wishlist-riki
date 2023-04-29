@@ -2,14 +2,24 @@ import { Box, Grid } from '@mui/material'
 import Typography from '../commons/Typography'
 import { getListByUsernameInactive } from '../../../api/fiumbiProducts'
 import { useEffect } from 'react'
-import useAuth from '../../hooks/useAuth'
 import { useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
+import ReActiveFiumbiFavorite from '../ReActiveFiumbiFavorite'
 
 const FiumbiListInactive = () => {
   const { execute, data, isLoading } = getListByUsernameInactive()
   const loaderData = useLoaderData()
-  const { auth } = useAuth()
+
+  const isRenderFiumbiList =
+    data && data?.data?.listFav?.length > 0 && !isLoading
+
+  const reloadSearch = () => {
+    execute({
+      data: {
+        userId: loaderData.params.fiumbiListUsername,
+      },
+    })
+  }
 
   useEffect(() => {
     execute({
@@ -19,8 +29,6 @@ const FiumbiListInactive = () => {
     })
   }, [])
 
-  console.log('data', data)
-
   return (
     <Grid
       container
@@ -29,8 +37,7 @@ const FiumbiListInactive = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {data &&
-        data.data.listFav.length > 0 &&
+      {isRenderFiumbiList &&
         data.data.listFav.map((fav, index) => (
           <Grid
             container
@@ -38,6 +45,7 @@ const FiumbiListInactive = () => {
             className={styles.cardFavList}
             borderRadius={4}
             m={2}
+            p={2}
             alignItems="center"
             width={{ xs: 'fit-content', md: '100%' }}
           >
@@ -71,16 +79,28 @@ const FiumbiListInactive = () => {
             <Grid
               item
               xs={12}
-              md={2}
+              md="auto"
               display={{ xs: 'flex', md: 'block' }}
               justifyContent="center"
               ml="auto"
               mr={{ xs: 'auto', md: 0 }}
             >
-              <Box>boton para sacar o no el item</Box>
+              <ReActiveFiumbiFavorite
+                id={fav.id}
+                fiumbiTitle={fav.title}
+                reloadSearch={reloadSearch}
+              />
             </Grid>
           </Grid>
         ))}
+
+      {!isRenderFiumbiList && !isLoading && (
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Typography sx={{ color: 'white' }}>Sin inactivos</Typography>
+          </Grid>
+        </Grid>
+      )}
       {isLoading && (
         <Grid container>
           <Grid item>

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import {
   getUserToken,
   getUsername,
@@ -34,10 +34,6 @@ export const AuthProvider = ({ children }) => {
       return { ...pre, tokenML: newTokenML }
     })
   }
-
-  useEffect(() => {
-    console.log('auth', auth)
-  }, [auth])
 
   return (
     <AuthContext.Provider value={{ auth, logIn, logOut, setMLToken }}>

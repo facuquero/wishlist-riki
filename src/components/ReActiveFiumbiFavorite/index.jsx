@@ -1,18 +1,18 @@
 import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
-import DeleteFiumbiFavoriteModal from './DeleteFiumbiFavoriteModal'
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
+import DeleteFiumbiFavoriteModal from './ReActiveFiumbiFavoriteModal'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
-const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
-  const [showModalDeleteFiumbiFavorite, setShowModalDeleteFiumbiFavorite] =
+const ReActiveFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
+  const [showModalReActiveFiumbiFavorite, setShowModalReActiveFiumbiFavorite] =
     useState(false)
 
   const handleClickOpen = () => {
-    setShowModalDeleteFiumbiFavorite(true)
+    setShowModalReActiveFiumbiFavorite(true)
   }
 
   const handleClose = ({ isFiumbiActiveChange }) => {
-    setShowModalDeleteFiumbiFavorite(false)
+    setShowModalReActiveFiumbiFavorite(false)
     if (isFiumbiActiveChange) {
       reloadSearch()
     }
@@ -28,11 +28,11 @@ const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
           display: 'flex',
         }}
       >
-        Sacar de favoritos <HeartBrokenIcon sx={{ ml: 1 }} />
+        Agregar a favoritos <FavoriteIcon sx={{ ml: 1 }} />
       </Button>
-      {showModalDeleteFiumbiFavorite && (
+      {showModalReActiveFiumbiFavorite && (
         <DeleteFiumbiFavoriteModal
-          showModal={showModalDeleteFiumbiFavorite}
+          showModal={showModalReActiveFiumbiFavorite}
           handleClose={handleClose}
           id={id}
           fiumbiTitle={fiumbiTitle}
@@ -42,4 +42,4 @@ const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
   )
 }
 
-export default DeleteFiumbiFavorite
+export default ReActiveFiumbiFavorite
