@@ -25,7 +25,15 @@ const ValidatingFiumbiUser = () => {
   }
 
   return (
-    <Grid container justifyContent="center" alignItems="center" height="100dvh">
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      height="100dvh"
+      sx={{
+        backgroundColor: '#4f5bd5',
+      }}
+    >
       <Grid item p={3}>
         {renderView === renderSteps.validateML && (
           <ValidatingML nextStep={nextStep} />

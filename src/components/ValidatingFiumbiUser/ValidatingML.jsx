@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { exchangeCodeForToken } from '../../../api/useUsersAPI'
 import useAuth from '../../hooks/useAuth'
 import Typography from '../commons/Typography'
@@ -7,8 +7,9 @@ import Typography from '../commons/Typography'
 const ValidatingML = ({ nextStep }) => {
   const location = useLocation()
   const params = new URLSearchParams(location.search)
-  const { setMLToken } = useAuth()
+  const { auth, setMLToken } = useAuth()
   const { execute, data, error } = exchangeCodeForToken()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!data) {
@@ -30,6 +31,9 @@ const ValidatingML = ({ nextStep }) => {
       const newTokenML = data.data.accessToken
       setMLToken({ newTokenML })
       nextStep()
+    }
+    if (error) {
+      navigate(`/${auth.username}`)
     }
     console.log('Validando usuario', error)
     console.log('Validando usuario', data)
