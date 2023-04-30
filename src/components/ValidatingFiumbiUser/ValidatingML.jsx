@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
-
-import { Grid } from '@mui/material'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { exchangeCodeForToken } from '../../../api/useUsersAPI'
 import useAuth from '../../hooks/useAuth'
 import Typography from '../commons/Typography'
@@ -9,9 +7,8 @@ import Typography from '../commons/Typography'
 const ValidatingML = ({ nextStep }) => {
   const location = useLocation()
   const params = new URLSearchParams(location.search)
-  const { auth, setMLToken } = useAuth()
+  const { setMLToken } = useAuth()
   const { execute, data, error } = exchangeCodeForToken()
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (!data) {

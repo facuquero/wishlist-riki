@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import ValidatingML from '../components/ValidatingFiumbiUser/ValidatingML'
 import ValidatingFiumbi from '../components/ValidatingFiumbiUser/ValidatingFiumbi'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const ValidatingFiumbiUser = () => {
   const renderSteps = {
@@ -24,12 +25,15 @@ const ValidatingFiumbiUser = () => {
   }
 
   return (
-    <Grid container>
-      <Grid item>
+    <Grid container justifyContent="center" alignItems="center" height="100dvh">
+      <Grid item p={3}>
         {renderView === renderSteps.validateML && (
           <ValidatingML nextStep={nextStep} />
         )}
         {renderView === renderSteps.validateFiumbi && <ValidatingFiumbi />}
+        <Box mx="auto" width="min-content" mt={2}>
+          <CircularProgress />
+        </Box>
       </Grid>
     </Grid>
   )
