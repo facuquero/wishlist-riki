@@ -1,43 +1,38 @@
-import React, { useEffect } from 'react'
-import { Navigate, redirect, useLocation, useNavigate } from 'react-router-dom'
-import { exchangeCodeForToken } from '../../api/useUsersAPI'
+import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
+import { Grid } from '@mui/material'
+import ValidatingML from '../components/ValidatingFiumbiUser/ValidatingML'
+import ValidatingFiumbi from '../components/ValidatingFiumbiUser/ValidatingFiumbi'
 
 const ValidatingFiumbiUser = () => {
-  const location = useLocation()
-  const params = new URLSearchParams(location.search)
-  const { auth, setMLToken } = useAuth()
-  const { execute, data } = exchangeCodeForToken()
-  const navigate = useNavigate()
+  const renderSteps = {
+    validateML: 'validateML',
+    validateFiumbi: 'validaFiumbi',
+  }
 
-  useEffect(() => {
-    if (!data) {
-      const paramsObject = {}
-      params.forEach((value, key) => {
-        paramsObject[key] = value
-      })
-      const data = {
-        code: paramsObject.code,
-      }
-      execute({
-        data,
-      })
-    }
-  }, [])
+  const [renderView, setRenderView] = useState(renderSteps.validateML)
 
-  useEffect(() => {
-    if (data?.status == 201) {
-      const newTokenML = data.data.accessToken
-      setMLToken({ newTokenML })
-      navigate(`/${auth.username}`)
-    }
-  }, [data])
+  const { auth } = useAuth()
+
+  const nextStep = () => {
+    setRenderView(renderSteps.validateFiumbi)
+  }
 
   if (!auth.username) {
     return <Navigate to="/" />
   }
 
-  return <div>validando informacion</div>
+  return (
+    <Grid container>
+      <Grid item>
+        {renderView === renderSteps.validateML && (
+          <ValidatingML nextStep={nextStep} />
+        )}
+        {renderView === renderSteps.validateFiumbi && <ValidatingFiumbi />}
+      </Grid>
+    </Grid>
+  )
 }
 
 export default ValidatingFiumbiUser
