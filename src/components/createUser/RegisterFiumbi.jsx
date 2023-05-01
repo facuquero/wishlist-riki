@@ -58,6 +58,12 @@ const RegisterFiumbi = ({
       type: 'password',
     },
     {
+      field: 'confirmPassword',
+      label: 'Repetir contraseña',
+      type: 'password',
+    },
+
+    {
       field: 'phone_number',
       label: 'Teléfono',
     },

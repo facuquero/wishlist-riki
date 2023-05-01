@@ -24,3 +24,8 @@ export const useLogin = () => {
   const url = '/login'
   return usePost({ url })
 }
+
+export const validateUsername = () => {
+  const url = '/validate-username'
+  return usePost({ url })
+}

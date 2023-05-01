@@ -1,31 +1,56 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, InputAdornment, TextField } from '@mui/material'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  InputAdornment,
+  TextField,
+} from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Typography from '../commons/Typography'
+import { validateUsername } from '../../../api/useUsersAPI'
 
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const [wishlist, setWishlist] = useState('')
   const [isFiumbiFree, setIsFiumbiFree] = useState(false)
+  const { execute, data, isLoading, error } = validateUsername()
 
   const onChangeWishlistName = (e) => {
     setWishlist(e.target.value)
   }
 
   const handleClickCreate = () => {
-    if (isDisabledSend) return
+    if (!isFiumbiFree) return
     handleClickCreateWishlist({ wishlist })
   }
 
-  const isDisabledSend = !wishlist || wishlist.length < 3
+  const reayToChecKUsername = wishlist && wishlist.length > 2
 
   useEffect(() => {
     setIsFiumbiFree(false)
-    const checking = setTimeout(async () => {
-      //const response = await get()
-      //setIsFiumbiFree(true)
-    }, 500)
-    return () => clearTimeout(checking)
+    if (!reayToChecKUsername) {
+      setIsFiumbiFree(false)
+    }
+    if (reayToChecKUsername) {
+      const checking = setTimeout(() => {
+        execute({
+          data: {
+            username: wishlist,
+          },
+        })
+      }, 750)
+      return () => clearTimeout(checking)
+    }
   }, [wishlist])
+
+  useEffect(() => {
+    if (data?.status == 200) {
+      setIsFiumbiFree(true)
+    }
+    console.log('data', data)
+    console.log('data', error)
+    console.log('data', isLoading)
+  }, [data, error, isLoading])
 
   return (
     <Box>
@@ -52,6 +77,11 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
                 <FavoriteIcon sx={{ color: '#4f5bd5' }} />
               </InputAdornment>
             ),
+            endAdornment: (
+              <InputAdornment position="end">
+                {isLoading && <CircularProgress />}
+              </InputAdornment>
+            ),
           }}
           sx={{
             fieldset: {
@@ -74,7 +104,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
             sx={{ borderRadius: 10 }}
             size="large"
             onClick={handleClickCreate}
-            disabled={isDisabledSend}
+            disabled={!isFiumbiFree || !reayToChecKUsername}
           >
             <Typography sx={{ fontWeight: 700 }} variant="h5">
               CREAR WISHLIST

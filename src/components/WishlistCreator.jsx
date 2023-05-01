@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box } from '@mui/material'
 import NewFiumbiUser from './createUser/NewFiumbiUser'
 import RegisterFiumbi from './createUser/RegisterFiumbi'
-import ValidateEmail from './createUser/validateEmail'
+import ValidateEmail from './createUser/ValidateEmail'
 
 const posibleViews = {
   createFiumbiName: 'createFiumbiName',
@@ -11,7 +11,7 @@ const posibleViews = {
 }
 
 const WishlistCreator = () => {
-  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
+  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiSuccess)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
 
