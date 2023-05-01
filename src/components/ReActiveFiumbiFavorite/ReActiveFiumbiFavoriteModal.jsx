@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { Button, Grid, IconButton, TextField } from '@mui/material'
+import React, { useEffect } from 'react'
+import { Button, Grid, IconButton } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import { SlideTransition } from '../SlideTransition'
-import { deleteProduct } from '../../../api/fiumbiProducts'
+import { reActiveProduct } from '../../../api/fiumbiProducts'
 import Typography from '../commons/Typography'
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -15,12 +15,12 @@ const ReActiveFiumbiFavoriteModal = ({
   id,
   fiumbiTitle,
 }) => {
-  const { execute, data, isLoading, isError } = deleteProduct()
+  const { execute, data, isLoading, isError } = reActiveProduct()
 
   const handleClickReActiveProduct = () => {
     execute({
       data: {
-        id,
+        productId: id,
       },
     })
   }

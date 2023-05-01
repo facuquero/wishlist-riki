@@ -35,8 +35,6 @@ const ValidatingML = ({ nextStep }) => {
     if (error) {
       navigate(`/${auth.username}`)
     }
-    console.log('Validando usuario', error)
-    console.log('Validando usuario', data)
   }, [data, error])
 
   return <Typography>Validando usuario</Typography>

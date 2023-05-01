@@ -26,7 +26,7 @@ export const deleteProduct = () => {
 }
 
 export const reActiveProduct = () => {
-  const url = '/delete-product'
+  const url = '/activate-product'
   return usePost({ url })
 }
 

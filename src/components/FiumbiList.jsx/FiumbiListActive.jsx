@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth'
 import { Navigate, useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
 import DeleteFiumbiFavorite from '../DeleteFiumbiFavorite'
+import { Virtuoso } from 'react-virtuoso'
 
 const FiumbiListActive = () => {
   const { execute, data, isLoading } = getListActiveByUsername()
@@ -46,72 +47,86 @@ const FiumbiListActive = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {isRenderFiumbiList &&
-        data.data.listFav.map((fav, index) => (
-          <Grid
-            container
-            key={index}
-            className={styles.cardFavList}
-            borderRadius={4}
-            m={2}
-            p={2}
-            alignItems="center"
-            width={{ xs: 'fit-content', md: '100%' }}
-          >
+      {isRenderFiumbiList && (
+        <Virtuoso
+          style={{ height: 'max(60vh, 600px)', width: '100%' }}
+          data={data.data.listFav}
+          itemContent={(index, favItem) => (
             <Grid
               container
+              className={styles.cardFavList}
               borderRadius={4}
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              width={{ xs: '100%', md: '15%' }}
-              maxWidth={{ xs: '100%', md: '200px' }}
+              m={2}
+              p={2}
+              alignItems="center"
+              width="95%"
+              mx="auto"
+              key={index}
             >
-              <img
-                src={fav.thumbnail}
-                loading="lazy"
-                alt="meliThumbnail"
-                className={styles.imageFavList}
-              />
-            </Grid>
-            <Grid
-              item
-              borderRadius={4}
-              xs={12}
-              md={6}
-              p={4}
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              sx={{ overflowWrap: 'break-word', width: 'auto' }}
-            >
-              <Typography>{fav.title}</Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md="auto"
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              ml="auto"
-              mr={{ xs: 'auto', md: 1 }}
-            >
-              {!isSameUserAsFiumbiUser && (
-                <ButtonFiumbiML
-                  fiumbiTitle={fav.title}
-                  productID={fav.id}
-                  fiumbiUsername={loaderData.params.fiumbiListUsername}
-                  imgThumbnail={fav.thumbnail}
+              <Grid
+                container
+                borderRadius={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                width={{ xs: '100%', md: '15%' }}
+                maxWidth={{ xs: '100%', md: '200px' }}
+              >
+                <img
+                  src={favItem.thumbnail}
+                  loading="lazy"
+                  alt="meliThumbnail"
+                  className={styles.imageFavList}
                 />
-              )}
-              {isSameUserAsFiumbiUser && (
-                <DeleteFiumbiFavorite
-                  id={fav.id}
-                  fiumbiTitle={fav.title}
-                  reloadSearch={reloadSearch}
-                />
-              )}
+              </Grid>
+              <Grid
+                item
+                borderRadius={4}
+                xs={12}
+                md={6}
+                p={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                sx={{
+                  overflowWrap: 'break-word',
+                  width: 'auto',
+                  textAlign: { xs: 'center', md: 'left' },
+                }}
+                flexWrap="wrap"
+                justifyItems="center"
+                flexDirection={{ xs: 'column', md: 'row' }}
+              >
+                <Typography variant="h5">{favItem.title}</Typography>
+                <Typography variant="h6">Precio: {favItem.price}</Typography>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md="auto"
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                ml="auto"
+                mr={{ xs: 'auto', md: 1 }}
+              >
+                {!isSameUserAsFiumbiUser && (
+                  <ButtonFiumbiML
+                    fiumbiTitle={favItem.title}
+                    productID={favItem.id}
+                    fiumbiUsername={loaderData.params.fiumbiListUsername}
+                    imgThumbnail={favItem.thumbnail}
+                  />
+                )}
+                {isSameUserAsFiumbiUser && (
+                  <DeleteFiumbiFavorite
+                    id={favItem.id}
+                    fiumbiTitle={favItem.title}
+                    reloadSearch={reloadSearch}
+                  />
+                )}
+              </Grid>
             </Grid>
-          </Grid>
-        ))}
+          )}
+        />
+      )}
       {!isRenderFiumbiList && !isLoading && (
         <Grid container justifyContent="center">
           <Grid item>

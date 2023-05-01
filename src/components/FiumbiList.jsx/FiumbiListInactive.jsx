@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
 import ReActiveFiumbiFavorite from '../ReActiveFiumbiFavorite'
+import { Virtuoso } from 'react-virtuoso'
 
 const FiumbiListInactive = () => {
   const { execute, data, isLoading } = getListByUsernameInactive()
@@ -37,62 +38,69 @@ const FiumbiListInactive = () => {
       justifyContent="center"
       alignItems="center"
     >
-      {isRenderFiumbiList &&
-        data.data.listFav.map((fav, index) => (
-          <Grid
-            container
-            key={index}
-            className={styles.cardFavList}
-            borderRadius={4}
-            m={2}
-            p={2}
-            alignItems="center"
-            width={{ xs: 'fit-content', md: '100%' }}
-          >
+      {isRenderFiumbiList && (
+        <Virtuoso
+          style={{ height: 'max(60vh, 600px)', width: '100%' }}
+          data={data.data.listFav}
+          itemContent={(index, favItem) => (
             <Grid
               container
+              key={index}
+              className={styles.cardFavList}
               borderRadius={4}
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              width={{ xs: '100%', md: '15%' }}
-              maxWidth={{ xs: '100%', md: '200px' }}
+              m={2}
+              p={2}
+              width="95%"
+              mx="auto"
+              alignItems="center"
             >
-              <img
-                src={fav.thumbnail}
-                loading="lazy"
-                alt="meliThumbnail"
-                className={styles.imageFavList}
-              />
+              <Grid
+                container
+                borderRadius={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                width={{ xs: '100%', md: '15%' }}
+                maxWidth={{ xs: '100%', md: '200px' }}
+              >
+                <img
+                  src={favItem.thumbnail}
+                  loading="lazy"
+                  alt="meliThumbnail"
+                  className={styles.imageFavList}
+                />
+              </Grid>
+              <Grid
+                item
+                borderRadius={4}
+                xs={12}
+                md={6}
+                p={4}
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                sx={{ overflowWrap: 'break-word', width: 'auto' }}
+              >
+                <Typography>{favItem.title}</Typography>
+                <Typography>{favItem.title}</Typography>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md="auto"
+                display={{ xs: 'flex', md: 'block' }}
+                justifyContent="center"
+                ml="auto"
+                mr={{ xs: 'auto', md: 0 }}
+              >
+                <ReActiveFiumbiFavorite
+                  id={favItem.id}
+                  fiumbiTitle={favItem.title}
+                  reloadSearch={reloadSearch}
+                />
+              </Grid>
             </Grid>
-            <Grid
-              item
-              borderRadius={4}
-              xs={12}
-              md={6}
-              p={4}
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              sx={{ overflowWrap: 'break-word', width: 'auto' }}
-            >
-              <Typography>{fav.title}</Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md="auto"
-              display={{ xs: 'flex', md: 'block' }}
-              justifyContent="center"
-              ml="auto"
-              mr={{ xs: 'auto', md: 0 }}
-            >
-              <ReActiveFiumbiFavorite
-                id={fav.id}
-                fiumbiTitle={fav.title}
-                reloadSearch={reloadSearch}
-              />
-            </Grid>
-          </Grid>
-        ))}
+          )}
+        />
+      )}
 
       {!isRenderFiumbiList && !isLoading && (
         <Grid container justifyContent="center">

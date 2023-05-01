@@ -52,14 +52,14 @@ const DialogFiumbi = ({
               className={styles.imageFavList}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} display="flex" justifyContent="center">
             {fiumbiTitle}
           </Grid>
         </Grid>
       </DialogTitle>
       <DialogContent>
         <Grid container>
-          <Grid item xs={12} mb={2}>
+          <Grid item xs={12} mb={2} display="flex" justifyContent="center">
             <Typography> Agregar una nota para {fiumbiUsername} </Typography>
           </Grid>
           <Grid item xs={12}>
