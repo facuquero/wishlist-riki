@@ -13,7 +13,7 @@ import { validateUsername } from '../../../api/useUsersAPI'
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const [wishlist, setWishlist] = useState('')
   const [isFiumbiFree, setIsFiumbiFree] = useState(false)
-  const { execute, data, isLoading, error } = validateUsername()
+  const { execute, data, isLoading, error, isError } = validateUsername()
 
   const onChangeWishlistName = (e) => {
     setWishlist(e.target.value)
@@ -48,8 +48,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
       setIsFiumbiFree(true)
     }
     console.log('data', data)
-    console.log('data', error)
-    console.log('data', isLoading)
+    console.log('error', error)
   }, [data, error, isLoading])
 
   return (
@@ -57,7 +56,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
       <Typography
         sx={{
           color: '#4f5bd5',
-          fontFamily: 'Poppins',
           textAlign: 'center',
           fontWeight: 700,
           fontSize: { xs: '1.5rem', md: '2.125rem' },
@@ -86,7 +84,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           sx={{
             fieldset: {
               borderWidth: 2,
-              fontFamily: 'Poppins',
               borderRadius: 10,
             },
           }}
@@ -111,6 +108,12 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
             </Typography>
           </Button>
         </Box>
+        {isError && (
+          <Box mt={2} sx={{ textAlign: 'center' }}>
+            <Typography>A ocurrido un error:</Typography>
+            <Typography>{error?.response?.data?.data}</Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   )

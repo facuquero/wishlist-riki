@@ -11,7 +11,7 @@ const posibleViews = {
 }
 
 const WishlistCreator = () => {
-  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiSuccess)
+  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
 

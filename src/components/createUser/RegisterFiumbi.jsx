@@ -75,7 +75,7 @@ const RegisterFiumbi = ({
           <Box>
             <Tooltip
               title={
-                <Typography variant="body2" sx={{ fontFamily: 'Poppins' }}>
+                <Typography variant="body2">
                   Necesitamos una dirección donde enviar el regalo
                 </Typography>
               }
@@ -87,7 +87,6 @@ const RegisterFiumbi = ({
               disableFocusListener
               disableHoverListener
               disableTouchListener
-              sx={{ fontFamily: 'Poppins' }}
             >
               <HelpOutlineIcon
                 sx={{
@@ -141,13 +140,12 @@ const RegisterFiumbi = ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        fontFamily: 'Poppins',
       }}
     >
       <Typography
         sx={{
           width: '100%',
-          fontFamily: 'Poppins',
+
           color: '#4f5bd5',
           fontWeight: 700,
           textAlign: 'center',
@@ -185,7 +183,7 @@ const RegisterFiumbi = ({
         }}
       >
         {({ errors, touched }) => (
-          <Form style={{ width: '100%', fontFamily: 'Poppins' }}>
+          <Form style={{ width: '100%' }}>
             {fieldInputsItems.map((fieldItem, index) => {
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
@@ -220,9 +218,6 @@ const RegisterFiumbi = ({
                               borderWidth: 2,
                               borderRadius: 10,
                             },
-                            '& .MuiFormLabel-root': {
-                              fontFamily: 'Poppins',
-                            },
                           }}
                           size="small"
                         />
@@ -246,15 +241,13 @@ const RegisterFiumbi = ({
                 as={FormControlLabel}
                 control={<Checkbox />}
                 label={
-                  <Typography variant="body2" sx={{ fontFamily: 'Poppins' }}>
+                  <Typography variant="body2">
                     Estoy de acuerdo con los términos y condiciones
                   </Typography>
                 }
               />
               {errors.termsAndConditions && touched.termsAndConditions ? (
-                <div style={{ color: 'red', fontFamily: 'Poppins' }}>
-                  {errors.termsAndConditions}
-                </div>
+                <div style={{ color: 'red' }}>{errors.termsAndConditions}</div>
               ) : null}
             </Box>
             <Button
@@ -271,18 +264,18 @@ const RegisterFiumbi = ({
           </Form>
         )}
       </Formik>
-
+      {isError && (
+        <Box my={2} sx={{ textAlign: 'center' }}>
+          <Typography>A ocurrido un error:</Typography>
+          <Typography>{error?.response?.data?.message}</Typography>
+        </Box>
+      )}
       <Box
         sx={{ py: 1, cursor: 'pointer' }}
         onClick={() => navigate({ pathname: '/login' })}
       >
-        <Typography variant="span" sx={{ fontFamily: 'Poppins' }}>
-          ¿Ya tienes una cuenta?
-        </Typography>
-        <Typography
-          variant="span"
-          sx={{ fontFamily: 'Poppins', fontWeight: 700 }}
-        >
+        <Typography variant="span">¿Ya tienes una cuenta?</Typography>
+        <Typography variant="span" sx={{ fontWeight: 700 }}>
           Iniciar sesión
         </Typography>
       </Box>

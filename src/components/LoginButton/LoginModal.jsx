@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react'
 import { Button, Grid, TextField } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import { SlideTransition } from '../SlideTransition'
@@ -77,7 +76,7 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
         >
           {({ errors, touched }) => (
             <Grid container>
-              <Form style={{ width: '100%', fontFamily: 'Poppins' }}>
+              <Form style={{ width: '100%' }}>
                 {fieldInputsItems.map((fieldItem, index) => {
                   return (
                     <Grid
