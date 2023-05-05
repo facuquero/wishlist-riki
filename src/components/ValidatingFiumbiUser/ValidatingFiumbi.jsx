@@ -8,14 +8,18 @@ const ValidatingFiumbi = () => {
   const { auth } = useAuth()
   const { execute, data, error } = SincFavMLProduct()
   const navigate = useNavigate()
+  let initialized = false
 
   useEffect(() => {
-    if (!data) {
-      execute({
-        data: {
-          username: auth.username,
-        },
-      })
+    if (!initialized) {
+      initialized = true
+      if (!data) {
+        execute({
+          data: {
+            username: auth.username,
+          },
+        })
+      }
     }
   }, [])
 

@@ -150,7 +150,7 @@ const RegisterFiumbi = ({
           fontWeight: 700,
           textAlign: 'center',
           text: 'center',
-          fontSize: { xs: '1.75rem', sm: '2.125rem' },
+          fontSize: { xs: '1.50rem', sm: '2rem' },
         }}
       >
         Regístra tu "{wishlistName || 'fuimbi'}" para poder crear tu lista de
@@ -161,7 +161,24 @@ const RegisterFiumbi = ({
           w: '100%',
         }}
       >
-        Recuerda de usuario sera "{wishlistName || ''}"*
+        <Typography
+          sx={{
+            width: '100%',
+            textAlign: 'center',
+            text: 'center',
+          }}
+        >
+          Recuerda de usuario sera {wishlistName || ''}
+        </Typography>
+        <Typography
+          sx={{
+            width: '100%',
+            textAlign: 'center',
+            text: 'center',
+          }}
+        >
+          {`www.fiumbi/${wishlistName || ''}`}
+        </Typography>
       </Box>
       <Formik
         initialValues={{
@@ -188,13 +205,13 @@ const RegisterFiumbi = ({
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
                   {fieldItem.field === 'phone_number' && (
-                    <Typography>
+                    <Typography mb={1}>
                       Estos datos son para poder hacer la entrega
                     </Typography>
                   )}
 
                   {fieldItem.field === 'name' && (
-                    <Typography>
+                    <Typography mb={1}>
                       Estos datos son de quien recibira las entregas
                     </Typography>
                   )}

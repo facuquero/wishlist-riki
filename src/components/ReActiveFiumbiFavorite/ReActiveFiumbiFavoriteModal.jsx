@@ -25,11 +25,6 @@ const ReActiveFiumbiFavoriteModal = ({
     })
   }
 
-  useEffect(() => {
-    if (data?.status === 200) {
-    }
-  }, [isLoading, data])
-
   const modalClose = () => {
     const isFiumbiActiveChange = data?.status === 200
     handleClose({ isFiumbiActiveChange })

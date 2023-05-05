@@ -10,7 +10,6 @@ import { Virtuoso } from 'react-virtuoso'
 const FiumbiListInactive = () => {
   const { execute, data, isLoading } = getListByUsernameInactive()
   const loaderData = useLoaderData()
-
   const isRenderFiumbiList =
     data && data?.data?.listFav?.length > 0 && !isLoading
 
@@ -21,13 +20,16 @@ const FiumbiListInactive = () => {
       },
     })
   }
-
+  let initialized = false
   useEffect(() => {
-    execute({
-      data: {
-        userId: loaderData.params.fiumbiListUsername,
-      },
-    })
+    if (!initialized) {
+      initialized = true
+      execute({
+        data: {
+          userId: loaderData.params.fiumbiListUsername,
+        },
+      })
+    }
   }, [])
 
   return (

@@ -18,7 +18,7 @@ const SincFav = () => {
         sx={{ width: { xs: '100%', sm: 'auto' } }}
         onClick={handliClickFavButton}
       >
-        Sincronisar favoritos
+        Sincronizar favoritos
       </Button>
     </Box>
   )

@@ -25,7 +25,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   }
 
   const reayToChecKUsername = wishlist && wishlist.length > 2
-
+  let initialized = false
   useEffect(() => {
     setIsFiumbiFree(false)
     if (!reayToChecKUsername) {
@@ -33,11 +33,14 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
     }
     if (reayToChecKUsername) {
       const checking = setTimeout(() => {
-        execute({
-          data: {
-            username: wishlist,
-          },
-        })
+        if (!initialized) {
+          initialized = true
+          execute({
+            data: {
+              username: wishlist,
+            },
+          })
+        }
       }, 750)
       return () => clearTimeout(checking)
     }
@@ -66,6 +69,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
       </Typography>
       <Box sx={{ width: '100%' }}>
         <TextField
+          label={`www.fiumbi/${wishlist}`}
           placeholder="Nombre de tu wishlist"
           fullWidth
           onChange={onChangeWishlistName}

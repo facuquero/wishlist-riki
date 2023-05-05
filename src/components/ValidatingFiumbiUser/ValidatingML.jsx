@@ -10,19 +10,24 @@ const ValidatingML = ({ nextStep }) => {
   const { auth, setMLToken } = useAuth()
   const { execute, data, error } = exchangeCodeForToken()
   const navigate = useNavigate()
+  let initialized = false
 
   useEffect(() => {
-    if (!data) {
-      const paramsObject = {}
-      params.forEach((value, key) => {
-        paramsObject[key] = value
-      })
-      const data = {
-        code: paramsObject.code,
+    if (!initialized) {
+      if (!data) {
+        const paramsObject = {}
+        params.forEach((value, key) => {
+          paramsObject[key] = value
+        })
+        const data = {
+          code: paramsObject.code,
+        }
+
+        initialized = true
+        execute({
+          data,
+        })
       }
-      execute({
-        data,
-      })
     }
   }, [])
 

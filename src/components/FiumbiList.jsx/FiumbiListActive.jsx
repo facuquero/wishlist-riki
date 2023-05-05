@@ -19,12 +19,17 @@ const FiumbiListActive = () => {
   const isRenderFiumbiList =
     data && data?.data?.listFav?.length > 0 && !isLoading
 
+  let initialized = false
+
   useEffect(() => {
-    execute({
-      data: {
-        userId: loaderData.params.fiumbiListUsername,
-      },
-    })
+    if (!initialized) {
+      initialized = true
+      execute({
+        data: {
+          userId: loaderData.params.fiumbiListUsername,
+        },
+      })
+    }
   }, [])
 
   if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
