@@ -1,8 +1,8 @@
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useState } from 'react'
 import LoginModal from './LoginModal'
 import useAuth from '../../hooks/useAuth'
-import Typography from '../commons/Typography'
+import { SpecialLoginButton } from '../commons/SpecialButtons'
 
 const LoginButton = ({}) => {
   const { auth, logOut } = useAuth()
@@ -19,7 +19,9 @@ const LoginButton = ({}) => {
 
   return (
     <Box>
-      <Button onClick={handleClickOpen}>Iniciar sesion</Button>
+      <SpecialLoginButton onClick={handleClickOpen}>
+        Iniciar sesion
+      </SpecialLoginButton>
       {showModalLogin && (
         <LoginModal showModalLogin={showModalLogin} handleClose={handleClose} />
       )}

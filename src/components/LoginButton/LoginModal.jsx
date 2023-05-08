@@ -10,6 +10,7 @@ import { useLogin } from '../../../api/useUsersAPI'
 import { LoginUserSchema } from '../../utils/schemasForm'
 import { Formik, Form, Field } from 'formik'
 import useAuth from '../../hooks/useAuth'
+import { SpecialLoginButton } from '../commons/SpecialButtons'
 
 const LoginModal = ({ showModalLogin, handleClose }) => {
   const { logIn } = useAuth()
@@ -124,10 +125,10 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
                 )}
                 <Grid item xs={12} flex justifyContent="center" mb={1}>
                   {!data && (
-                    <Button type="submit">
+                    <SpecialLoginButton type="submit">
                       {!isLoading && 'Iniciar sesion'}
                       {isLoading && <CircularProgress />}
-                    </Button>
+                    </SpecialLoginButton>
                   )}
                   {data && 'Iniciando sesion'}
                 </Grid>

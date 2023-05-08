@@ -35,7 +35,7 @@ const FiumbiListInactive = () => {
   return (
     <Grid
       container
-      sx={{ py: 2 }}
+      sx={{ py: 2, maxWidth: 1200, mx: 'auto' }}
       flexDirection={{ xs: 'column', md: 'row' }}
       justifyContent="center"
       alignItems="center"
@@ -49,7 +49,7 @@ const FiumbiListInactive = () => {
               container
               key={index}
               className={styles.cardFavList}
-              borderRadius={4}
+              borderRadius={2}
               m={2}
               p={2}
               width="95%"
@@ -81,8 +81,8 @@ const FiumbiListInactive = () => {
                 justifyContent="center"
                 sx={{ overflowWrap: 'break-word', width: 'auto' }}
               >
-                <Typography>{favItem.title}</Typography>
-                <Typography>{favItem.title}</Typography>
+                <Typography variant="h5">{favItem.title}</Typography>
+                <Typography variant="h6">Precio: {favItem.price}</Typography>
               </Grid>
               <Grid
                 item

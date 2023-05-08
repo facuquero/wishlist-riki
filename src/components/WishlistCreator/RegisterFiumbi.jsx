@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik'
 import {
-  Button,
   Checkbox,
   CircularProgress,
   ClickAwayListener,
   FormControlLabel,
-  TextField,
   Tooltip,
+  useTheme,
 } from '@mui/material'
 import { Box } from '@mui/system'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
@@ -16,14 +15,15 @@ import { useCreateUser } from '../../../api/useUsersAPI'
 import { NewUserSchema } from '../../utils/schemasForm'
 import { setNewFiumbiUserToCreate } from '../../utils/localStorageManagment'
 import Typography from '../commons/Typography'
-
+import { TextField } from '../commons/TextField'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
 const RegisterFiumbi = ({
   wishlistName,
   handleClickCreatUser,
   setWishlisUser,
 }) => {
   const [open, setOpen] = useState(false)
-
+  const theme = useTheme()
   const { execute, data, isLoading, isError, error } = useCreateUser()
 
   const handleTooltipClose = () => {
@@ -146,7 +146,7 @@ const RegisterFiumbi = ({
         sx={{
           width: '100%',
 
-          color: '#4f5bd5',
+          color: theme.palette.customText.textWhiteLight,
           fontWeight: 700,
           textAlign: 'center',
           text: 'center',
@@ -166,6 +166,7 @@ const RegisterFiumbi = ({
             width: '100%',
             textAlign: 'center',
             text: 'center',
+            color: theme.palette.customText.textWhiteLight,
           }}
         >
           Recuerda de usuario sera {wishlistName || ''}
@@ -175,6 +176,7 @@ const RegisterFiumbi = ({
             width: '100%',
             textAlign: 'center',
             text: 'center',
+            color: theme.palette.customText.textWhiteLight,
           }}
         >
           {`www.fiumbi/${wishlistName || ''}`}
@@ -205,13 +207,19 @@ const RegisterFiumbi = ({
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
                   {fieldItem.field === 'phone_number' && (
-                    <Typography mb={1}>
+                    <Typography
+                      mb={1}
+                      sx={{ color: theme.palette.customText.textWhiteLight }}
+                    >
                       Estos datos son para poder hacer la entrega
                     </Typography>
                   )}
 
                   {fieldItem.field === 'name' && (
-                    <Typography mb={1}>
+                    <Typography
+                      mb={1}
+                      sx={{ color: theme.palette.customText.textWhiteLight }}
+                    >
                       Estos datos son de quien recibira las entregas
                     </Typography>
                   )}
@@ -230,12 +238,6 @@ const RegisterFiumbi = ({
                           error={
                             errors[fieldItem.field] && touched[fieldItem.field]
                           }
-                          sx={{
-                            fieldset: {
-                              borderWidth: 2,
-                              borderRadius: 10,
-                            },
-                          }}
                           size="small"
                         />
                         {fieldItem.infoIcon || null}
@@ -267,7 +269,7 @@ const RegisterFiumbi = ({
                 <div style={{ color: 'red' }}>{errors.termsAndConditions}</div>
               ) : null}
             </Box>
-            <Button
+            <SpecialCommonButton
               variant="contained"
               color="primary"
               type="submit"
@@ -277,7 +279,7 @@ const RegisterFiumbi = ({
                 {!isLoading && 'Registrarse'}
               </Typography>
               {isLoading && <CircularProgress sx={{ color: 'white' }} />}
-            </Button>
+            </SpecialCommonButton>
           </Form>
         )}
       </Formik>

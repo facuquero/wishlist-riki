@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material'
 import React, { useState } from 'react'
 import DeleteFiumbiFavoriteModal from './DeleteFiumbiFavoriteModal'
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
 
 const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
   const [showModalDeleteFiumbiFavorite, setShowModalDeleteFiumbiFavorite] =
@@ -20,7 +21,7 @@ const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
 
   return (
     <Box>
-      <Button
+      <SpecialCommonButton
         variant="contained"
         onClick={handleClickOpen}
         sx={{
@@ -29,7 +30,7 @@ const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
         }}
       >
         Sacar de favoritos <HeartBrokenIcon sx={{ ml: 1 }} />
-      </Button>
+      </SpecialCommonButton>
       {showModalDeleteFiumbiFavorite && (
         <DeleteFiumbiFavoriteModal
           showModal={showModalDeleteFiumbiFavorite}

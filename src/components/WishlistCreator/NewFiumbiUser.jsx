@@ -4,13 +4,16 @@ import {
   Button,
   CircularProgress,
   InputAdornment,
-  TextField,
+  useTheme,
 } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Typography from '../commons/Typography'
 import { validateUsername } from '../../../api/useUsersAPI'
+import { TextField } from '../commons/TextField'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
 
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
+  const theme = useTheme()
   const [wishlist, setWishlist] = useState('')
   const [isFiumbiFree, setIsFiumbiFree] = useState(false)
   const { execute, data, isLoading, error, isError } = validateUsername()
@@ -58,7 +61,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
     <Box>
       <Typography
         sx={{
-          color: '#4f5bd5',
+          color: theme.palette.customText.textWhiteLight,
           textAlign: 'center',
           fontWeight: 700,
           fontSize: { xs: '1.5rem', md: '2.125rem' },
@@ -76,7 +79,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <FavoriteIcon sx={{ color: '#4f5bd5' }} />
+                <FavoriteIcon sx={{ color: theme.palette.customGold.dark }} />
               </InputAdornment>
             ),
             endAdornment: (
@@ -84,12 +87,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
                 {isLoading && <CircularProgress />}
               </InputAdornment>
             ),
-          }}
-          sx={{
-            fieldset: {
-              borderWidth: 2,
-              borderRadius: 10,
-            },
           }}
         />
         <Box
@@ -99,10 +96,8 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           alignItems="center"
           sx={{ paddingTop: 2 }}
         >
-          <Button
+          <SpecialCommonButton
             variant="contained"
-            color="primary"
-            sx={{ borderRadius: 10 }}
             size="large"
             onClick={handleClickCreate}
             disabled={!isFiumbiFree || !reayToChecKUsername}
@@ -110,7 +105,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
             <Typography sx={{ fontWeight: 700 }} variant="h5">
               CREAR WISHLIST
             </Typography>
-          </Button>
+          </SpecialCommonButton>
         </Box>
         {isError && (
           <Box mt={2} sx={{ textAlign: 'center' }}>

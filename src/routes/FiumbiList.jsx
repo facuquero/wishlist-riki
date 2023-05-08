@@ -39,25 +39,16 @@ const FiumbiList = () => {
   return (
     <Grid
       sx={{
-        backgroundColor: '#4f5bd5',
         p: 4,
       }}
       container
     >
-      <Grid item xs={12} sx={{ py: 2 }} flex>
-        <Grid container alignItems="center">
-          <Grid item>
-            <Typography sx={{ color: 'white' }}>Fiumbi favoritos</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-
       {isSameUserAsFiumbiUser && (
         <Grid
           container
           justifyContent={{ xs: 'center', sm: 'space-between' }}
           alignItems="center"
-          sx={{ backgroundColor: 'primary.light', borderRadius: 2, p: 1 }}
+          sx={{ borderRadius: 2, p: 1 }}
         >
           <Grid item xs={12} sm="auto">
             <FormControl

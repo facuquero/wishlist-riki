@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Box } from '@mui/material'
-import NewFiumbiUser from './createUser/NewFiumbiUser'
-import RegisterFiumbi from './createUser/RegisterFiumbi'
-import ValidateEmail from './createUser/ValidateEmail'
+import NewFiumbiUser from './NewFiumbiUser'
+import RegisterFiumbi from './RegisterFiumbi'
+import ValidateEmail from './ValidateEmail'
 
 const posibleViews = {
   createFiumbiName: 'createFiumbiName',
@@ -30,10 +30,6 @@ const WishlistCreator = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      sx={{
-        backgroundColor: '#4f5bd5',
-        minHeight: '100dvh',
-      }}
     >
       <Box
         sx={{
@@ -41,7 +37,7 @@ const WishlistCreator = () => {
             xs: '80%',
             sm: 400,
           },
-          backgroundColor: '#ffff',
+          background: 'rgba(27,27,27,0.9)',
           px: {
             xs: 4,
             sm: 10,
