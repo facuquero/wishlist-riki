@@ -28,6 +28,12 @@ const CssTextField = styled(MUITextfield)({
       },
       color: 'rgba(255,255,255, 1)',
     },
+    textarea: {
+      '&::placeholder': {
+        color: 'rgba(255,255,255, 1)',
+      },
+      color: 'rgba(255,255,255, 1)',
+    },
     '& input:-internal-autofill-selected': {
       backgroundColor: 'transparent !important',
     },

@@ -1,7 +1,6 @@
-import React, { useEffect, useContext, useState } from 'react'
-import { Button, Grid, TextField } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Grid, useTheme } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
-import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import { SlideTransition } from '../SlideTransition'
@@ -11,12 +10,15 @@ import { LoginUserSchema } from '../../utils/schemasForm'
 import { Formik, Form, Field } from 'formik'
 import useAuth from '../../hooks/useAuth'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
+import StyledDialog from '../commons/Dialog'
+import TextField from '../commons/TextField'
 
 const LoginModal = ({ showModalLogin, handleClose }) => {
   const { logIn } = useAuth()
   const { execute, data, isLoading, isError } = useLogin()
   const [usernameLogin, setUsernameLogin] = useState()
 
+  const theme = useTheme()
   const handleClickLogin = ({ username, password }) => {
     if (isLoading) return
     setUsernameLogin(username)
@@ -47,7 +49,7 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
   }, [isLoading, data])
 
   return (
-    <Dialog
+    <StyledDialog
       open={showModalLogin}
       TransitionComponent={SlideTransition}
       keepMounted
@@ -56,7 +58,11 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
     >
       <DialogTitle>
         <Grid container>
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+            sx={{ color: theme.palette.customText.textWhiteLight }}
+          >
             Iniciar sesion
           </Grid>
         </Grid>
@@ -137,7 +143,7 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
           )}
         </Formik>
       </DialogContent>
-    </Dialog>
+    </StyledDialog>
   )
 }
 

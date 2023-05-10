@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Grid, useTheme } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { generateLinkML } from '../../../api/fiumbiProducts'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -9,6 +9,10 @@ import DialogTitle from '@mui/material/DialogTitle'
 import styles from '../../assets/styles/DialogFiumbi.module.scss'
 import { SlideTransition } from '../SlideTransition'
 import Typography from '../commons/Typography'
+import { styled } from '@mui/material/styles'
+import TextField from '../commons/TextField'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
+import StyledDialog from '../commons/Dialog'
 
 const DialogFiumbi = ({
   productID,
@@ -19,6 +23,7 @@ const DialogFiumbi = ({
   handleClose,
 }) => {
   const { execute, data, isLoading, isError } = generateLinkML()
+  const theme = useTheme()
   const handleClickFiumbiML = (e) => {
     const message = messageTextRef?.current?.value || ''
     execute({
@@ -35,7 +40,7 @@ const DialogFiumbi = ({
   }, [isLoading, data])
 
   return (
-    <Dialog
+    <StyledDialog
       open={showModalML}
       TransitionComponent={SlideTransition}
       keepMounted
@@ -52,7 +57,15 @@ const DialogFiumbi = ({
               className={styles.imageFavList}
             />
           </Grid>
-          <Grid item xs={12} display="flex" justifyContent="center">
+          <Grid
+            item
+            xs={12}
+            m={2}
+            display="flex"
+            justifyContent="center"
+            color="white"
+            sx={{ textAlign: 'center' }}
+          >
             {fiumbiTitle}
           </Grid>
         </Grid>
@@ -60,7 +73,9 @@ const DialogFiumbi = ({
       <DialogContent>
         <Grid container>
           <Grid item xs={12} mb={2} display="flex" justifyContent="center">
-            <Typography> Agregar una nota para {fiumbiUsername} </Typography>
+            <Typography color="white">
+              Agregar una nota para {fiumbiUsername}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -71,12 +86,13 @@ const DialogFiumbi = ({
               sx={{
                 width: '100%',
                 display: data ? 'none' : 'flex',
+                color: 'white',
               }}
             />
           </Grid>
           {isError && (
             <Grid item xs={12}>
-              <Typography>
+              <Typography color="white" mt={1} sx={{ textAlign: 'center' }}>
                 Algo ocurrio al intentar crear el Fiumbi, intente nuevamente
               </Typography>
             </Grid>
@@ -86,15 +102,19 @@ const DialogFiumbi = ({
       <DialogActions>
         <Grid container justifyContent="center" mb={1}>
           {!data && (
-            <Button onClick={handleClickFiumbiML}>
+            <SpecialCommonButton onClick={handleClickFiumbiML}>
               {!isLoading && 'Generar Fiumbi'}
-              {isLoading && <CircularProgress />}
-            </Button>
+              {isLoading && (
+                <CircularProgress
+                  sx={{ color: theme.palette.customGold.at254a1 }}
+                />
+              )}
+            </SpecialCommonButton>
           )}
-          {data && 'Preparando tu Fiumbi'}
+          {data && <Typography color="white">Preparando tu Fiumbi</Typography>}
         </Grid>
       </DialogActions>
-    </Dialog>
+    </StyledDialog>
   )
 }
 

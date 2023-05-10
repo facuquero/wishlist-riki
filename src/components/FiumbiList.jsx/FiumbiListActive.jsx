@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Grid } from '@mui/material'
+import { Grid, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import ButtonFiumbiML from '../ButtonFiumbiML'
 import { getListActiveByUsername } from '../../../api/fiumbiProducts'
@@ -13,6 +13,7 @@ const FiumbiListActive = () => {
   const { execute, data, isLoading } = getListActiveByUsername()
   const loaderData = useLoaderData()
   const { auth } = useAuth()
+  const theme = useTheme()
   const isSameUserAsFiumbiUser =
     auth?.username == loaderData?.params?.fiumbiListUsername
 
@@ -49,11 +50,11 @@ const FiumbiListActive = () => {
       <Grid item xs={12} sx={{ pb: 2 }} flex>
         <Grid container justifyContent="space-around">
           <Grid item>
-            <Typography sx={{ color: 'black' }} variant="h4">
+            <Typography
+              sx={{ color: theme.palette.customGold.at239a1 }}
+              variant="h4"
+            >
               @{loaderData?.params?.fiumbiListUsername}
-            </Typography>
-            <Typography sx={{ color: 'black' }} variant="h6">
-              Agradecido con el de arriba
             </Typography>
           </Grid>
           <Grid item> </Grid>
@@ -78,8 +79,13 @@ const FiumbiListActive = () => {
             border={1}
             borderColor="gray"
             borderRadius={1}
-            width="100%"
-            sx={{ mx: { sx: 2, md: 4 } }}
+            sx={{
+              mx: {
+                sx: 2,
+                md: 4,
+                background: `linear-gradient(to right bottom, ${theme.palette.customGold.at239a1}, ${theme.palette.customGold.at140a1} 90%)`,
+              },
+            }}
             flex
           >
             <Virtuoso
@@ -91,17 +97,16 @@ const FiumbiListActive = () => {
                   className={styles.cardFavList}
                   m={2}
                   p={2}
-                  alignItems="center"
                   width="95%"
                   mx="auto"
                   key={index}
                 >
                   <Grid
-                    container
-                    display={{ xs: 'flex', md: 'block' }}
+                    item
+                    display={{ xs: 'flex' }}
                     justifyContent="center"
-                    width={{ xs: '100%', md: '15%' }}
-                    maxWidth={{ xs: '100%', md: '200px' }}
+                    xs={12}
+                    md={4}
                   >
                     <img
                       src={favItem.thumbnail}
@@ -112,34 +117,40 @@ const FiumbiListActive = () => {
                   </Grid>
                   <Grid
                     item
-                    borderRadius={4}
                     xs={12}
-                    md={6}
-                    p={4}
-                    display={{ xs: 'flex', md: 'block' }}
-                    justifyContent="center"
-                    sx={{
-                      overflowWrap: 'break-word',
-                      width: 'auto',
-                      textAlign: { xs: 'center', md: 'left' },
-                    }}
-                    flexWrap="wrap"
-                    justifyItems="center"
-                    flexDirection={{ xs: 'column', md: 'row' }}
+                    md={4}
+                    sx={{ display: 'flex', flexGrow: 1 }}
                   >
-                    <Typography variant="h5">{favItem.title}</Typography>
-                    <Typography variant="h6">
-                      Precio: {favItem.price}
-                    </Typography>
+                    <Grid
+                      container
+                      flexGrow={1}
+                      flexDirection="column"
+                      justifyContent="space-around"
+                    >
+                      <Grid item>
+                        <Typography variant="h5">{favItem.title}</Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography
+                          variant="h4"
+                          sx={{
+                            mt: 'auto',
+                            mb: 0,
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          ${favItem.price}
+                        </Typography>
+                      </Grid>
+                    </Grid>
                   </Grid>
                   <Grid
                     item
                     xs={12}
-                    md="auto"
-                    display={{ xs: 'flex', md: 'block' }}
+                    md={4}
+                    display="flex"
                     justifyContent="center"
-                    ml="auto"
-                    mr={{ xs: 'auto', md: 1 }}
+                    alignItems="center"
                   >
                     {!isSameUserAsFiumbiUser && (
                       <ButtonFiumbiML
