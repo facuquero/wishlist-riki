@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import NewFiumbiUser from './NewFiumbiUser'
 import RegisterFiumbi from './RegisterFiumbi'
 import ValidateEmail from './ValidateEmail'
+import Typography from '../commons/Typography'
+import StepTitles from './StepTitles'
 
 const posibleViews = {
   createFiumbiName: 'createFiumbiName',
@@ -14,6 +16,7 @@ const WishlistCreator = () => {
   const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
+  const theme = useTheme()
 
   const handleClickCreateWishlist = ({ wishlist }) => {
     setWishlistName(wishlist)
@@ -31,13 +34,19 @@ const WishlistCreator = () => {
       justifyContent="center"
       alignItems="center"
     >
+      <Box mt={{ xs: 2, sm: 6 }}>
+        <StepTitles
+          activeStep={activeStep}
+          wishlistEmail={wishlistUser.email}
+        />
+      </Box>
       <Box
         sx={{
           maxWidth: {
             xs: '80%',
             sm: 400,
           },
-          background: 'rgba(27,27,27,0.9)',
+          background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 30%)`,
           px: {
             xs: 4,
             sm: 10,
@@ -46,7 +55,7 @@ const WishlistCreator = () => {
             xs: 4,
             sm: 6,
           },
-          m: { xs: 4, sm: 8 },
+          m: { xs: 4, sm: 6 },
           borderRadius: 5,
           boxShadow: '0 1px 5px black',
         }}

@@ -9,7 +9,7 @@ const Home = () => {
       <Grid item xs={12}>
         <WishlistCreator />
       </Grid>
-      <Grid item xs={12} mt={4}>
+      <Grid item xs={12} my={4}>
         <HowItWork />
       </Grid>
     </Grid>

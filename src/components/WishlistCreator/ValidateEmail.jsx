@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Button, CircularProgress, TextField } from '@mui/material'
+import React, { useEffect, useRef, useState } from 'react'
+import { Box, CircularProgress, Grid, TextField } from '@mui/material'
 import { useValidateCode } from '../../../api/useUsersAPI'
 import {
   newFiumbiFormClientid,
@@ -7,25 +7,72 @@ import {
   newFiumbiFormScope,
 } from '../../utils/globalConst'
 import Typography from '../commons/Typography'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
 
 const ValidateEmail = ({ wishlistName }) => {
-  const [emailInput, setEmailInput] = useState('')
   const { execute, data, isLoading, isError, error } = useValidateCode()
-
-  const onChangeEmailInputtName = (e) => {
-    setEmailInput(e.target.value)
-  }
 
   const handleClickValidateEmail = () => {
     execute({
       data: {
         username: wishlistName,
-        code: emailInput,
+        code: emailCode.join(''),
       },
     })
   }
 
-  console.log('error', error)
+  const [emailCode, setEmailCode] = useState(['', '', '', '', '', ''])
+  const inputRefs = useRef([])
+
+  const handleInputChange = (event, index) => {
+    const value = event.target.value
+    if (/^\d*$/.test(value) && value.length <= 1) {
+      const newPin = [...emailCode]
+      newPin[index] = value
+      if (!value && newPin[index + 1] !== '') {
+        setEmailCode(shiftPinValues(newPin, index))
+      } else {
+        setEmailCode(newPin)
+      }
+      if (value && inputRefs.current[index + 1]) {
+        inputRefs.current[index + 1].focus()
+      }
+      if (!value && inputRefs.current[index - 1]) {
+        inputRefs.current[index - 1].focus()
+      }
+    }
+  }
+
+  function shiftPinValues(emailCode, index) {
+    const newPin = [...emailCode]
+    for (let i = index; i < newPin.length - 1; i++) {
+      if (newPin[i + 1] !== '') {
+        newPin[i] = newPin[i + 1]
+        newPin[i + 1] = ''
+      } else {
+        break
+      }
+    }
+    return newPin
+  }
+
+  const handlePaste = (event) => {
+    event.preventDefault()
+    const pasteData = event.clipboardData.getData('text/plain')
+    const digits = pasteData.match(/\d/g) || []
+    const newPin = [...emailCode]
+    digits.forEach((digit, i) => {
+      if (newPin[i] === '') {
+        newPin[i] = digit
+        inputRefs.current[i].value = digit
+        if (i === digits.length - 1) {
+          inputRefs.current[i].focus()
+        }
+      }
+    })
+    setEmailCode(newPin)
+  }
+
   useEffect(() => {
     if (data?.status === 200) {
       const to = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${newFiumbiFormClientid}&redirect_uri=${newFiumbiFormRedirect_uri}&scope=${newFiumbiFormScope}`
@@ -39,27 +86,34 @@ const ValidateEmail = ({ wishlistName }) => {
         <Box sx={{ width: '100%' }}>
           <Typography
             sx={{
-              color: '#4f5bd5',
+              color: 'white',
               textAlign: 'center',
               fontWeight: 700,
               fontSize: { xs: '1.25rem', md: '1.75rem' },
               mb: 2,
             }}
           >
-            Para finalizar ingresa el codigo que te enviamos al correo
+            Pega aquí el código que te enviamos para verificar tu cuenta
           </Typography>
-          <TextField
-            placeholder="Aqui"
-            fullWidth
-            onChange={onChangeEmailInputtName}
-            disabled={isLoading}
-            sx={{
-              fieldset: {
-                borderWidth: 2,
-                borderRadius: 10,
-              },
-            }}
-          />
+          <Grid container justifyContent="center">
+            {emailCode.map((value, index) => (
+              <Grid item mx={1}>
+                <TextField
+                  key={index}
+                  type="text"
+                  inputMode="numeric"
+                  variant="outlined"
+                  margin="dense"
+                  size="small"
+                  value={value}
+                  inputRef={(el) => (inputRefs.current[index] = el)}
+                  onChange={(event) => handleInputChange(event, index)}
+                  onPaste={handlePaste}
+                  style={{ width: '2.5rem' }}
+                />
+              </Grid>
+            ))}
+          </Grid>
           <Box
             display="flex"
             justifyContent="center"
@@ -67,7 +121,7 @@ const ValidateEmail = ({ wishlistName }) => {
             sx={{ paddingTop: 2 }}
           >
             {!isLoading && (
-              <Button
+              <SpecialCommonButton
                 variant="contained"
                 color="primary"
                 sx={{ borderRadius: 10 }}
@@ -75,7 +129,7 @@ const ValidateEmail = ({ wishlistName }) => {
                 onClick={handleClickValidateEmail}
               >
                 <Typography>Validar</Typography>{' '}
-              </Button>
+              </SpecialCommonButton>
             )}
 
             {isLoading && <CircularProgress sx={{ color: 'white' }} />}
@@ -85,7 +139,7 @@ const ValidateEmail = ({ wishlistName }) => {
       {data && (
         <Typography
           sx={{
-            color: '#4f5bd5',
+            color: '#white',
             textAlign: 'center',
             fontWeight: 700,
             fontSize: { xs: '1.25rem', md: '1.75rem' },
@@ -96,7 +150,7 @@ const ValidateEmail = ({ wishlistName }) => {
         </Typography>
       )}
       {isError && (
-        <Box mt={2} sx={{ textAlign: 'center' }}>
+        <Box mt={2} sx={{ textAlign: 'center', color: 'white' }}>
           <Typography>A ocurrido un error:</Typography>
           <Typography>{error?.response?.data?.message}</Typography>
         </Box>

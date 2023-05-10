@@ -1,12 +1,11 @@
-import { Button, Grid, useTheme } from '@mui/material'
-import LoginButton from '../LoginButton'
+import { Grid, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import useAuth from '../../hooks/useAuth'
 import { NavLink } from 'react-router-dom'
-import { SpecialLoginButton } from '../commons/SpecialButtons'
+import Menu from '../HamburgueMenu'
 
 const Header = () => {
-  const { auth, logOut } = useAuth()
+  const { auth } = useAuth()
   const theme = useTheme()
   return (
     <Grid
@@ -14,25 +13,31 @@ const Header = () => {
       justifyContent="space-between"
       p={2}
       alignItems="center"
-      sx={{ background: theme.palette.customBlack.at90 }}
+      sx={{
+        background: theme.palette.customBlack.at90,
+        borderBottom: `1px solid`,
+        borderColor: theme.palette.customGold.at254a04,
+      }}
     >
       <Grid item xs={4}>
         <NavLink to="/">logo</NavLink>
       </Grid>
       {auth?.token && (
         <Grid item xs={4} display="flex" justifyContent="center">
-          <Typography sx={{ color: theme.palette.customText.textWhiteLight }}>
-            Bienvenido {auth.username}
-          </Typography>
+          <NavLink
+            to={`/${auth.username}`}
+            className={({ isActive, isPending }) =>
+              isPending ? 'pending' : isActive ? 'active' : ''
+            }
+          >
+            <Typography sx={{ color: theme.palette.customText.textWhiteLight }}>
+              Bienvenido {auth.username}
+            </Typography>
+          </NavLink>
         </Grid>
       )}
       <Grid item xs={4} display="flex" justifyContent="flex-end">
-        {!auth?.token && <LoginButton />}
-        {auth?.token && (
-          <SpecialLoginButton onClick={logOut}>
-            Cerrar sesion
-          </SpecialLoginButton>
-        )}
+        <Menu />
       </Grid>
     </Grid>
   )

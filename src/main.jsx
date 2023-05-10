@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from './routes/Home'
-import ValidatingFiumbiUser from './routes/ValidatingFiumbiUser'
 import './main.css'
 import {
   createBrowserRouter,
@@ -11,12 +9,14 @@ import {
   Outlet,
   Navigate,
 } from 'react-router-dom'
-import FiumbiList, { getFiumbiList } from './routes/FiumbiList'
 import { ThemeProvider } from '@mui/material/styles'
 import { AuthProvider } from './context/AuntProvider'
-import Layout from './layout'
 import { theme } from './theme'
 import ProtectedRoute from './layout/ProtectedRoute'
+import Layout from './layout'
+import Home from './routes/Home'
+import ValidatingFiumbiUser from './routes/ValidatingFiumbiUser'
+import FiumbiList, { getFiumbiList } from './routes/FiumbiList'
 import UserConfig from './routes/UserConfig'
 
 const router = createBrowserRouter(
@@ -30,7 +30,10 @@ const router = createBrowserRouter(
           loader={getFiumbiList}
         />
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/userConfig" element={<UserConfig />} />
+          <Route
+            path="/:fiumbiListUsername/userConfig"
+            element={<UserConfig />}
+          />
         </Route>
       </Route>
       <Route path="/validatingFiumbiUser" element={<ValidatingFiumbiUser />} />

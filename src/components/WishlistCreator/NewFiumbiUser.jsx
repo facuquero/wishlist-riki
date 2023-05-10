@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {
   Box,
-  Button,
   CircularProgress,
   InputAdornment,
   useTheme,
+  TextField as MUITextField,
 } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Typography from '../commons/Typography'
@@ -53,8 +53,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
     if (data?.status == 200) {
       setIsFiumbiFree(true)
     }
-    console.log('data', data)
-    console.log('error', error)
   }, [data, error, isLoading])
 
   return (
@@ -65,13 +63,14 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           textAlign: 'center',
           fontWeight: 700,
           fontSize: { xs: '1.5rem', md: '2.125rem' },
+          color: 'black',
           mb: 2,
         }}
       >
         CREÁ UNA FIUMBI Y COMPARTILA
       </Typography>
       <Box sx={{ width: '100%' }}>
-        <TextField
+        <MUITextField
           label={`www.fiumbi/${wishlist}`}
           placeholder="Nombre de tu wishlist"
           fullWidth

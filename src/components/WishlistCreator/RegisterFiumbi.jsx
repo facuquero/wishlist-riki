@@ -111,7 +111,7 @@ const RegisterFiumbi = ({
 
   const handleSubmitNewUser = ({ newUser }) => {
     const data = { ...newUser, username: wishlistName }
-    setWishlisUser(newUser)
+    setWishlisUser(data)
     execute({
       data,
     })

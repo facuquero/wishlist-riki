@@ -5,7 +5,7 @@ import styles from '../assets/styles/howItWork.module.scss'
 
 const HowItWork = () => {
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" sx={{ color: 'white' }}>
       <Grid item xs={12} display="flex" justifyContent="center">
         <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
           Como funciona Fiumbi
@@ -22,7 +22,7 @@ const HowItWork = () => {
             loading="lazy"
             src={howItWorkpng}
             atl="howItWork"
-            class={styles.hotItWork}
+            className={styles.hotItWork}
           />
         </Grid>
         <Grid
