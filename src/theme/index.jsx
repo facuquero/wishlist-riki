@@ -18,7 +18,11 @@ export const theme = createTheme({
       dark: '#be7600',
       darkHover: 'rgba(170, 98, 0, 1)',
       at254a1: 'rgba(254, 247, 184, 1)',
-      at254a04: 'rgba(254, 247, 184, 0.4)',
+      at254a04: '#b99e5b',
+      //#b99e5b
+    },
+    customRed: {
+      errorRed: '#d32f2f',
     },
   },
 })

@@ -37,6 +37,16 @@ const RegisterFiumbi = ({
 
   const fieldInputsItems = [
     {
+      field: 'password',
+      label: 'Contraseña',
+      type: 'password',
+    },
+    {
+      field: 'confirmPassword',
+      label: 'Repetir contraseña',
+      type: 'password',
+    },
+    {
       field: 'name',
       label: 'Nombre',
     },
@@ -52,16 +62,6 @@ const RegisterFiumbi = ({
       field: 'email',
       label: 'Email',
     },
-    {
-      field: 'password',
-      label: 'Contraseña',
-      type: 'password',
-    },
-    {
-      field: 'confirmPassword',
-      label: 'Repetir contraseña',
-      type: 'password',
-    },
 
     {
       field: 'phone_number',
@@ -70,38 +70,6 @@ const RegisterFiumbi = ({
     {
       field: 'shipping_address',
       label: 'Dirección',
-      infoIcon: (
-        <ClickAwayListener onClickAway={handleTooltipClose}>
-          <Box>
-            <Tooltip
-              title={
-                <Typography variant="body2">
-                  Necesitamos una dirección donde enviar el regalo
-                </Typography>
-              }
-              PopperProps={{
-                disablePortal: true,
-              }}
-              onClose={handleTooltipClose}
-              open={open}
-              disableFocusListener
-              disableHoverListener
-              disableTouchListener
-            >
-              <HelpOutlineIcon
-                sx={{
-                  mt: 1,
-                  ml: 1,
-                  color: '#4f5bd5',
-                  width: '100%',
-                  cursor: 'pointer',
-                }}
-                onClick={handleTooltipOpen}
-              />
-            </Tooltip>
-          </Box>
-        </ClickAwayListener>
-      ),
     },
     {
       field: 'zip_code',
@@ -143,19 +111,28 @@ const RegisterFiumbi = ({
       }}
     >
       <Typography
+        paragraph
         sx={{
-          width: '100%',
-
           color: theme.palette.customText.textWhiteLight,
-          fontWeight: 700,
           textAlign: 'center',
-          text: 'center',
-          fontSize: { xs: '1.50rem', sm: '2rem' },
+          fontSize: { xs: '1.5rem', md: '2.125rem' },
+          fontWeight: 'bold',
+          mb: 2,
         }}
       >
-        Regístra tu "{wishlistName || 'fuimbi'}" para poder crear tu lista de
-        regalos
+        <Typography
+          component="span"
+          color={theme.palette.customGold.at254a1}
+          sx={{
+            fontWeight: 'inherit',
+            fontSize: 'inherit',
+          }}
+        >
+          Abajo completa
+        </Typography>
+        &nbsp; los datos de entrega para recibir tus regalos
       </Typography>
+
       <Box
         sx={{
           w: '100%',
@@ -170,16 +147,6 @@ const RegisterFiumbi = ({
           }}
         >
           Recuerda de usuario sera {wishlistName || ''}
-        </Typography>
-        <Typography
-          sx={{
-            width: '100%',
-            textAlign: 'center',
-            text: 'center',
-            color: theme.palette.customText.textWhiteLight,
-          }}
-        >
-          {`www.fiumbi/${wishlistName || ''}`}
         </Typography>
       </Box>
       <Formik
@@ -206,21 +173,14 @@ const RegisterFiumbi = ({
             {fieldInputsItems.map((fieldItem, index) => {
               return (
                 <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
-                  {fieldItem.field === 'phone_number' && (
+                  {fieldItem.field === 'password' && (
                     <Typography
-                      mb={1}
-                      sx={{ color: theme.palette.customText.textWhiteLight }}
+                      sx={{
+                        width: '100%',
+                        color: theme.palette.customText.textWhiteLight,
+                      }}
                     >
-                      Estos datos son para poder hacer la entrega
-                    </Typography>
-                  )}
-
-                  {fieldItem.field === 'name' && (
-                    <Typography
-                      mb={1}
-                      sx={{ color: theme.palette.customText.textWhiteLight }}
-                    >
-                      Estos datos son de quien recibira las entregas
+                      Usuario: {wishlistName || ''}
                     </Typography>
                   )}
                   <Field
@@ -245,9 +205,9 @@ const RegisterFiumbi = ({
                     )}
                   </Field>
                   {errors[fieldItem.field] && touched[fieldItem.field] ? (
-                    <div style={{ color: 'red' }}>
+                    <Typography color={theme.palette.customRed.errorRed} mt={1}>
                       {errors[fieldItem.field]}
-                    </div>
+                    </Typography>
                   ) : null}
                 </Box>
               )
@@ -258,6 +218,7 @@ const RegisterFiumbi = ({
                 type="checkbox"
                 name="termsAndConditions"
                 as={FormControlLabel}
+                sx={{ color: theme.palette.customText.textWhiteLight }}
                 control={<Checkbox />}
                 label={
                   <Typography variant="body2">
@@ -289,15 +250,6 @@ const RegisterFiumbi = ({
           <Typography>{error?.response?.data?.message}</Typography>
         </Box>
       )}
-      <Box
-        sx={{ py: 1, cursor: 'pointer' }}
-        onClick={() => navigate({ pathname: '/login' })}
-      >
-        <Typography variant="span">¿Ya tienes una cuenta?</Typography>
-        <Typography variant="span" sx={{ fontWeight: 700 }}>
-          Iniciar sesión
-        </Typography>
-      </Box>
     </Box>
   )
 }

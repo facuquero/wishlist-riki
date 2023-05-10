@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Box,
-  CircularProgress,
-  InputAdornment,
-  useTheme,
-  TextField as MUITextField,
-} from '@mui/material'
+import { Box, CircularProgress, InputAdornment, useTheme } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Typography from '../commons/Typography'
 import { validateUsername } from '../../../api/useUsersAPI'
@@ -17,6 +11,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const [wishlist, setWishlist] = useState('')
   const [isFiumbiFree, setIsFiumbiFree] = useState(false)
   const { execute, data, isLoading, error, isError } = validateUsername()
+  const [fakeIsLoading, setFaceIsLoading] = useState(false)
 
   const onChangeWishlistName = (e) => {
     setWishlist(e.target.value)
@@ -31,6 +26,9 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   let initialized = false
   useEffect(() => {
     setIsFiumbiFree(false)
+    if (wishlist?.length > 2) {
+      setFaceIsLoading(true)
+    }
     if (!reayToChecKUsername) {
       setIsFiumbiFree(false)
     }
@@ -50,27 +48,45 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   }, [wishlist])
 
   useEffect(() => {
+    console.log('data', data)
+    console.log('error', error)
+    setFaceIsLoading(false)
     if (data?.status == 200) {
       setIsFiumbiFree(true)
+    }
+
+    if (isError) {
+      setIsFiumbiFree(false)
     }
   }, [data, error, isLoading])
 
   return (
     <Box>
       <Typography
+        paragraph
         sx={{
           color: theme.palette.customText.textWhiteLight,
           textAlign: 'center',
-          fontWeight: 700,
           fontSize: { xs: '1.5rem', md: '2.125rem' },
+          fontWeight: 'bold',
           color: 'black',
           mb: 2,
         }}
       >
-        CREÁ UNA FIUMBI Y COMPARTILA
+        Has tu wishlist y compártela para&nbsp;
+        <Typography
+          component="span"
+          color={theme.palette.customGold.at254a1}
+          sx={{
+            fontWeight: 'inherit',
+            fontSize: 'inherit',
+          }}
+        >
+          recibir regalos!
+        </Typography>
       </Typography>
       <Box sx={{ width: '100%' }}>
-        <MUITextField
+        <TextField
           label={`www.fiumbi/${wishlist}`}
           placeholder="Nombre de tu wishlist"
           fullWidth
@@ -83,7 +99,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
             ),
             endAdornment: (
               <InputAdornment position="end">
-                {isLoading && <CircularProgress />}
+                {(isLoading || fakeIsLoading) && <CircularProgress />}
               </InputAdornment>
             ),
           }}

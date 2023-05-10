@@ -139,7 +139,7 @@ const ValidateEmail = ({ wishlistName }) => {
       {data && (
         <Typography
           sx={{
-            color: '#white',
+            color: 'white',
             textAlign: 'center',
             fontWeight: 700,
             fontSize: { xs: '1.25rem', md: '1.75rem' },

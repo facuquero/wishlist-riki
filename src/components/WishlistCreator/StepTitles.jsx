@@ -1,7 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 
-const StepTitles = ({ activeStep, wishlistUser }) => {
+const StepTitles = ({ activeStep, wishlistEmail }) => {
+  const theme = useTheme()
   const stepTitle = {
     createFiumbiName: (
       <Box sx={{ width: 'max(340px, 80%)', mx: 'auto' }}>
@@ -14,7 +15,16 @@ const StepTitles = ({ activeStep, wishlistUser }) => {
           }}
         >
           La forma&nbsp;
-          <span>mas fácil</span>
+          <Typography
+            component="span"
+            color={theme.palette.customGold.at254a1}
+            sx={{
+              fontWeight: 'inherit',
+              fontSize: 'inherit',
+            }}
+          >
+            mas fácil
+          </Typography>
           &nbsp;de recibir los regalos que te mereces
         </Typography>
       </Box>
@@ -29,22 +39,62 @@ const StepTitles = ({ activeStep, wishlistUser }) => {
             fontSize: { xs: '2rem', sm: '3rem' },
           }}
         >
-          <span>Rellena</span>
+          <Typography
+            component="span"
+            color={theme.palette.customGold.at254a1}
+            sx={{
+              fontWeight: 'inherit',
+              fontSize: 'inherit',
+            }}
+          >
+            Rellena
+          </Typography>
           &nbsp;el formulario de abajo para crear tu wishlist!
         </Typography>
       </Box>
     ),
     createFiumbiSuccess: (
-      <Box display="flex">
-        <Typography variant="h4" paragraph width="auto">
-          Ya enviamos el código de validación al email email23@gmail.com
+      <Box
+        sx={{
+          width: '80%',
+          mx: 'auto',
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: '2rem', sm: '3rem' },
+          }}
+        >
+          Ya enviamos el código de validación al email:
         </Typography>
-        <Typography variant="h4" paragraph>
-          {wishlistUser?.email}
+        <Typography
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: '2rem', sm: '3rem' },
+          }}
+          color={theme.palette.customGold.at254a1}
+        >
+          {wishlistEmail}
         </Typography>
-        <Typography variant="h4" paragraph>
-          Revisa tu&nbsp;<span>bandeja de entrada</span>&nbsp;o la carpeta de
-          spam para encontrar el código que te enviamos.
+        <Typography
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: '2rem', sm: '3rem' },
+          }}
+        >
+          Revisa tu&nbsp;
+          <Typography
+            component="span"
+            color={theme.palette.customGold.at254a1}
+            sx={{
+              fontWeight: 'inherit',
+              fontSize: 'inherit',
+            }}
+          >
+            bandeja de entrada
+          </Typography>
+          &nbsp;o la carpeta de spam para encontrar el código que te enviamos.
         </Typography>
       </Box>
     ),
