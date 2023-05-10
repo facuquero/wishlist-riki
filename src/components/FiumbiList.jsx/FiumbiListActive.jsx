@@ -83,7 +83,8 @@ const FiumbiListActive = () => {
               mx: {
                 sx: 2,
                 md: 4,
-                background: `linear-gradient(to right bottom, ${theme.palette.customGold.at239a1}, ${theme.palette.customGold.at140a1} 90%)`,
+                //background: `linear-gradient(to right bottom, ${theme.palette.customGold.at239a1}, ${theme.palette.customGold.at140a1} 90%)`,
+                background: 'white',
               },
             }}
             flex
@@ -95,8 +96,8 @@ const FiumbiListActive = () => {
                 <Grid
                   container
                   className={styles.cardFavList}
-                  m={2}
-                  p={2}
+                  m={4}
+                  pb={4}
                   width="95%"
                   mx="auto"
                   key={index}

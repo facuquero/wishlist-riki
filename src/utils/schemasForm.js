@@ -30,7 +30,7 @@ export const NewUserSchema = Yup.object().shape({
     .min(4, 'La contraseña debe tener más de 4 caracteres'),
   confirmPassword: Yup.string()
     .required()
-    .oneOf([Yup.ref('password'), null], 'Las contraneñas deben coincidir'), 
+    .oneOf([Yup.ref('password'), null], 'Las contraneñas deben coincidir'),
   zip_code: Yup.string()
     .matches(/^\d{3,5}$/, 'El código postal debe tener 3 o 5 números')
     .min(3, 'El código postal debe tener más de 4 caracteres')
@@ -45,4 +45,20 @@ export const NewUserSchema = Yup.object().shape({
 export const LoginUserSchema = Yup.object().shape({
   username: Yup.string().required('Usuario por favor'),
   password: Yup.string().required('Contraseña por favor'),
+})
+
+export const ChangePasswordSchema = Yup.object().shape({
+  lastPassword: Yup.string()
+    .required('La ultima contraseña es obligatoria')
+    .min(4, 'La contraseña debe tener más de 4 caracteres'),
+  password: Yup.string()
+    .required('La contraseña es obligatoria')
+    .min(4, 'La contraseña debe tener más de 4 caracteres'),
+  confirmPassword: Yup.string()
+    .required()
+    .oneOf([Yup.ref('password'), null], 'Las contraneñas deben coincidir'),
+})
+
+export const NewShippingAddressSchema = Yup.object().shape({
+  newShippingAddress: Yup.string().required('La dirección es obligatoria'),
 })

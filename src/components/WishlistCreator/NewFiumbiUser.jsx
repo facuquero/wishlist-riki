@@ -48,8 +48,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   }, [wishlist])
 
   useEffect(() => {
-    console.log('data', data)
-    console.log('error', error)
     setFaceIsLoading(false)
     if (data?.status == 200) {
       setIsFiumbiFree(true)
@@ -109,7 +107,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          sx={{ paddingTop: 2 }}
+          sx={{ paddingTop: 3 }}
         >
           <SpecialCommonButton
             variant="contained"

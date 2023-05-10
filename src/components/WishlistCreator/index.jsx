@@ -16,7 +16,6 @@ const WishlistCreator = () => {
   const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
-  console.log('ind', wishlistUser)
   const theme = useTheme()
 
   const handleClickCreateWishlist = ({ wishlist }) => {

@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { Grid, useTheme } from '@mui/material'
+import PasswordChange from '../components/UserConfig/PasswordChange'
+import NewShippingAddress from '../components/UserConfig/newShippingAddress'
 
 const UserConfig = () => {
   const theme = useTheme()
@@ -26,7 +28,13 @@ const UserConfig = () => {
           background: `linear-gradient(to right bottom, ${theme.palette.customBlack.black99a1}, ${theme.palette.customBlack.black43a1} 30%)`,
         }}
       >
-        margin
+        <Grid item xs={12}>
+          <PasswordChange />
+        </Grid>
+
+        <Grid item xs={12} mt={2}>
+          <NewShippingAddress />
+        </Grid>
       </Grid>
     </Grid>
   )

@@ -104,12 +104,6 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
                               errors[fieldItem.field] &&
                               touched[fieldItem.field]
                             }
-                            sx={{
-                              fieldset: {
-                                borderWidth: 2,
-                                borderRadius: 10,
-                              },
-                            }}
                           />
                         )}
                       </Field>

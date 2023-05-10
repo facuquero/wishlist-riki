@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import LoginButton from '../LoginButton'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 import useAuth from '../../hooks/useAuth'
@@ -9,10 +9,18 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { styled } from '@mui/material/styles'
+
+const StyledMenu = styled(Menu)(({ theme }) => ({
+  '& .MuiMenu-paper': {
+    background: `linear-gradient(to right bottom, ${theme.palette.customBlack.black99a1}, ${theme.palette.customBlack.black43a1} 30%)`,
+  },
+}))
 
 const HamburgueMenu = () => {
   const { auth, logOut } = useAuth()
   const navigate = useNavigate()
+  const theme = useTheme()
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -49,7 +57,7 @@ const HamburgueMenu = () => {
           {open && <MenuOpenIcon />}
         </IconButton>
       )}
-      <Menu
+      <StyledMenu
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
@@ -58,16 +66,22 @@ const HamburgueMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => handleClickOptions({ goTo: 'miFiumbi' })}>
+        <MenuItem
+          onClick={() => handleClickOptions({ goTo: 'miFiumbi' })}
+          sx={{ color: theme.palette.customText.textWhiteLight }}
+        >
           Mi Fiumbi
         </MenuItem>
-        <MenuItem onClick={() => handleClickOptions({ goTo: 'options' })}>
+        <MenuItem
+          onClick={() => handleClickOptions({ goTo: 'options' })}
+          sx={{ color: theme.palette.customText.textWhiteLight }}
+        >
           Opciones
         </MenuItem>
         <MenuItem onClick={() => handleClickOptions({ goTo: 'logOut' })}>
           <SpecialLoginButton>Cerrar sesion</SpecialLoginButton>
         </MenuItem>
-      </Menu>
+      </StyledMenu>
     </Box>
   )
 }
