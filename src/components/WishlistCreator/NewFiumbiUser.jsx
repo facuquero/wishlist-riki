@@ -67,7 +67,6 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           textAlign: 'center',
           fontSize: { xs: '1.5rem', md: '2.125rem' },
           fontWeight: 'bold',
-          color: 'black',
           mb: 2,
         }}
       >

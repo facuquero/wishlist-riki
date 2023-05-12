@@ -4,6 +4,7 @@ export const theme = createTheme({
   palette: {
     customText: {
       textWhiteLight: 'rgba(255,255,255, 0.8)',
+      textWhiteblack: 'rgba(30,30,30,1)',
       textWhite111: 'rgba(100,100,100, 1)',
       textWhite: '#ffffff',
     },

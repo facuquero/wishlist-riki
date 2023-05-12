@@ -52,6 +52,12 @@ const FiumbiListActive = () => {
           <Grid item>
             <Typography
               sx={{ color: theme.palette.customGold.at239a1 }}
+              variant="h5"
+            >
+              Lista de favoritos de:
+            </Typography>
+            <Typography
+              sx={{ color: theme.palette.customGold.at239a1 }}
               variant="h4"
             >
               @{loaderData?.params?.fiumbiListUsername}
