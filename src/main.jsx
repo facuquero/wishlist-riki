@@ -92,8 +92,6 @@ const ValidatingFiumbiUser = lazy(() => import('./routes/ValidatingFiumbiUser'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Suspense fallback={'Cargando App'}>
-      <App />
-    </Suspense>
+    <App />
   </React.StrictMode>
 )
