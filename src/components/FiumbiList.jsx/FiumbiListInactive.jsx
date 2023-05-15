@@ -41,67 +41,91 @@ const FiumbiListInactive = () => {
       alignItems="center"
     >
       {isRenderFiumbiList && (
-        <Virtuoso
-          style={{ height: 'max(60vh, 600px)', width: '100%' }}
-          data={data.data.listFav}
-          itemContent={(index, favItem) => (
-            <Grid
-              container
-              key={index}
-              className={styles.cardFavList}
-              borderRadius={2}
-              m={2}
-              p={2}
-              width="95%"
-              mx="auto"
-              alignItems="center"
-            >
+        <Grid
+          item
+          xs={12}
+          border={1}
+          borderColor="gray"
+          borderRadius={1}
+          sx={{
+            mx: 'auto',
+            width: '100%',
+            background: 'white',
+          }}
+        >
+          <Virtuoso
+            style={{ height: 'max(60vh, 600px)', width: '100%' }}
+            data={data.data.listFav}
+            itemContent={(index, favItem) => (
               <Grid
                 container
-                borderRadius={4}
-                display={{ xs: 'flex', md: 'block' }}
-                justifyContent="center"
-                width={{ xs: '100%', md: '15%' }}
-                maxWidth={{ xs: '100%', md: '200px' }}
+                key={index}
+                className={styles.cardFavList}
+                borderRadius={2}
+                m={2}
+                p={2}
+                width="95%"
+                mx="auto"
+                alignItems="center"
               >
-                <img
-                  src={favItem.thumbnail}
-                  loading="lazy"
-                  alt="meliThumbnail"
-                  className={styles.imageFavList}
-                />
+                <Grid
+                  container
+                  display={{ xs: 'flex' }}
+                  justifyContent="center"
+                  xs={12}
+                  md={4}
+                  width="100%"
+                >
+                  <img
+                    src={favItem.thumbnail}
+                    loading="lazy"
+                    alt="meliThumbnail"
+                    className={styles.imageFavList}
+                  />
+                </Grid>
+                <Grid item xs={12} md={4} sx={{ display: 'flex', flexGrow: 1 }}>
+                  <Grid
+                    container
+                    flexGrow={1}
+                    flexDirection="column"
+                    justifyContent="space-around"
+                    sx={{ textAlign: { xs: 'center', md: 'start' } }}
+                  >
+                    <Grid item>
+                      <Typography variant="h5">{favItem.title}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          my: { xs: 2, md: 'auto' },
+                          mb: 0,
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        ${favItem.price}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <ReActiveFiumbiFavorite
+                    id={favItem.id}
+                    fiumbiTitle={favItem.title}
+                    reloadSearch={reloadSearch}
+                  />
+                </Grid>
               </Grid>
-              <Grid
-                item
-                borderRadius={4}
-                xs={12}
-                md={6}
-                p={4}
-                display={{ xs: 'flex', md: 'block' }}
-                justifyContent="center"
-                sx={{ overflowWrap: 'break-word', width: 'auto' }}
-              >
-                <Typography variant="h5">{favItem.title}</Typography>
-                <Typography variant="h6">Precio: {favItem.price}</Typography>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md="auto"
-                display={{ xs: 'flex', md: 'block' }}
-                justifyContent="center"
-                ml="auto"
-                mr={{ xs: 'auto', md: 0 }}
-              >
-                <ReActiveFiumbiFavorite
-                  id={favItem.id}
-                  fiumbiTitle={favItem.title}
-                  reloadSearch={reloadSearch}
-                />
-              </Grid>
-            </Grid>
-          )}
-        />
+            )}
+          />
+        </Grid>
       )}
 
       {!isRenderFiumbiList && !isLoading && (

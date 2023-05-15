@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material'
+import { Box, Button, Grid } from '@mui/material'
 import React, { useState } from 'react'
 import DialogFiumbi from './DialogFiumbi'
 import OpenGiftSVG from '../../assets/iconcs/gift-1-svgrepo-com4.svg'
@@ -34,8 +34,14 @@ const ButtonFiumbiML = ({
           alignItems: 'center',
         }}
       >
-        <Box color="black">Regalar</Box>
-        <img src={OpenGiftSVG} className={styles.imageButtonFiumbiList} />
+        <Grid container wrap="nowrap" alignItems="center">
+          <Grid item>
+            <Box color="black">Regalar</Box>
+          </Grid>
+          <Grid item>
+            <img src={OpenGiftSVG} className={styles.imageButtonFiumbiList} />
+          </Grid>
+        </Grid>
       </Button>
       {showModalML && (
         <DialogFiumbi

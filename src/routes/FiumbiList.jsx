@@ -53,7 +53,6 @@ const FiumbiList = () => {
           <Grid item xs={12} sm="auto">
             <FormControl
               sx={{ minWidth: 120, width: { xs: '100%', sm: 'auto' } }}
-              variant="filled"
             >
               <InputLabel id="fiumbiLabilListaActive">Fiumbi lista</InputLabel>
               <Select

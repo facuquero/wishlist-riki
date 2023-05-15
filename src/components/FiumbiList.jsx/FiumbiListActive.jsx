@@ -86,14 +86,10 @@ const FiumbiListActive = () => {
             borderColor="gray"
             borderRadius={1}
             sx={{
-              mx: {
-                sx: 2,
-                md: 4,
-                //background: `linear-gradient(to right bottom, ${theme.palette.customGold.at239a1}, ${theme.palette.customGold.at140a1} 90%)`,
-                background: 'white',
-              },
+              mx: 'auto',
+              width: '100%',
+              background: 'white',
             }}
-            flex
           >
             <Virtuoso
               style={{ height: 'max(60vh, 600px)', width: '100%' }}
@@ -114,11 +110,12 @@ const FiumbiListActive = () => {
                     justifyContent="center"
                     xs={12}
                     md={4}
+                    width="100%"
                   >
                     <img
                       src={favItem.thumbnail}
                       loading="lazy"
-                      alt="meliThumbnail"
+                      alt={`meliThumbnail-${index}`}
                       className={styles.imageFavList}
                     />
                   </Grid>
@@ -133,6 +130,7 @@ const FiumbiListActive = () => {
                       flexGrow={1}
                       flexDirection="column"
                       justifyContent="space-around"
+                      sx={{ textAlign: { xs: 'center', md: 'start' } }}
                     >
                       <Grid item>
                         <Typography variant="h5">{favItem.title}</Typography>
@@ -141,7 +139,7 @@ const FiumbiListActive = () => {
                         <Typography
                           variant="h4"
                           sx={{
-                            mt: 'auto',
+                            my: { xs: 2, md: 'auto' },
                             mb: 0,
                             fontWeight: 'bold',
                           }}

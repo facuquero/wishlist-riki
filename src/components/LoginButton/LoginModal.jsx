@@ -116,8 +116,8 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
                   )
                 })}
                 {isError && (
-                  <Grid item xs={12}>
-                    <Typography>
+                  <Grid item xs={12} pb={1}>
+                    <Typography color="white">
                       Algo ocurrio al intentar iniciar sesion, intente
                       nuevamente
                     </Typography>
