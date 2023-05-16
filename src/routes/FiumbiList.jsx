@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import Typography from '../components/commons/Typography'
 import FiumbiListActive from '../components/FiumbiList.jsx/FiumbiListActive'
-import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
@@ -10,6 +9,13 @@ import { useLoaderData } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import FiumbiListInactive from '../components/FiumbiList.jsx/FiumbiListInactive'
 import SincFav from '../components/SincFav'
+import { styled } from '@mui/material/styles'
+
+const StyledSelect = styled(Select)(({ theme }) => ({
+  '& .MuiSelect-select': {
+    background: theme.palette.customText.textWhiteLight,
+  },
+}))
 
 const FiumbiList = () => {
   const loaderData = useLoaderData()
@@ -51,14 +57,13 @@ const FiumbiList = () => {
           sx={{ borderRadius: 2, p: 1 }}
         >
           <Grid item xs={12} sm="auto">
-            <FormControl
-              sx={{ minWidth: 120, width: { xs: '100%', sm: 'auto' } }}
-            >
-              <InputLabel id="fiumbiLabilListaActive">Fiumbi lista</InputLabel>
-              <Select
+            <FormControl sx={{ width: { xs: '100%', sm: 'auto' } }}>
+              <Typography color="customText.textWhiteLight">
+                Fiumbi lista
+              </Typography>
+              <StyledSelect
                 labelId="fiumbiLabilListaActive"
                 value={viewRender}
-                label="Fiumbi lista"
                 onChange={handleChange}
               >
                 <MenuItem value={viewsTypes.active}>
@@ -67,7 +72,7 @@ const FiumbiList = () => {
                 <MenuItem value={viewsTypes.inactive}>
                   {viewsTypes.inactive}
                 </MenuItem>
-              </Select>
+              </StyledSelect>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>

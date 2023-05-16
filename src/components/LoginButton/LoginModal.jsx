@@ -1,52 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { Grid, useTheme } from '@mui/material'
-import CircularProgress from '@mui/material/CircularProgress'
+import React, { useState } from 'react'
+import { Button, Grid, useTheme } from '@mui/material'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import { SlideTransition } from '../SlideTransition'
 import Typography from '../commons/Typography'
-import { useLogin } from '../../../api/useUsersAPI'
-import { LoginUserSchema } from '../../utils/schemasForm'
-import { Formik, Form, Field } from 'formik'
-import useAuth from '../../hooks/useAuth'
-import { SpecialLoginButton } from '../commons/SpecialButtons'
 import StyledDialog from '../commons/Dialog'
-import TextField from '../commons/TextField'
+import LogIn from './LogIn'
+import PasswordLost from './PasswordLost'
 
 const LoginModal = ({ showModalLogin, handleClose }) => {
-  const { logIn } = useAuth()
-  const { execute, data, isLoading, isError } = useLogin()
-  const [usernameLogin, setUsernameLogin] = useState()
-
-  const theme = useTheme()
-  const handleClickLogin = ({ username, password }) => {
-    if (isLoading) return
-    setUsernameLogin(username)
-    execute({
-      data: {
-        username,
-        password,
-      },
-    })
+  const posibleViews = {
+    login: 'login',
+    passwordLost: 'passwordLost',
   }
+  const [renderView, setRenderView] = useState(posibleViews.login)
+  const theme = useTheme()
 
-  const fieldInputsItems = [
-    {
-      field: 'username',
-      label: 'Usuario',
-    },
-    {
-      field: 'password',
-      label: 'Contraseña',
-      type: 'password',
-    },
-  ]
-
-  useEffect(() => {
-    if (data?.status === 200) {
-      logIn({ newUsername: usernameLogin, newUserToken: data.data.token })
-    }
-  }, [isLoading, data])
+  const handleChangeView = ({ newView }) => {
+    setRenderView(newView)
+  }
 
   return (
     <StyledDialog
@@ -57,85 +29,59 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle>
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-            sx={{ color: theme.palette.customText.textWhiteLight }}
-          >
-            Iniciar sesion
+        {renderView === posibleViews.login && (
+          <Grid container>
+            <Grid
+              item
+              xs={12}
+              sx={{ color: theme.palette.customText.textWhiteLight }}
+            >
+              Iniciar sesion
+            </Grid>
           </Grid>
-        </Grid>
+        )}
+        {renderView === posibleViews.passwordLost && (
+          <Grid container>
+            <Grid
+              item
+              xs={12}
+              sx={{ color: theme.palette.customText.textWhiteLight }}
+            >
+              <Button
+                onClick={() => {
+                  handleChangeView({ newView: posibleViews.login })
+                }}
+              >
+                <Typography color="customText.textWhiteLight">
+                  Volver
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sx={{ color: theme.palette.customText.textWhiteLight }}
+            >
+              Recuperar contraseña
+            </Grid>
+          </Grid>
+        )}
       </DialogTitle>
       <DialogContent>
-        <Formik
-          initialValues={{
-            username: '',
-            password: '',
-          }}
-          validationSchema={LoginUserSchema}
-          onSubmit={({ username, password }) => {
-            handleClickLogin({
-              username,
-              password,
-            })
-          }}
-        >
-          {({ errors, touched }) => (
-            <Grid container>
-              <Form style={{ width: '100%' }}>
-                {fieldInputsItems.map((fieldItem, index) => {
-                  return (
-                    <Grid
-                      item
-                      xs={12}
-                      my={2}
-                      key={`${index}-loginmodal-${fieldItem.field}`}
-                    >
-                      <Field name={fieldItem.field}>
-                        {({ field }) => (
-                          <TextField
-                            fullWidth
-                            label={fieldItem.label}
-                            variant="outlined"
-                            type={fieldItem.type || 'text'}
-                            {...field}
-                            error={
-                              errors[fieldItem.field] &&
-                              touched[fieldItem.field]
-                            }
-                          />
-                        )}
-                      </Field>
-                      {errors[fieldItem.field] && touched[fieldItem.field] ? (
-                        <Typography my={1} sx={{ color: 'red' }}>
-                          {errors[fieldItem.field]}
-                        </Typography>
-                      ) : null}
-                    </Grid>
-                  )
-                })}
-                {isError && (
-                  <Grid item xs={12} pb={1}>
-                    <Typography color="white">
-                      Algo ocurrio al intentar iniciar sesion, intente
-                      nuevamente
-                    </Typography>
-                  </Grid>
-                )}
-                <Grid item xs={12} flex justifyContent="center" mb={1}>
-                  {!data && (
-                    <SpecialLoginButton type="submit">
-                      {!isLoading && 'Iniciar sesion'}
-                      {isLoading && <CircularProgress />}
-                    </SpecialLoginButton>
-                  )}
-                  {data && 'Iniciando sesion'}
-                </Grid>
-              </Form>
-            </Grid>
-          )}
-        </Formik>
+        {renderView === posibleViews.login && (
+          <Grid container>
+            <LogIn
+              handleChangeView={() => {
+                handleChangeView({ newView: posibleViews.passwordLost })
+              }}
+            />
+          </Grid>
+        )}
+        {renderView === posibleViews.passwordLost && (
+          <Grid container>
+            <PasswordLost />
+          </Grid>
+        )}
       </DialogContent>
     </StyledDialog>
   )

@@ -47,6 +47,13 @@ export const LoginUserSchema = Yup.object().shape({
   password: Yup.string().required('Contraseña por favor'),
 })
 
+export const PasswordLostSchema = Yup.object().shape({
+  username: Yup.string().required('Usuario por favor'),
+  email: Yup.string()
+    .email('El email no es válido')
+    .required('El email es obligatorio'),
+})
+
 export const ChangePasswordSchema = Yup.object().shape({
   lastPassword: Yup.string()
     .required('La ultima contraseña es obligatoria')
