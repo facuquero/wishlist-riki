@@ -1,10 +1,8 @@
 import React from 'react'
+import { Grid, Typography, useTheme } from '@mui/material'
+import NewShippingAddressComponente from '@@/components/UserConfig/newShippingAddress'
 
-import { Grid, useTheme } from '@mui/material'
-import PasswordChange from '../components/UserConfig/PasswordChange'
-import NewShippingAddress from '../components/UserConfig/newShippingAddress'
-
-const UserConfig = () => {
+const NewShippingAddress = () => {
   const theme = useTheme()
 
   return (
@@ -12,7 +10,7 @@ const UserConfig = () => {
       container
       sx={{
         display: 'flex',
-        minHeight: '60dvh',
+        minHeight: '80dvh',
         background: theme.palette.customBlack.at90,
       }}
       justifyContent="center"
@@ -29,15 +27,11 @@ const UserConfig = () => {
         }}
       >
         <Grid item xs={12}>
-          <PasswordChange />
-        </Grid>
-
-        <Grid item xs={12} mt={2}>
-          <NewShippingAddress />
+          <NewShippingAddressComponente />
         </Grid>
       </Grid>
     </Grid>
   )
 }
 
-export default UserConfig
+export default NewShippingAddress

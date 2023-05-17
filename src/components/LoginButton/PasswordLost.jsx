@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { Grid } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '../commons/Typography'
-import { useLogin } from '../../../api/useUsersAPI'
+import { forgotPassword } from '../../../api/useUsersAPI'
 import { PasswordLostSchema } from '../../utils/schemasForm'
 import { Formik, Form, Field } from 'formik'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 import TextField from '../commons/TextField'
 
 const PasswordLost = () => {
-  const { execute, data, isLoading, isError } = useLogin()
+  const { execute, data, isLoading, isError } = forgotPassword()
   const handleClickPasswordLost = ({ username, email }) => {
     if (isLoading) return
     execute({
@@ -91,14 +91,20 @@ const PasswordLost = () => {
               </Typography>
             </Grid>
           )}
-          <Grid item xs={12} flex justifyContent="center" mb={1}>
+          <Grid item xs={12} flex justifyContent="center" mb={1} display="flex">
             {!data && (
               <SpecialLoginButton type="submit">
                 {!isLoading && 'Recuperar contraseña'}
                 {isLoading && <CircularProgress />}
               </SpecialLoginButton>
             )}
-            {data && 'Se envio un correo al email con los pasos a seguir'}
+            {data && (
+              <Grid item xs={12} pb={1}>
+                <Typography color="white">
+                  Se envio un correo al email con los pasos a seguir
+                </Typography>
+              </Grid>
+            )}
           </Grid>
         </Form>
       )}

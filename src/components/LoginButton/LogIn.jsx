@@ -96,7 +96,7 @@ const LogIn = ({ handleChangeView }) => {
               </Typography>
             </Grid>
           )}
-          <Grid item xs={12} flex justifyContent="center" mb={1}>
+          <Grid item xs={12} display="flex" justifyContent="center" mb={1}>
             {!data && (
               <SpecialLoginButton type="submit">
                 {!isLoading && 'Iniciar sesion'}

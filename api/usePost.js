@@ -17,6 +17,7 @@ export const usePost = ({ url }) => {
     } catch (e) {
       setData(undefined)
       setError(e)
+      console.log('e', e)
       setIsError(true)
     } finally {
       setIsLoading(false)

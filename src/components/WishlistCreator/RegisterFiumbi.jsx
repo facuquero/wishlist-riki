@@ -4,6 +4,7 @@ import {
   Checkbox,
   CircularProgress,
   ClickAwayListener,
+  Fade,
   FormControlLabel,
   Tooltip,
   useTheme,
@@ -100,157 +101,166 @@ const RegisterFiumbi = ({
   }, [data, isLoading, isError, error])
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        mx: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Typography
-        paragraph
-        sx={{
-          color: theme.palette.customText.textWhiteLight,
-          textAlign: 'center',
-          fontSize: { xs: '1.5rem', md: '2.125rem' },
-          fontWeight: 'bold',
-          mb: 2,
-        }}
-      >
-        <Typography
-          component="span"
-          color={theme.palette.customGold.at254a1}
-          sx={{
-            fontWeight: 'inherit',
-            fontSize: 'inherit',
-          }}
-        >
-          Abajo completa
-        </Typography>
-        &nbsp; los datos de entrega para recibir tus regalos
-      </Typography>
-
+    <Fade in>
       <Box
         sx={{
-          w: '100%',
+          width: '100%',
+          mx: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Typography
+          paragraph
           sx={{
-            width: '100%',
-            textAlign: 'center',
-            text: 'center',
             color: theme.palette.customText.textWhiteLight,
+            textAlign: 'center',
+            fontSize: { xs: '1.5rem', md: '2.125rem' },
+            fontWeight: 'bold',
+            mb: 2,
           }}
         >
-          Recuerda de usuario sera {wishlistName || ''}
+          <Typography
+            component="span"
+            color={theme.palette.customGold.at254a1}
+            sx={{
+              fontWeight: 'inherit',
+              fontSize: 'inherit',
+            }}
+          >
+            Abajo completa
+          </Typography>
+          &nbsp; los datos de entrega para recibir tus regalos
         </Typography>
-      </Box>
-      <Formik
-        initialValues={{
-          name: '',
-          DNI: '',
-          email: '',
-          phone_number: '',
-          shipping_address: '',
-          termsAndConditions: false,
-          password: '',
-          lastname: '',
-          zip_code: '',
-        }}
-        validationSchema={NewUserSchema}
-        onSubmit={(values) => {
-          handleSubmitNewUser({
-            newUser: values,
-          })
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form style={{ width: '100%' }}>
-            {fieldInputsItems.map((fieldItem, index) => {
-              return (
-                <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
-                  {fieldItem.field === 'password' && (
-                    <Typography
-                      sx={{
-                        width: '100%',
-                        color: theme.palette.customText.textWhiteLight,
-                      }}
-                    >
-                      Usuario: {wishlistName || ''}
-                    </Typography>
-                  )}
-                  <Field
-                    name={fieldItem.field}
-                    validate={fieldItem.validate || null}
-                  >
-                    {({ field }) => (
-                      <Box sx={{ display: 'flex' }}>
-                        <TextField
-                          fullWidth
-                          label={fieldItem.label}
-                          variant="outlined"
-                          type={fieldItem.type || 'text'}
-                          {...field}
-                          error={
-                            errors[fieldItem.field] && touched[fieldItem.field]
-                          }
-                          size="small"
-                        />
-                        {fieldItem.infoIcon || null}
-                      </Box>
-                    )}
-                  </Field>
-                  {errors[fieldItem.field] && touched[fieldItem.field] ? (
-                    <Typography color={theme.palette.customRed.errorRed} mt={1}>
-                      {errors[fieldItem.field]}
-                    </Typography>
-                  ) : null}
-                </Box>
-              )
-            })}
 
-            <Box>
-              <Field
-                type="checkbox"
-                name="termsAndConditions"
-                as={FormControlLabel}
-                sx={{ color: theme.palette.customText.textWhiteLight }}
-                control={<Checkbox />}
-                label={
-                  <Typography variant="body2">
-                    Estoy de acuerdo con los términos y condiciones
-                  </Typography>
-                }
-              />
-              {errors.termsAndConditions && touched.termsAndConditions ? (
-                <div style={{ color: 'red' }}>{errors.termsAndConditions}</div>
-              ) : null}
-            </Box>
-            <SpecialCommonButton
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{ width: '100%', textTransform: 'none', mt: 2 }}
-            >
-              <Typography variant="subtitle1">
-                {!isLoading && 'Registrarse'}
-              </Typography>
-              {isLoading && <CircularProgress sx={{ color: 'white' }} />}
-            </SpecialCommonButton>
-          </Form>
-        )}
-      </Formik>
-      {isError && (
-        <Box my={2} sx={{ textAlign: 'center' }}>
-          <Typography>A ocurrido un error:</Typography>
-          <Typography>{error?.response?.data?.message}</Typography>
+        <Box
+          sx={{
+            w: '100%',
+          }}
+        >
+          <Typography
+            sx={{
+              width: '100%',
+              textAlign: 'center',
+              text: 'center',
+              color: theme.palette.customText.textWhiteLight,
+            }}
+          >
+            Recuerda de usuario sera {wishlistName || ''}
+          </Typography>
         </Box>
-      )}
-    </Box>
+        <Formik
+          initialValues={{
+            name: '',
+            DNI: '',
+            email: '',
+            phone_number: '',
+            shipping_address: '',
+            termsAndConditions: false,
+            password: '',
+            lastname: '',
+            zip_code: '',
+          }}
+          validationSchema={NewUserSchema}
+          onSubmit={(values) => {
+            handleSubmitNewUser({
+              newUser: values,
+            })
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form style={{ width: '100%' }}>
+              {fieldInputsItems.map((fieldItem, index) => {
+                return (
+                  <Box sx={{ my: 2 }} key={`fieldInputsItems-${index}`}>
+                    {fieldItem.field === 'password' && (
+                      <Typography
+                        sx={{
+                          width: '100%',
+                          color: theme.palette.customText.textWhiteLight,
+                        }}
+                        mb={1}
+                      >
+                        Usuario: {wishlistName || ''}
+                      </Typography>
+                    )}
+                    <Field
+                      name={fieldItem.field}
+                      validate={fieldItem.validate || null}
+                    >
+                      {({ field }) => (
+                        <Box sx={{ display: 'flex' }}>
+                          <TextField
+                            fullWidth
+                            label={fieldItem.label}
+                            variant="outlined"
+                            type={fieldItem.type || 'text'}
+                            {...field}
+                            error={
+                              errors[fieldItem.field] &&
+                              touched[fieldItem.field]
+                            }
+                            size="small"
+                          />
+                          {fieldItem.infoIcon || null}
+                        </Box>
+                      )}
+                    </Field>
+                    {errors[fieldItem.field] && touched[fieldItem.field] ? (
+                      <Typography
+                        color={theme.palette.customRed.errorRed}
+                        mt={1}
+                      >
+                        {errors[fieldItem.field]}
+                      </Typography>
+                    ) : null}
+                  </Box>
+                )
+              })}
+
+              <Box>
+                <Field
+                  type="checkbox"
+                  name="termsAndConditions"
+                  as={FormControlLabel}
+                  sx={{ color: theme.palette.customText.textWhiteLight }}
+                  control={<Checkbox />}
+                  label={
+                    <Typography variant="body2">
+                      Estoy de acuerdo con los términos y condiciones
+                    </Typography>
+                  }
+                />
+                {errors.termsAndConditions && touched.termsAndConditions ? (
+                  <div style={{ color: 'red' }}>
+                    {errors.termsAndConditions}
+                  </div>
+                ) : null}
+              </Box>
+              <SpecialCommonButton
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{ width: '100%', textTransform: 'none', mt: 2 }}
+              >
+                <Typography variant="subtitle1">
+                  {!isLoading && 'Registrarse'}
+                </Typography>
+                {isLoading && <CircularProgress sx={{ color: 'white' }} />}
+              </SpecialCommonButton>
+            </Form>
+          )}
+        </Formik>
+        {isError && (
+          <Box my={2} sx={{ textAlign: 'center' }}>
+            <Typography>A ocurrido un error:</Typography>
+            <Typography>{error?.response?.data?.message}</Typography>
+          </Box>
+        )}
+      </Box>
+    </Fade>
   )
 }
 

@@ -34,3 +34,18 @@ export const useChangePassword = () => {
   const url = '/change-password'
   return usePost({ url })
 }
+
+export const useChangeShippingAddress = () => {
+  const url = '/change-shipping-address'
+  return usePost({ url })
+}
+
+export const forgotPassword = () => {
+  const url = '/forgot-password'
+  return usePost({ url })
+}
+
+export const findMe = () => {
+  const url = '/find-me'
+  return usePost({ url })
+}

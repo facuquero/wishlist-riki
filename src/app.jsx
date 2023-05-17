@@ -18,6 +18,8 @@ import Home from './routes/Home'
 import ValidatingFiumbiUser from './routes/ValidatingFiumbiUser'
 import FiumbiList from './routes/FiumbiList'
 import UserConfig from './routes/UserConfig'
+import NewShippingAddress from './routes/UserConfig/NewShippingAddress'
+import PasswordChange from './routes/UserConfig/PasswordChange'
 
 //const Layout = lazy(() => import('./layout'))
 /* const Home = lazy(() => import('./routes/Home'))
@@ -89,10 +91,22 @@ const router = createBrowserRouter(
           element={<FiumbiList />}
           loader={getFiumbiList}
         />
-        <Route path="/" element={<ProtectedRoute />}>
+        <Route
+          path="/:fiumbiListUsername"
+          element={<ProtectedRoute />}
+          loader={getFiumbiList}
+        >
           <Route
             path="/:fiumbiListUsername/userConfig"
             element={<UserConfig />}
+          />
+          <Route
+            path="/:fiumbiListUsername/userConfig/editShippingAddress"
+            element={<NewShippingAddress />}
+          />
+          <Route
+            path="/:fiumbiListUsername/userConfig/passwordChange"
+            element={<PasswordChange />}
           />
         </Route>
       </Route>

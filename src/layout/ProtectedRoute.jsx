@@ -1,9 +1,12 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLoaderData } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 const ProtectedRoute = () => {
+  const loaderData = useLoaderData()
   const { auth } = useAuth()
+  const isSameUserAsFiumbiUser =
+    auth?.username == loaderData?.params?.fiumbiListUsername
 
-  if (!auth.token) {
+  if (!isSameUserAsFiumbiUser) {
     return <Navigate to="/" />
   }
 

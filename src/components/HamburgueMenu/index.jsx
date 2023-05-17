@@ -35,6 +35,10 @@ const HamburgueMenu = () => {
     const options = {
       miFiumbi: () => navigate(`/${auth.username}`),
       options: () => navigate(`/${auth.username}/userConfig`),
+      newPassword: () =>
+        navigate(`/${auth.username}/userConfig/passwordChange`),
+      newAddres: () =>
+        navigate(`/${auth.username}/userConfig/editShippingAddress`),
       logOut: () => logOut(),
     }
     options[goTo]()
@@ -77,6 +81,18 @@ const HamburgueMenu = () => {
           sx={{ color: theme.palette.customText.textWhiteLight }}
         >
           Opciones
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleClickOptions({ goTo: 'newAddres' })}
+          sx={{ color: theme.palette.customText.textWhiteLight }}
+        >
+          Editar direccion
+        </MenuItem>
+        <MenuItem
+          onClick={() => handleClickOptions({ goTo: 'newPassword' })}
+          sx={{ color: theme.palette.customText.textWhiteLight }}
+        >
+          Cambiar password
         </MenuItem>
         <MenuItem onClick={() => handleClickOptions({ goTo: 'logOut' })}>
           <SpecialLoginButton>Cerrar sesion</SpecialLoginButton>

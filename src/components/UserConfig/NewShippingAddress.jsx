@@ -4,12 +4,12 @@ import { NewShippingAddressSchema } from '../../utils/schemasForm'
 import { Formik, Form, Field } from 'formik'
 import TextField from '../commons/TextField'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
-import { useChangePassword } from '../../../api/useUsersAPI'
+import { useChangeShippingAddress } from '../../../api/useUsersAPI'
 import useAuth from '../../hooks/useAuth'
 
 const NewShippingAddress = () => {
   const theme = useTheme()
-  const { execute, data, isLoading, isError } = useChangePassword()
+  const { execute, data, isLoading, isError } = useChangeShippingAddress()
   const { auth } = useAuth()
   const fieldInputsItems = [
     {
