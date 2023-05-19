@@ -5,7 +5,6 @@ const LoginButton = styled(MUIButton)(({ theme }) => ({
   borderRadius: 40,
   color: theme.palette.customText.textWhiteblack,
   background: `linear-gradient(to right bottom, #f9f3d9,#ffce1f 50%)`,
-
   '&:hover': {
     background: theme.palette.customGold.lightHover,
   },
