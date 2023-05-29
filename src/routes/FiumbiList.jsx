@@ -76,6 +76,14 @@ const FiumbiList = () => {
             </FormControl>
           </Grid>
           <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>
+            <Typography
+              color="customText.textWhiteLight"
+              sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+            >
+              Editando mi Fiumbi
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>
             <SincFav />
           </Grid>
         </Grid>

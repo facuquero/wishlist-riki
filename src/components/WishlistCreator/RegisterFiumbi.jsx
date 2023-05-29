@@ -79,7 +79,11 @@ const RegisterFiumbi = ({
   ]
 
   const handleSubmitNewUser = ({ newUser }) => {
-    const data = { ...newUser, username: wishlistName }
+    const data = {
+      ...newUser,
+      username: wishlistName,
+      phrase: 'Gracias por comprarme regalos!',
+    }
     setWishlisUser(data)
     execute({
       data,

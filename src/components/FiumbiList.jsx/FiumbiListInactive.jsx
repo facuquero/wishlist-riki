@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import { getListByUsernameInactive } from '../../../api/fiumbiProducts'
 import { useEffect } from 'react'
@@ -12,6 +12,7 @@ const FiumbiListInactive = () => {
   const loaderData = useLoaderData()
   const isRenderFiumbiList =
     data && data?.data?.listFav?.length > 0 && !isLoading
+  const theme = useTheme()
 
   const reloadSearch = () => {
     execute({
@@ -50,7 +51,7 @@ const FiumbiListInactive = () => {
           sx={{
             mx: 'auto',
             width: '100%',
-            background: 'white',
+            background: 'transparent',
           }}
         >
           <Virtuoso
@@ -62,11 +63,14 @@ const FiumbiListInactive = () => {
                 key={index}
                 className={styles.cardFavList}
                 borderRadius={2}
-                m={2}
-                p={2}
+                m={4}
+                py={4}
                 width="95%"
                 mx="auto"
                 alignItems="center"
+                sx={{
+                  background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
+                }}
               >
                 <Grid
                   container
@@ -81,6 +85,12 @@ const FiumbiListInactive = () => {
                     loading="lazy"
                     alt="meliThumbnail"
                     className={styles.imageFavList}
+                    style={{
+                      padding: '10px',
+                      borderRadius: '16px',
+                      border: 'solid 1px',
+                      background: `linear-gradient(315deg, ${theme.palette.customGold.at254a04} 0%,${theme.palette.customGold.at254a1} 50%, ${theme.palette.customGold.at254a04} 100%)`,
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12} md={4} sx={{ display: 'flex', flexGrow: 1 }}>

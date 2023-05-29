@@ -3,7 +3,7 @@ import Typography from '../commons/Typography'
 import useAuth from '../../hooks/useAuth'
 import { NavLink } from 'react-router-dom'
 import Menu from '../HamburgueMenu'
-
+import FiumbiLogo from '../../assets/logotext.svg'
 const Header = () => {
   const { auth } = useAuth()
   const theme = useTheme()
@@ -20,7 +20,9 @@ const Header = () => {
       }}
     >
       <Grid item xs={4}>
-        <NavLink to="/">logo</NavLink>
+        <NavLink to="/">
+          <img alt="Fiumbi logo" loading="lazy" src={FiumbiLogo} />
+        </NavLink>
       </Grid>
       {auth?.token && (
         <Grid item xs={4} display="flex" justifyContent="center">

@@ -46,7 +46,7 @@ const HowItWork = () => {
               </Typography>
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
-              <Typography variant="overline">
+              <Typography>
                 Un proceso sencillo y facil que te llevara pocos segundos
               </Typography>
             </Grid>
@@ -56,7 +56,7 @@ const HowItWork = () => {
               </Typography>
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
-              <Typography variant="overline">
+              <Typography>
                 Vuncula tu cuenta con Mercado libre para poder crea tu lista
                 regalos
               </Typography>
@@ -67,7 +67,7 @@ const HowItWork = () => {
               </Typography>
             </Grid>
             <Grid item sx={{ maxWidth: '300px', textAlign: 'center' }}>
-              <Typography variant="overline">
+              <Typography>
                 Ahora solo comparte tu link de la cuenta para que se puedas
                 recibir regalos
               </Typography>

@@ -1,4 +1,4 @@
-import { Grid, useTheme } from '@mui/material'
+import { Button, Grid, useTheme } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 import { generateLinkML } from '../../../api/fiumbiProducts'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -53,6 +53,12 @@ const DialogFiumbi = ({
               loading="lazy"
               alt="meliThumbnail"
               className={styles.imageFavList}
+              style={{
+                padding: '10px',
+                borderRadius: '16px',
+                border: 'solid 1px',
+                background: `linear-gradient(315deg, ${theme.palette.customGold.at254a04} 0%,${theme.palette.customGold.at254a1} 50%, ${theme.palette.customGold.at254a04} 100%)`,
+              }}
             />
           </Grid>
           <Grid
@@ -100,16 +106,23 @@ const DialogFiumbi = ({
       <DialogActions>
         <Grid container justifyContent="center" mb={1}>
           {!data && (
-            <SpecialCommonButton onClick={handleClickFiumbiML}>
-              {!isLoading && 'Generar Fiumbi'}
+            <Button
+              onClick={handleClickFiumbiML}
+              sx={{
+                background: `linear-gradient(315deg, ${theme.palette.customGold.at254a1} 0%,${theme.palette.customGold.at200a04red} 50%, ${theme.palette.customGold.at254a1} 100%)`,
+              }}
+            >
+              {!isLoading && (
+                <Typography color="black">Generar Fiumbi</Typography>
+              )}
               {isLoading && (
                 <CircularProgress
                   sx={{ color: theme.palette.customGold.at254a1 }}
                 />
               )}
-            </SpecialCommonButton>
+            </Button>
           )}
-          {data && <Typography color="white">Preparando tu Fiumbi</Typography>}
+          {data && <Typography color="black">Preparando tu Fiumbi</Typography>}
         </Grid>
       </DialogActions>
     </StyledDialog>

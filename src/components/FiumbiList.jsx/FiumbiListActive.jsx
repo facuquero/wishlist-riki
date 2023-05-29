@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Grid, useTheme } from '@mui/material'
+import { Box, Grid, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import ButtonFiumbiML from '../ButtonFiumbiML'
 import { getListActiveByUsername } from '../../../api/fiumbiProducts'
@@ -88,7 +88,8 @@ const FiumbiListActive = () => {
             sx={{
               mx: 'auto',
               width: '100%',
-              background: 'white',
+              background: 'transparent',
+              // background: 'white',
             }}
           >
             <Virtuoso
@@ -97,12 +98,20 @@ const FiumbiListActive = () => {
               itemContent={(index, favItem) => (
                 <Grid
                   container
-                  className={styles.cardFavList}
                   m={4}
-                  pb={4}
+                  py={4}
+                  //width="100%"
+                  // mx={0}
                   width="95%"
                   mx="auto"
+                  borderRadius={2}
+                  borderBottom="solid 1px"
                   key={index}
+                  sx={{
+                    background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
+                    background: `white`,
+                    //mr: '0 !important',
+                  }}
                 >
                   <Grid
                     item
@@ -117,6 +126,13 @@ const FiumbiListActive = () => {
                       loading="lazy"
                       alt={`meliThumbnail-${index}`}
                       className={styles.imageFavList}
+                      style={{
+                        padding: '10px',
+                        borderRadius: '16px',
+                        //border: 'solid 1px',
+                        background: `linear-gradient(315deg, ${theme.palette.customGold.at254a04} 0%,${theme.palette.customGold.at254a1} 50%, ${theme.palette.customGold.at254a04} 100%)`,
+                        background: `white`,
+                      }}
                     />
                   </Grid>
                   <Grid
@@ -133,11 +149,13 @@ const FiumbiListActive = () => {
                       sx={{ textAlign: { xs: 'center', md: 'start' } }}
                     >
                       <Grid item>
-                        <Typography variant="h5">{favItem.title}</Typography>
+                        <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                          {favItem.title}
+                        </Typography>
                       </Grid>
                       <Grid item>
                         <Typography
-                          variant="h4"
+                          variant="h5"
                           sx={{
                             my: { xs: 2, md: 'auto' },
                             mb: 0,

@@ -1,4 +1,18 @@
 import { createTheme } from '@mui/material/styles'
+import MalgunGothic from '../assets/font/malgun.ttf'
+const malgunGotic = {
+  fontFamily: 'Raleway',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: 400,
+  src: `
+    local('Malgun Gothic'),
+    local('Malgun-Gothic'),
+    url(${MalgunGothic}) format('ttf')
+  `,
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+}
 
 export const theme = createTheme({
   palette: {
@@ -18,13 +32,27 @@ export const theme = createTheme({
       lightHover: 'rgba(235, 195, 0, 1)',
       dark: '#be7600',
       darkHover: 'rgba(170, 98, 0, 1)',
-      at254a1: 'rgba(254, 247, 184, 1)',
+      at254a1: 'rgba(254, 247, 184, 1)', //
+      at254a12: 'rgba(127, 122, 92, 1)', //
       at239a1: 'rgba(239, 234, 174, 1)',
       at140a1: 'rgba(140, 137, 105, 1)',
-      at254a04: '#b99e5b',
+      at254a04: 'rgba(185, 158, 91, 1)', //
+      at200a04red: 'rgba(250, 230, 151, 1)', //
+      at254a043: 'rgba(185, 158, 91, 1)', //
+      at254a042: 'rgba(92, 79, 46, 1)', //
     },
     customRed: {
       errorRed: '#d32f2f',
     },
   },
+  typography: {
+    fontFamily: 'Malgun Gothic',
+  },
+  /* overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [malgunGotic],
+      },
+    },
+  }, */
 })
