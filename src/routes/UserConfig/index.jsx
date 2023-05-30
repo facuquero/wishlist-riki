@@ -42,6 +42,7 @@ const UserConfig = () => {
         display: 'flex',
         minHeight: '80dvh',
         background: theme.palette.customBlack.at90,
+        color: theme.palette.customText.textWhiteLight,
       }}
       justifyContent="center"
     >
@@ -49,6 +50,7 @@ const UserConfig = () => {
         item
         xs={12}
         sm={8}
+        p={2}
         sx={{
           borderRight: `1px solid`,
           borderLeft: `1px solid`,
@@ -56,16 +58,16 @@ const UserConfig = () => {
           background: `linear-gradient(to right bottom, ${theme.palette.customBlack.black99a1}, ${theme.palette.customBlack.black43a1} 30%)`,
         }}
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} mb={2}>
           <Typography variant="h4">Mis datos</Typography>
         </Grid>
         {data &&
           userData.map((itemUser) => (
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={12} pl={2}>
                 <Typography variant="h5">{itemUser.title}</Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} pl={4}>
                 <Typography variant="h6">
                   {data.data.user[itemUser.field] || ''}
                 </Typography>

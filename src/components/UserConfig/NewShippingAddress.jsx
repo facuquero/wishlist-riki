@@ -18,6 +18,15 @@ const NewShippingAddress = () => {
     },
   ]
 
+  const submitNewShippingAddres = ({ newShippingAddress }) => {
+    execute({
+      data: {
+        newShippingAddress: newShippingAddress,
+        username: auth.username,
+      },
+    })
+  }
+
   return (
     <Grid container p={4}>
       <Grid item xs={12}>
@@ -34,7 +43,9 @@ const NewShippingAddress = () => {
             }}
             validationSchema={NewShippingAddressSchema}
             onSubmit={({ newShippingAddress }) => {
-              execute({ data: newShippingAddress, username: auth.username })
+              submitNewShippingAddres({
+                newShippingAddress,
+              })
             }}
           >
             {({ errors, touched }) => (
@@ -73,20 +84,28 @@ const NewShippingAddress = () => {
                   })}
                   {isError && (
                     <Grid item xs={12}>
-                      <Typography>
+                      <Typography
+                        sx={{ color: theme.palette.customText.textWhiteLight }}
+                      >
                         Algo ocurrio al intentar cambiar el nuevo domicilio,
                         intente nuevamente
                       </Typography>
                     </Grid>
                   )}
                   <Grid item xs={12} flex justifyContent="center" mb={1}>
-                    {!data && (
-                      <SpecialCommonButton type="submit">
+                    {
+                      <SpecialCommonButton type="submit" disabled={isLoading}>
                         {!isLoading && 'Cambiar domicilio'}
                         {isLoading && <CircularProgress />}
                       </SpecialCommonButton>
+                    }
+                    {data && (
+                      <Typography
+                        sx={{ color: theme.palette.customText.textWhiteLight }}
+                      >
+                        Domicilio cambiada
+                      </Typography>
                     )}
-                    {data && <Typography>Domicilio cambiada</Typography>}
                   </Grid>
                 </Form>
               </Grid>

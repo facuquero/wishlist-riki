@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Typography, useTheme } from '@mui/material'
-import NewShippingAddressComponente from '@@/components/UserConfig/newShippingAddress'
+import NewShippingAddressComponente from '@@/components/UserConfig/NewShippingAddress'
 
 const NewShippingAddress = () => {
   const theme = useTheme()
