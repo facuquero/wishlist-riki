@@ -34,19 +34,12 @@ const ButtonFiumbiML = ({
           width: 'min(100%,250px)',
           padding: 2,
           display: 'flex',
-          background: `linear-gradient(315deg, ${theme.palette.customGold.at254a1} 0%,${theme.palette.customGold.at200a04red} 50%, ${theme.palette.customGold.at254a1} 100%)`,
           alignItems: 'center',
-          //background: 'white',
           border: 'none',
           background: `linear-gradient(${theme.palette.customGold.light}, ${theme.palette.customGold.dark});`,
         }}
       >
-        <Grid
-          container
-          wrap="nowrap"
-          alignItems="center"
-          // flexDirection={{ xs: 'column-reverse' }}
-        >
+        <Grid container wrap="nowrap" alignItems="center">
           <Grid item display="flex" alignItems="center">
             <img src={Logo} className={styles.imageButtonFiumbiList} />
           </Grid>

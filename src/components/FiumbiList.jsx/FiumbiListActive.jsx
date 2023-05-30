@@ -8,6 +8,7 @@ import { Navigate, useLoaderData } from 'react-router-dom'
 import styles from '../../assets/styles/fiumbiList.module.scss'
 import DeleteFiumbiFavorite from '../DeleteFiumbiFavorite'
 import { Virtuoso } from 'react-virtuoso'
+import MyPhrase from '../MyPhrase'
 
 const FiumbiListActive = () => {
   const { execute, data, isLoading } = getListActiveByUsername()
@@ -48,7 +49,7 @@ const FiumbiListActive = () => {
   return (
     <Grid container>
       <Grid item xs={12} sx={{ pb: 2 }} flex>
-        <Grid container justifyContent="space-around">
+        <Grid container>
           <Grid item>
             <Typography
               sx={{ color: theme.palette.customGold.at239a1 }}
@@ -57,13 +58,16 @@ const FiumbiListActive = () => {
               Lista de favoritos de:
             </Typography>
             <Typography
+              my={1}
               sx={{ color: theme.palette.customGold.at239a1 }}
               variant="h4"
             >
               @{loaderData?.params?.fiumbiListUsername}
             </Typography>
+            {isRenderFiumbiList && (
+              <MyPhrase actualPhrase={data?.data?.phrase?.phrase} />
+            )}
           </Grid>
-          <Grid item> </Grid>
         </Grid>
       </Grid>
       <Grid
@@ -89,7 +93,6 @@ const FiumbiListActive = () => {
               mx: 'auto',
               width: '100%',
               background: 'transparent',
-              // background: 'white',
             }}
           >
             <Virtuoso
@@ -100,17 +103,12 @@ const FiumbiListActive = () => {
                   container
                   m={4}
                   py={4}
-                  //width="100%"
-                  // mx={0}
                   width="95%"
                   mx="auto"
                   borderRadius={2}
-                  borderBottom="solid 1px"
                   key={index}
                   sx={{
-                    background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
                     background: `white`,
-                    //mr: '0 !important',
                   }}
                 >
                   <Grid
@@ -129,9 +127,6 @@ const FiumbiListActive = () => {
                       style={{
                         padding: '10px',
                         borderRadius: '16px',
-                        //border: 'solid 1px',
-                        background: `linear-gradient(315deg, ${theme.palette.customGold.at254a04} 0%,${theme.palette.customGold.at254a1} 50%, ${theme.palette.customGold.at254a04} 100%)`,
-                        background: `white`,
                       }}
                     />
                   </Grid>

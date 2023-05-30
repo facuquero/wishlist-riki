@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth'
 import { NavLink } from 'react-router-dom'
 import Menu from '../HamburgueMenu'
 import FiumbiLogo from '../../assets/logotext.svg'
+import styles from '../../assets/styles/header.module.scss'
 const Header = () => {
   const { auth } = useAuth()
   const theme = useTheme()
@@ -21,18 +22,24 @@ const Header = () => {
     >
       <Grid item xs={4}>
         <NavLink to="/">
-          <img alt="Fiumbi logo" loading="lazy" src={FiumbiLogo} />
+          <img
+            alt="Fiumbi logo"
+            loading="lazy"
+            src={FiumbiLogo}
+            className={styles.fiumbiLogo}
+          />
         </NavLink>
       </Grid>
-      {auth?.token && (
+      {auth?.username && (
         <Grid item xs={4} display="flex" justifyContent="center">
-          <NavLink
-            to={`/${auth.username}`}
-            className={({ isActive, isPending }) =>
-              isPending ? 'pending' : isActive ? 'active' : ''
-            }
-          >
-            <Typography sx={{ color: theme.palette.customText.textWhiteLight }}>
+          <NavLink to={`/${auth.username}`}>
+            <Typography
+              sx={{
+                color: theme.palette.customText.textWhiteLight,
+                fontWeight: 'bold',
+              }}
+              variant="h6"
+            >
               Bienvenido {auth.username}
             </Typography>
           </NavLink>

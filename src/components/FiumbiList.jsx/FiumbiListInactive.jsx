@@ -61,15 +61,13 @@ const FiumbiListInactive = () => {
               <Grid
                 container
                 key={index}
-                className={styles.cardFavList}
                 borderRadius={2}
                 m={4}
                 py={4}
                 width="95%"
                 mx="auto"
-                alignItems="center"
                 sx={{
-                  background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
+                  background: `white`,
                 }}
               >
                 <Grid
@@ -88,8 +86,6 @@ const FiumbiListInactive = () => {
                     style={{
                       padding: '10px',
                       borderRadius: '16px',
-                      border: 'solid 1px',
-                      background: `linear-gradient(315deg, ${theme.palette.customGold.at254a04} 0%,${theme.palette.customGold.at254a1} 50%, ${theme.palette.customGold.at254a04} 100%)`,
                     }}
                   />
                 </Grid>
@@ -102,11 +98,13 @@ const FiumbiListInactive = () => {
                     sx={{ textAlign: { xs: 'center', md: 'start' } }}
                   >
                     <Grid item>
-                      <Typography variant="h5">{favItem.title}</Typography>
+                      <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                        {favItem.title}
+                      </Typography>
                     </Grid>
                     <Grid item>
                       <Typography
-                        variant="h4"
+                        variant="h5"
                         sx={{
                           my: { xs: 2, md: 'auto' },
                           mb: 0,

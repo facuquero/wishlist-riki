@@ -2,6 +2,8 @@ import { useTheme } from '@emotion/react'
 import { Grid } from '@mui/material'
 import Typography from '../commons/Typography'
 import { NavLink } from 'react-router-dom'
+import FiumbiLogo from '../../assets/logotext.svg'
+import styles from '../../assets/styles/header.module.scss'
 
 const Footer = () => {
   const theme = useTheme()
@@ -19,7 +21,14 @@ const Footer = () => {
       <Grid item xs={12} sm={6} sx={{ textAlign: 'center', color: 'white' }}>
         <Grid container>
           <Grid item xs={12} mb={2}>
-            logo texto
+            <NavLink to="/">
+              <img
+                alt="Fiumbi logo"
+                loading="lazy"
+                src={FiumbiLogo}
+                className={styles.fiumbiLogo}
+              />
+            </NavLink>
           </Grid>
           <Grid item xs={12} mb={2}>
             <Typography>2023 fiumbi.</Typography>
@@ -30,18 +39,30 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <Grid container sx={{ color: 'white', textAlign: 'center' }}>
-          <Grid item xs={12} mb={2}>
-            <NavLink>
-              <Typography>Términos y condiciones de uso</Typography>
+      <Grid item xs={12} sm={6} display="flex">
+        <Grid
+          container
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          flexGrow="1"
+        >
+          <Grid item mb={2}>
+            <NavLink to="/terminos-y-condiciones">
+              <Typography color="white" textDecoration="none">
+                Términos y condiciones de uso
+              </Typography>
             </NavLink>
           </Grid>
-          <Grid item xs={12} mb={2}>
-            <Typography>Preguntas Frecuentes</Typography>
+          <Grid item mb={2}>
+            <NavLink to="/preguntas-frecuentes">
+              <Typography color="white" textDecoration="none">
+                Preguntas Frecuentes
+              </Typography>
+            </NavLink>
           </Grid>
-          <Grid item xs={12}>
-            <Typography>Contácto</Typography>
+          <Grid item>
+            <Typography color="white">Contácto</Typography>
           </Grid>
         </Grid>
       </Grid>

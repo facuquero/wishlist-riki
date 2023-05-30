@@ -20,7 +20,8 @@ import FiumbiList from './routes/FiumbiList'
 import UserConfig from './routes/UserConfig'
 import NewShippingAddress from './routes/UserConfig/NewShippingAddress'
 import PasswordChange from './routes/UserConfig/PasswordChange'
-
+import TermsConditions from './routes/TermsConditions'
+import FreqQuestions from './routes/FreqQuestions'
 //const Layout = lazy(() => import('./layout'))
 /* const Home = lazy(() => import('./routes/Home'))
 const FiumbiList = lazy(() => import('./routes/FiumbiList'))
@@ -109,6 +110,8 @@ const router = createBrowserRouter(
             element={<PasswordChange />}
           />
         </Route>
+        <Route path="/terminos-y-condiciones" element={<TermsConditions />} />
+        <Route path="/preguntas-frecuentes" element={<FreqQuestions />} />
       </Route>
       <Route path="/validatingFiumbiUser" element={<ValidatingFiumbiUser />} />
       <Route path="/*" element={<Navigate to="/" />} />

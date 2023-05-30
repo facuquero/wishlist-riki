@@ -49,3 +49,8 @@ export const findMe = () => {
   const url = '/find-me'
   return usePost({ url })
 }
+
+export const useChangePhrase = () => {
+  const url = '/change-phrase'
+  return usePost({ url })
+}
