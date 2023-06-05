@@ -22,6 +22,10 @@ const UserConfig = () => {
       field: 'name',
     },
     {
+      title: 'Apellido',
+      field: 'lastname',
+    },
+    {
       title: 'Documento',
       field: 'DNI',
     },
@@ -32,6 +36,10 @@ const UserConfig = () => {
     {
       title: 'Direccion',
       field: 'shipping_address',
+    },
+    {
+      title: 'Codigo postal',
+      field: 'zip_code',
     },
   ]
   console.log('data', data)
@@ -65,10 +73,14 @@ const UserConfig = () => {
           userData.map((itemUser) => (
             <Grid container>
               <Grid item xs={12} pl={2}>
-                <Typography variant="h5">{itemUser.title}</Typography>
+                <Typography variant="h5">{itemUser.title} :</Typography>
               </Grid>
               <Grid item xs={12} pl={4}>
-                <Typography variant="h6">
+                <Typography
+                  variant="h6"
+                  component="li"
+                  sx={{ listStyle: 'inside' }}
+                >
                   {data.data.user[itemUser.field] || ''}
                 </Typography>
               </Grid>

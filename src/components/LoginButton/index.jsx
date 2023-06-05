@@ -20,7 +20,7 @@ const LoginButton = ({}) => {
   return (
     <Box>
       <SpecialLoginButton onClick={handleClickOpen}>
-        Iniciar sesion
+        Ingresar
       </SpecialLoginButton>
       {showModalLogin && (
         <LoginModal showModalLogin={showModalLogin} handleClose={handleClose} />

@@ -50,17 +50,21 @@ const FiumbiListActive = () => {
     <Grid container>
       <Grid item xs={12} sx={{ pb: 2 }} flex>
         <Grid container>
-          <Grid item>
-            <Typography
-              sx={{ color: theme.palette.customGold.at239a1 }}
-              variant="h5"
-            >
-              Lista de favoritos de:
-            </Typography>
+          <Grid
+            item
+            sx={{
+              maxWidth: 1200,
+              mx: 'auto',
+              width: '100%',
+            }}
+          >
             <Typography
               my={1}
-              sx={{ color: theme.palette.customGold.at239a1 }}
+              sx={{
+                color: theme.palette.customGold.at239a1,
+              }}
               variant="h4"
+              fontWeight="bold"
             >
               @{loaderData?.params?.fiumbiListUsername}
             </Typography>
@@ -140,7 +144,7 @@ const FiumbiListActive = () => {
                       container
                       flexGrow={1}
                       flexDirection="column"
-                      justifyContent="space-around"
+                      justifyContent="center"
                       sx={{ textAlign: { xs: 'center', md: 'start' } }}
                     >
                       <Grid item>
@@ -152,12 +156,11 @@ const FiumbiListActive = () => {
                         <Typography
                           variant="h5"
                           sx={{
-                            my: { xs: 2, md: 'auto' },
+                            my: { xs: 2, md: 1 },
                             mb: 0,
-                            fontWeight: 'bold',
                           }}
                         >
-                          ${favItem.price}
+                          ${favItem.price} + Envío
                         </Typography>
                       </Grid>
                     </Grid>
@@ -176,6 +179,7 @@ const FiumbiListActive = () => {
                         productID={favItem.id}
                         fiumbiUsername={loaderData.params.fiumbiListUsername}
                         imgThumbnail={favItem.thumbnail}
+                        fiumbiPrice={favItem.price}
                       />
                     )}
                     {isSameUserAsFiumbiUser && (

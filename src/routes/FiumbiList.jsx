@@ -54,12 +54,16 @@ const FiumbiList = () => {
           container
           justifyContent={{ xs: 'center', sm: 'space-between' }}
           alignItems="center"
-          sx={{ borderRadius: 2, p: 1 }}
+          sx={{
+            maxWidth: 1200,
+            mx: 'auto',
+            width: '100%',
+          }}
         >
-          <Grid item xs={12} sm="auto">
+          <Grid item xs={12} sm={3}>
             <FormControl sx={{ width: { xs: '100%', sm: 'auto' } }}>
               <Typography color="customText.textWhiteLight">
-                Fiumbi lista
+                Productos
               </Typography>
               <StyledSelect
                 labelId="fiumbiLabilListaActive"
@@ -75,15 +79,25 @@ const FiumbiList = () => {
               </StyledSelect>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>
+          <Grid item xs={12} sm={3} pt={{ xs: 3, sm: 0 }}>
             <Typography
               color="customText.textWhiteLight"
-              sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+              sx={{
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}
             >
-              Editando mi Fiumbi
+              Mi Fiumbi
             </Typography>
           </Grid>
-          <Grid item xs={12} sm="auto" pt={{ xs: 3, sm: 0 }}>
+          <Grid
+            item
+            xs={12}
+            sm={3}
+            pt={{ xs: 3, sm: 0 }}
+            sx={{ display: 'flex', justifyContent: 'flex-end' }}
+          >
             <SincFav />
           </Grid>
         </Grid>

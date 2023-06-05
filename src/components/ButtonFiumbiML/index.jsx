@@ -1,18 +1,16 @@
 import { Box, Button, Grid } from '@mui/material'
 import React, { useState } from 'react'
 import DialogFiumbi from './DialogFiumbi'
-import OpenGiftSVG from '../../assets/iconcs/gift-1-svgrepo-com4.svg'
 import Logo from '../../assets/logoblack.svg'
-import OpenGiftSVG3 from '../../assets/iconcs/gift-1-svgrepo-com3estesi.svg'
-import OpenGiftSVG1 from '../../assets/iconcs/1234.svg'
-import OpenGiftSVG2 from '../../assets/iconcs/gift-sale-shop-svgrepo-com.svg'
 import styles from '../../assets/styles/ButtonFiumbi.module.scss'
 import { useTheme } from '@emotion/react'
+
 const ButtonFiumbiML = ({
   productID,
   fiumbiUsername,
   fiumbiTitle,
   imgThumbnail,
+  fiumbiPrice,
 }) => {
   const [showModalML, setShowModalML] = useState(false)
   const theme = useTheme()
@@ -61,6 +59,7 @@ const ButtonFiumbiML = ({
           fiumbiTitle={fiumbiTitle}
           showModalML={showModalML}
           handleClose={handleClose}
+          fiumbiPrice={fiumbiPrice}
         />
       )}
     </Box>

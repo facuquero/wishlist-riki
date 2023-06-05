@@ -80,7 +80,7 @@ const HamburgueMenu = () => {
           onClick={() => handleClickOptions({ goTo: 'options' })}
           sx={{ color: theme.palette.customText.textWhiteLight }}
         >
-          Opciones
+          Mis Datos
         </MenuItem>
         <MenuItem
           onClick={() => handleClickOptions({ goTo: 'newAddres' })}

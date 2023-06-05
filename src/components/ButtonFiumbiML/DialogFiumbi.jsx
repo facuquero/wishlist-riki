@@ -19,6 +19,7 @@ const DialogFiumbi = ({
   imgThumbnail,
   showModalML,
   handleClose,
+  fiumbiPrice,
 }) => {
   const { execute, data, isLoading, isError } = generateLinkML()
   const theme = useTheme()
@@ -65,12 +66,16 @@ const DialogFiumbi = ({
             item
             xs={12}
             m={2}
+            mb={0}
             display="flex"
             justifyContent="center"
             color="white"
             sx={{ textAlign: 'center' }}
           >
             {fiumbiTitle}
+          </Grid>
+          <Grid item xs={12} mb={2} display="flex" justifyContent="center">
+            <Typography color="white">$ {fiumbiPrice} + Envío</Typography>
           </Grid>
         </Grid>
       </DialogTitle>
@@ -94,6 +99,7 @@ const DialogFiumbi = ({
               }}
             />
           </Grid>
+
           {isError && (
             <Grid item xs={12}>
               <Typography color="white" mt={1} sx={{ textAlign: 'center' }}>
@@ -112,17 +118,13 @@ const DialogFiumbi = ({
                 background: `linear-gradient(315deg, ${theme.palette.customGold.at254a1} 0%,${theme.palette.customGold.at200a04red} 50%, ${theme.palette.customGold.at254a1} 100%)`,
               }}
             >
-              {!isLoading && (
-                <Typography color="black">Generar Fiumbi</Typography>
-              )}
-              {isLoading && (
-                <CircularProgress
-                  sx={{ color: theme.palette.customGold.at254a1 }}
-                />
-              )}
+              {!isLoading && <Typography color="black">Ir a pagar</Typography>}
+              {isLoading && <CircularProgress sx={{ color: 'black' }} />}
             </Button>
           )}
-          {data && <Typography color="black">Preparando tu Fiumbi</Typography>}
+          {data && (
+            <Typography color="white">Redirigiendo a Mercado Pago</Typography>
+          )}
         </Grid>
       </DialogActions>
     </StyledDialog>

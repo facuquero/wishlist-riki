@@ -134,7 +134,7 @@ const RegisterFiumbi = ({
               fontSize: 'inherit',
             }}
           >
-            Abajo completa
+            Completa
           </Typography>
           &nbsp; los datos de entrega para recibir tus regalos
         </Typography>
@@ -152,7 +152,7 @@ const RegisterFiumbi = ({
               color: theme.palette.customText.textWhiteLight,
             }}
           >
-            Recuerda de usuario sera {wishlistName || ''}
+            Recuerda que los datos deben ser de quien recivira los regalos
           </Typography>
         </Box>
         <Formik
@@ -230,7 +230,11 @@ const RegisterFiumbi = ({
                   name="termsAndConditions"
                   as={FormControlLabel}
                   sx={{ color: theme.palette.customText.textWhiteLight }}
-                  control={<Checkbox />}
+                  control={
+                    <Checkbox
+                      sx={{ color: theme.palette.customText.textWhiteLight }}
+                    />
+                  }
                   label={
                     <Typography variant="body2">
                       Estoy de acuerdo con los términos y condiciones

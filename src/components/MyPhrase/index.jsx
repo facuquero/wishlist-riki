@@ -42,7 +42,10 @@ const MyPhrase = ({ actualPhrase }) => {
       {!newPhrase && (
         <Grid item xs="auto">
           <Typography
-            sx={{ color: theme.palette.customGold.at239a1 }}
+            sx={{
+              color: theme.palette.customGold.at239a1,
+              fontStyle: 'italic',
+            }}
             variant="h4"
           >
             {newPhraseText}
