@@ -5,6 +5,7 @@ import {
   getUsername,
   localStorageLogOut,
   setNewFiumbiUserToCreate,
+  setShadowLogInFiumbiUser,
   setTokenML,
 } from '../utils/localStorageManagment'
 
@@ -33,6 +34,11 @@ export const AuthProvider = ({ children }) => {
     setAuth({ username: newUsername, token: newUserToken, userdata })
   }
 
+  const shadowLogIn = ({ newUsername, newUserToken, userdata = '' }) => {
+    localStorageLogOut()
+    setShadowLogInFiumbiUser({ username: newUsername, token: newUserToken })
+  }
+
   const setMLToken = ({ newTokenML }) => {
     setTokenML({ tokenML: newTokenML })
     setAuth((pre) => {
@@ -41,7 +47,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ auth, logIn, logOut, setMLToken }}>
+    <AuthContext.Provider
+      value={{ auth, logIn, shadowLogIn, logOut, setMLToken }}
+    >
       {children}
     </AuthContext.Provider>
   )

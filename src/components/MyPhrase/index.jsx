@@ -40,13 +40,15 @@ const MyPhrase = ({ actualPhrase }) => {
   return (
     <Grid container alignItems="center">
       {!newPhrase && (
-        <Grid item xs="auto">
+        <Grid item  >
           <Typography
+            variant="h4"
             sx={{
               color: theme.palette.customGold.at239a1,
               fontStyle: 'italic',
+              whiteSpace: 'normal',
+              lineBreak: 'normal',
             }}
-            variant="h4"
           >
             {newPhraseText}
           </Typography>

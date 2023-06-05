@@ -42,10 +42,10 @@ const FreqQuestion = () => {
       content: 'No, la plataforma es 100% web.',
     },
 
-    {
+    /*  {
       title: 'Tienen algún medio de contacto?',
       content: 'Si, podés contactarnos haciendo click aquí',
-    },
+    }, */
   ]
   return (
     <Grid container justifyContent="center" sx={{ color: 'white' }}>
@@ -63,6 +63,7 @@ const FreqQuestion = () => {
       >
         {accordionItems.map((accordionItem, index) => (
           <Accordion
+            key={`panel-${index}-accordion`}
             expanded={expanded === `panel-${index}`}
             onChange={handleChange(`panel-${index}`)}
             sx={{

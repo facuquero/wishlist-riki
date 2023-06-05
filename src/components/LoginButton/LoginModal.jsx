@@ -8,17 +8,34 @@ import StyledDialog from '../commons/Dialog'
 import LogIn from './LogIn'
 import PasswordLost from './PasswordLost'
 import Fade from '@mui/material/Fade'
+import ValidateCode from './ValidateCode'
+import ChangePassword from './ChangePassword'
 
 const LoginModal = ({ showModalLogin, handleClose }) => {
   const posibleViews = {
     login: 'login',
     passwordLost: 'passwordLost',
+    validateCode: 'validateCode',
+    changePassword: 'changePassword',
   }
   const [renderView, setRenderView] = useState(posibleViews.login)
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+  const [token, setToken] = useState('')
   const theme = useTheme()
 
   const handleChangeView = ({ newView }) => {
     setRenderView(newView)
+  }
+
+  const onClickForgot = ({ userData, emailData }) => {
+    setUser(userData)
+    setEmail(emailData)
+    handleChangeView({ newView: posibleViews.validateCode })
+  }
+  const onClickValidate = ({ newToken }) => {
+    setToken(newToken)
+    handleChangeView({ newView: posibleViews.changePassword })
   }
 
   return (
@@ -44,24 +61,26 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
               </Grid>
             </Fade>
           )}
-          {renderView === posibleViews.passwordLost && (
+          {renderView !== posibleViews.login && (
             <Fade in>
               <Grid container>
-                <Grid
-                  item
-                  xs={12}
-                  sx={{ color: theme.palette.customText.textWhiteLight }}
-                >
-                  <Button
-                    onClick={() => {
-                      handleChangeView({ newView: posibleViews.login })
-                    }}
+                {renderView !== posibleViews.changePassword && (
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{ color: theme.palette.customText.textWhiteLight }}
                   >
-                    <Typography color="customText.textWhiteLight">
-                      Volver
-                    </Typography>
-                  </Button>
-                </Grid>
+                    <Button
+                      onClick={() => {
+                        handleChangeView({ newView: posibleViews.login })
+                      }}
+                    >
+                      <Typography color="customText.textWhiteLight">
+                        Volver
+                      </Typography>
+                    </Button>
+                  </Grid>
+                )}
                 <Grid
                   item
                   xs={12}
@@ -88,7 +107,25 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
           {renderView === posibleViews.passwordLost && (
             <Fade in>
               <Grid container>
-                <PasswordLost />
+                <PasswordLost onClickForgot={onClickForgot} />
+              </Grid>
+            </Fade>
+          )}
+          {renderView === posibleViews.validateCode && (
+            <Fade in>
+              <Grid container>
+                <ValidateCode
+                  onClickValidate={onClickValidate}
+                  user={user}
+                  email={email}
+                />
+              </Grid>
+            </Fade>
+          )}
+          {renderView === posibleViews.changePassword && (
+            <Fade in>
+              <Grid container>
+                <ChangePassword user={user} email={email} token={token} />
               </Grid>
             </Fade>
           )}

@@ -39,36 +39,36 @@ const Footer = () => {
           </Grid>
           <Grid container justifyContent="center">
             <Grid item>
-              <IconButton sx={{ display: 'flex', alignItems: 'center' }}>
-                <NavLink to="/">
+              <NavLink to="/">
+                <IconButton>
                   <TwitterIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}
                   />
-                </NavLink>
-              </IconButton>
+                </IconButton>
+              </NavLink>
             </Grid>
             <Grid item>
-              <IconButton>
-                <NavLink to="/">
+              <NavLink to="/">
+                <IconButton>
                   <InstagramIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}
                   />
-                </NavLink>
-              </IconButton>
+                </IconButton>
+              </NavLink>
             </Grid>
             <Grid item>
-              <IconButton>
-                <NavLink to="/">
+              <NavLink to="/">
+                <IconButton>
                   <FacebookIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}
                   />
-                </NavLink>{' '}
-              </IconButton>
+                </IconButton>
+              </NavLink>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={6} display="flex">
+      <Grid item xs={12} sm={6} display="flex" mt={{ xs: 1, sm: 0 }}>
         <Grid
           container
           flexDirection="column"
@@ -77,17 +77,21 @@ const Footer = () => {
           flexGrow="1"
         >
           <Grid item mb={2}>
-            <NavLink to="/terminos-y-condiciones">
+            <NavLink
+              to="/terminos-y-condiciones"
+              style={{ textDecoration: 'none' }}
+            >
               <Typography color="white" textDecoration="none">
                 Términos y condiciones
               </Typography>
             </NavLink>
           </Grid>
           <Grid item mb={2}>
-            <NavLink to="/politicas-de-privacidad">
-              <Typography color="white" textDecoration="none">
-                Politicas de privacidad
-              </Typography>
+            <NavLink
+              to="/politicas-de-privacidad"
+              style={{ textDecoration: 'none' }}
+            >
+              <Typography color="white">Politicas de privacidad</Typography>
             </NavLink>
           </Grid>
           <Grid item>

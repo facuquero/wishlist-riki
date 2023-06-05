@@ -69,3 +69,12 @@ export const ChangePasswordSchema = Yup.object().shape({
 export const NewShippingAddressSchema = Yup.object().shape({
   newShippingAddress: Yup.string().required('La dirección es obligatoria'),
 })
+
+export const NewPasswordLostSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('La contraseña es obligatoria')
+    .min(4, 'La contraseña debe tener más de 4 caracteres'),
+  confirmPassword: Yup.string()
+    .required()
+    .oneOf([Yup.ref('password'), null], 'Las contraneñas deben coincidir'),
+})

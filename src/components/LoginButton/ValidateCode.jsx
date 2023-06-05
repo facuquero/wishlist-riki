@@ -1,21 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Box, CircularProgress, Grid, TextField } from '@mui/material'
-import { useValidateCode } from '../../../api/useUsersAPI'
-import {
-  newFiumbiFormClientid,
-  newFiumbiFormRedirect_uri,
-  newFiumbiFormScope,
-} from '../../utils/globalConst'
+import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '../commons/Typography'
+import { validateCodeForgot } from '../../../api/useUsersAPI'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
+import TextField from '../commons/TextField'
+import { Box, Grid } from '@mui/material'
+import useAuth from '../../hooks/useAuth'
 
-const ValidateEmail = ({ wishlistName }) => {
-  const { execute, data, isLoading, isError, error } = useValidateCode()
-
+const ValidateCode = ({ user, email, onClickValidate }) => {
+  const { execute, data, isLoading, isError, error } = validateCodeForgot()
+  const { shadowLogIn } = useAuth()
   const handleClickValidateEmail = () => {
     execute({
       data: {
-        username: wishlistName,
+        username: user,
         code: emailCode.join(''),
       },
     })
@@ -72,13 +70,12 @@ const ValidateEmail = ({ wishlistName }) => {
     })
     setEmailCode(newPin)
   }
-
   useEffect(() => {
     if (data?.status === 200) {
-      const to = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${newFiumbiFormClientid}&redirect_uri=${newFiumbiFormRedirect_uri}&scope=${newFiumbiFormScope}`
-      window.location.href = to
+      shadowLogIn({ newUsername: user, newUserToken: data.data.data.token })
+      onClickValidate({ newToken: data.data.data.token })
     }
-  }, [data, isLoading, isError, error])
+  }, [isLoading, data])
 
   return (
     <Box>
@@ -89,15 +86,15 @@ const ValidateEmail = ({ wishlistName }) => {
               color: 'white',
               textAlign: 'center',
               fontWeight: 700,
-              fontSize: { xs: '1.25rem', md: '1.75rem' },
               mb: 2,
             }}
           >
-            Pega aquí el código que te enviamos para verificar tu cuenta
+            Pega aquí el código que te enviamos para poder modificar la
+            contraseña
           </Typography>
           <Grid container justifyContent="center">
             {emailCode.map((value, index) => (
-              <Grid item mx={1} key={`texfield-item-validateEmail-${index}`}>
+              <Grid item mx={1} key={`textField-validate-code-${index}`}>
                 <TextField
                   key={index}
                   type="text"
@@ -128,7 +125,7 @@ const ValidateEmail = ({ wishlistName }) => {
                 size="large"
                 onClick={handleClickValidateEmail}
               >
-                <Typography>Validar</Typography>{' '}
+                <Typography>Validar</Typography>
               </SpecialCommonButton>
             )}
 
@@ -159,4 +156,4 @@ const ValidateEmail = ({ wishlistName }) => {
   )
 }
 
-export default ValidateEmail
+export default ValidateCode

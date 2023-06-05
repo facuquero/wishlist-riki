@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '../commons/Typography'
@@ -8,8 +8,9 @@ import { Formik, Form, Field } from 'formik'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 import TextField from '../commons/TextField'
 
-const PasswordLost = () => {
+const PasswordLost = ({ onClickForgot }) => {
   const { execute, data, isLoading, isError } = forgotPassword()
+  const [userData, setUserData] = useState()
   const handleClickPasswordLost = ({ username, email }) => {
     if (isLoading) return
     execute({
@@ -32,8 +33,8 @@ const PasswordLost = () => {
   ]
 
   useEffect(() => {
-    console.log('es')
     if (data?.status === 200) {
+      onClickForgot({ userData: userData.username, emailData: userData.email })
     }
   }, [isLoading, data])
 
@@ -45,6 +46,7 @@ const PasswordLost = () => {
       }}
       validationSchema={PasswordLostSchema}
       onSubmit={({ username, email }) => {
+        setUserData({ username, email })
         handleClickPasswordLost({
           username,
           email,

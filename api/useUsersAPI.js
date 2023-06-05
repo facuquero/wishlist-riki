@@ -54,3 +54,8 @@ export const useChangePhrase = () => {
   const url = '/change-phrase'
   return usePost({ url })
 }
+
+export const validateCodeForgot = () => {
+  const url = '/validate-code-forgot'
+  return usePost({ url })
+}

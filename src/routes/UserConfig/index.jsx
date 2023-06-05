@@ -70,8 +70,8 @@ const UserConfig = () => {
           <Typography variant="h4">Mis datos</Typography>
         </Grid>
         {data &&
-          userData.map((itemUser) => (
-            <Grid container>
+          userData.map((itemUser, index) => (
+            <Grid container key={`userconfig-typography-title-${index}`}>
               <Grid item xs={12} pl={2}>
                 <Typography variant="h5">{itemUser.title} :</Typography>
               </Grid>

@@ -17,3 +17,9 @@ export const localStorageLogOut = () => {
   window.localStorage.removeItem('token')
   window.localStorage.removeItem('tokenML')
 }
+
+export const setShadowLogInFiumbiUser = ({ username, token }) => {
+  localStorageLogOut()
+  window.localStorage.setItem('username', username)
+  window.localStorage.setItem('token', token)
+}
