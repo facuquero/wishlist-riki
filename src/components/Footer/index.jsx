@@ -55,9 +55,9 @@ const Footer = () => {
             </NavLink>
           </Grid>
           <Grid item mb={2}>
-            <NavLink to="/preguntas-frecuentes">
+            <NavLink to="/politicas-de-privacidad">
               <Typography color="white" textDecoration="none">
-                Preguntas Frecuentes
+                Politicas de privacidad
               </Typography>
             </NavLink>
           </Grid>

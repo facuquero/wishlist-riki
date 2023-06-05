@@ -1,13 +1,13 @@
 import { Grid } from '@mui/material'
 import Typography from './commons/Typography'
-import howItWorkpng from '../assets/image/home/howItWork.png'
+import howItWorkpng from '../assets/image/home/howItWork2.png'
 import styles from '../assets/styles/howItWork.module.scss'
 
 const HowItWork = () => {
   return (
     <Grid container justifyContent="center" sx={{ color: 'white' }}>
       <Grid item xs={12} display="flex" justifyContent="center">
-        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+        <Typography textAlign="center" variant="h4" sx={{ fontWeight: 'bold' }}>
           Como funciona Fiumbi
         </Typography>
       </Grid>
