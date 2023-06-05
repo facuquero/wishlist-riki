@@ -1,12 +1,9 @@
 import { Box } from '@mui/material'
 import React, { useState } from 'react'
 import LoginModal from './LoginModal'
-import useAuth from '../../hooks/useAuth'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 
 const LoginButton = ({}) => {
-  const { auth, logOut } = useAuth()
-
   const [showModalLogin, setShowModalML] = useState(false)
 
   const handleClickOpen = () => {

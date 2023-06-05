@@ -10,8 +10,10 @@ import PasswordLost from './PasswordLost'
 import Fade from '@mui/material/Fade'
 import ValidateCode from './ValidateCode'
 import ChangePassword from './ChangePassword'
+import useAuth from '../../hooks/useAuth'
 
 const LoginModal = ({ showModalLogin, handleClose }) => {
+  const { logOut } = useAuth()
   const posibleViews = {
     login: 'login',
     passwordLost: 'passwordLost',
@@ -38,12 +40,29 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
     handleChangeView({ newView: posibleViews.changePassword })
   }
 
+  const goBack = () => {
+    setUser()
+    setEmail()
+    setToken()
+    handleChangeView({ newView: posibleViews.login })
+  }
+
+  const handleInternalCloseModal = () => {
+    if (
+      renderView == posibleViews.validateCode ||
+      renderView == posibleViews.validateCode
+    ) {
+      logOut()
+    }
+    handleClose()
+  }
+
   return (
     <StyledDialog
       open={showModalLogin}
       TransitionComponent={SlideTransition}
       keepMounted
-      onClose={handleClose}
+      onClose={handleInternalCloseModal}
       aria-describedby="alert-dialog-slide-description"
     >
       <Box p={{ xs: 2, md: 4 }}>
@@ -70,11 +89,7 @@ const LoginModal = ({ showModalLogin, handleClose }) => {
                     xs={12}
                     sx={{ color: theme.palette.customText.textWhiteLight }}
                   >
-                    <Button
-                      onClick={() => {
-                        handleChangeView({ newView: posibleViews.login })
-                      }}
-                    >
+                    <Button onClick={goBack}>
                       <Typography color="customText.textWhiteLight">
                         Volver
                       </Typography>

@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth'
 
 const UserConfig = () => {
   const theme = useTheme()
-  const { data, isError, isLoadint, execute } = findMe()
+  const { data, isError, isLoading, execute } = findMe()
   let initialized = false
 
   const { auth } = useAuth()
