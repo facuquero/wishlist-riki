@@ -106,7 +106,7 @@ const FiumbiListActive = () => {
                 <Grid
                   container
                   m={4}
-                  py={4}
+                  py={3}
                   width="95%"
                   mx="auto"
                   borderRadius={2}
@@ -120,7 +120,7 @@ const FiumbiListActive = () => {
                     display={{ xs: 'flex' }}
                     justifyContent="center"
                     xs={12}
-                    md={4}
+                    md={2}
                     width="100%"
                   >
                     <img
@@ -137,7 +137,7 @@ const FiumbiListActive = () => {
                   <Grid
                     item
                     xs={12}
-                    md={4}
+                    md={7}
                     sx={{ display: 'flex', flexGrow: 1 }}
                   >
                     <Grid
@@ -168,7 +168,7 @@ const FiumbiListActive = () => {
                   <Grid
                     item
                     xs={12}
-                    md={4}
+                    md={3}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
