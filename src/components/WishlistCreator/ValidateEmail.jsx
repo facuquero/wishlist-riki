@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Box, CircularProgress, Grid, TextField } from '@mui/material'
 import { useValidateCode } from '../../../api/useUsersAPI'
-import {
-  newFiumbiFormClientid,
-  newFiumbiFormRedirect_uri,
-  newFiumbiFormScope,
-} from '../../utils/globalConst'
+
 import Typography from '../commons/Typography'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
 import RedirectML from './RedirectML'
@@ -73,13 +69,6 @@ const ValidateEmail = ({ wishlistName }) => {
     setEmailCode(newPin)
   }
 
-  useEffect(() => {
-    if (data?.status === 200) {
-      const to = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${newFiumbiFormClientid}&redirect_uri=${newFiumbiFormRedirect_uri}&scope=${newFiumbiFormScope}`
-      window.location.href = to
-    }
-  }, [data, isLoading, isError, error])
-
   return (
     <Box>
       <Box sx={{ width: '100%' }}>
@@ -136,7 +125,7 @@ const ValidateEmail = ({ wishlistName }) => {
         </Box>
       </Box>
 
-      {data?.status === 200 || (true && <RedirectML />)}
+      {data?.status === 200 && <RedirectML />}
       {isError && (
         <Box mt={2} sx={{ textAlign: 'center', color: 'white' }}>
           <Typography>A ocurrido un error:</Typography>

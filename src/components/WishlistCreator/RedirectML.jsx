@@ -51,7 +51,6 @@ const RedirectML = () => {
               <HeartBrokenIcon sx={{ mx: 1, verticalAlign: 'middle' }} />
             </Typography>
           </Grid>
-
           <Grid item>
             <SpecialCommonButton onClick={goML}>Continuar</SpecialCommonButton>
           </Grid>
