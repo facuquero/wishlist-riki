@@ -12,6 +12,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           sx={{
             fontWeight: 'bold',
             fontSize: { xs: '2rem', sm: '2.75rem' },
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
           La forma&nbsp;
@@ -37,6 +38,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           sx={{
             fontWeight: 'bold',
             fontSize: { xs: '2rem', sm: '3rem' },
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
           <Typography
@@ -64,6 +66,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           sx={{
             fontWeight: 'bold',
             fontSize: { xs: '2rem', sm: '3rem' },
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
           Ya enviamos el código de validación al email:
@@ -72,6 +75,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           sx={{
             fontWeight: 'bold',
             fontSize: { xs: '2rem', sm: '3rem' },
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
           color={theme.palette.customGold.at254a1}
         >
@@ -81,6 +85,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           sx={{
             fontWeight: 'bold',
             fontSize: { xs: '2rem', sm: '3rem' },
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
           Revisa tu&nbsp;

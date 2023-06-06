@@ -40,7 +40,7 @@ const MyPhrase = ({ actualPhrase }) => {
   return (
     <Grid container alignItems="center">
       {!newPhrase && (
-        <Grid item  >
+        <Grid item>
           <Typography
             variant="h4"
             sx={{
@@ -48,6 +48,7 @@ const MyPhrase = ({ actualPhrase }) => {
               fontStyle: 'italic',
               whiteSpace: 'normal',
               lineBreak: 'normal',
+              textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
             }}
           >
             {newPhraseText}

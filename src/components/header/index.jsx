@@ -32,7 +32,7 @@ const Header = () => {
       </Grid>
       {auth?.username && (
         <Grid item xs={4} display="flex" justifyContent="center">
-          <NavLink to={`/${auth.username}`}>
+          <NavLink to={`/${auth.username}`} style={{ textDecoration: 'none' }}>
             <Typography
               sx={{
                 color: theme.palette.customText.textWhiteLight,

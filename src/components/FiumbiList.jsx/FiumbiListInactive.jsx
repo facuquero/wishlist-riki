@@ -52,6 +52,7 @@ const FiumbiListInactive = () => {
             mx: 'auto',
             width: '100%',
             background: 'transparent',
+            py: 3,
           }}
         >
           <Virtuoso
@@ -63,6 +64,7 @@ const FiumbiListInactive = () => {
                 key={index}
                 borderRadius={2}
                 m={4}
+                mt={0}
                 py={3}
                 width="95%"
                 mx="auto"

@@ -13,7 +13,7 @@ const posibleViews = {
 }
 
 const WishlistCreator = () => {
-  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
+  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiSuccess)
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
   const theme = useTheme()

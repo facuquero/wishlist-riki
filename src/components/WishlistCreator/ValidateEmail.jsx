@@ -8,10 +8,10 @@ import {
 } from '../../utils/globalConst'
 import Typography from '../commons/Typography'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
+import RedirectML from './RedirectML'
 
 const ValidateEmail = ({ wishlistName }) => {
   const { execute, data, isLoading, isError, error } = useValidateCode()
-
   const handleClickValidateEmail = () => {
     execute({
       data: {
@@ -82,61 +82,7 @@ const ValidateEmail = ({ wishlistName }) => {
 
   return (
     <Box>
-      {!data && (
-        <Box sx={{ width: '100%' }}>
-          <Typography
-            sx={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 700,
-              fontSize: { xs: '1.25rem', md: '1.75rem' },
-              mb: 2,
-            }}
-          >
-            Pega aquí el código que te enviamos para verificar tu cuenta
-          </Typography>
-          <Grid container justifyContent="center">
-            {emailCode.map((value, index) => (
-              <Grid item mx={1} key={`texfield-item-validateEmail-${index}`}>
-                <TextField
-                  key={index}
-                  type="text"
-                  inputMode="numeric"
-                  variant="outlined"
-                  margin="dense"
-                  size="small"
-                  value={value}
-                  inputRef={(el) => (inputRefs.current[index] = el)}
-                  onChange={(event) => handleInputChange(event, index)}
-                  onPaste={handlePaste}
-                  style={{ width: '2.5rem' }}
-                />
-              </Grid>
-            ))}
-          </Grid>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ paddingTop: 2 }}
-          >
-            {!isLoading && (
-              <SpecialCommonButton
-                variant="contained"
-                color="primary"
-                sx={{ borderRadius: 10 }}
-                size="large"
-                onClick={handleClickValidateEmail}
-              >
-                <Typography>Validar</Typography>{' '}
-              </SpecialCommonButton>
-            )}
-
-            {isLoading && <CircularProgress sx={{ color: 'white' }} />}
-          </Box>
-        </Box>
-      )}
-      {data && (
+      <Box sx={{ width: '100%' }}>
         <Typography
           sx={{
             color: 'white',
@@ -144,11 +90,53 @@ const ValidateEmail = ({ wishlistName }) => {
             fontWeight: 700,
             fontSize: { xs: '1.25rem', md: '1.75rem' },
             mb: 2,
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
-          Redirigiendo
+          Pega aquí el código que te enviamos para verificar tu cuenta
         </Typography>
-      )}
+        <Grid container justifyContent="center">
+          {emailCode.map((value, index) => (
+            <Grid item mx={1} key={`texfield-item-validateEmail-${index}`}>
+              <TextField
+                key={index}
+                type="text"
+                inputMode="numeric"
+                variant="outlined"
+                margin="dense"
+                size="small"
+                value={value}
+                inputRef={(el) => (inputRefs.current[index] = el)}
+                onChange={(event) => handleInputChange(event, index)}
+                onPaste={handlePaste}
+                style={{ width: '2.5rem' }}
+              />
+            </Grid>
+          ))}
+        </Grid>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ paddingTop: 2 }}
+        >
+          {!isLoading && (
+            <SpecialCommonButton
+              variant="contained"
+              color="primary"
+              sx={{ borderRadius: 10 }}
+              size="large"
+              disabled={data}
+              onClick={handleClickValidateEmail}
+            >
+              <Typography>Validar</Typography>{' '}
+            </SpecialCommonButton>
+          )}
+          {isLoading && <CircularProgress sx={{ color: 'white' }} />}
+        </Box>
+      </Box>
+
+      {data?.status === 200 || (true && <RedirectML />)}
       {isError && (
         <Box mt={2} sx={{ textAlign: 'center', color: 'white' }}>
           <Typography>A ocurrido un error:</Typography>

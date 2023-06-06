@@ -124,6 +124,7 @@ const RegisterFiumbi = ({
             fontSize: { xs: '1.5rem', md: '2.125rem' },
             fontWeight: 'bold',
             mb: 2,
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
           <Typography
@@ -152,7 +153,7 @@ const RegisterFiumbi = ({
               color: theme.palette.customText.textWhiteLight,
             }}
           >
-            Recuerda que los datos deben ser de quien recivira los regalos
+            Recuerda que los datos deben ser de quien recibira los regalos
           </Typography>
         </Box>
         <Formik

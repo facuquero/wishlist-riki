@@ -62,6 +62,7 @@ const FiumbiListActive = () => {
               my={1}
               sx={{
                 color: theme.palette.customGold.at239a1,
+                textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
               }}
               variant="h4"
               fontWeight="bold"
@@ -97,6 +98,7 @@ const FiumbiListActive = () => {
               mx: 'auto',
               width: '100%',
               background: 'transparent',
+              py: 3,
             }}
           >
             <Virtuoso
@@ -106,6 +108,7 @@ const FiumbiListActive = () => {
                 <Grid
                   container
                   m={4}
+                  mt={0}
                   py={3}
                   width="95%"
                   mx="auto"

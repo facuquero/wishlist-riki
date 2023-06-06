@@ -24,7 +24,14 @@ const Benefits = () => {
   return (
     <Grid container justifyContent="center" sx={{ color: 'white' }}>
       <Grid item xs={12} display="flex" justifyContent="center">
-        <Typography textAlign="center" variant="h4" sx={{ fontWeight: 'bold' }}>
+        <Typography
+          textAlign="center"
+          variant="h4"
+          sx={{
+            fontWeight: 'bold',
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+          }}
+        >
           Beneficios de usar&nbsp;
           <Typography
             component="span"
@@ -78,7 +85,10 @@ const Benefits = () => {
                 variant="h4"
                 textAlign="center"
                 color="customGold.at254a1"
-                sx={{ fontWeight: 'bold' }}
+                sx={{
+                  fontWeight: 'bold',
+                  textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+                }}
               >
                 {cardItem.title}
               </Typography>

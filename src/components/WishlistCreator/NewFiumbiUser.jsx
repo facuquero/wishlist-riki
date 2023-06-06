@@ -68,6 +68,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           fontSize: { xs: '1.5rem', md: '2.125rem' },
           fontWeight: 'bold',
           mb: 2,
+          textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
         }}
       >
         Crea tu fiumbi y compartila para&nbsp;

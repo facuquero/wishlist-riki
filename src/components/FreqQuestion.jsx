@@ -39,7 +39,8 @@ const FreqQuestion = () => {
     },
     {
       title: 'Tiene algun costo?',
-      content: 'No, la plataforma es 100% gratuita para los usuarios, todos los costos van a cargo de quien compre los productos de tu lista.',
+      content:
+        'No, la plataforma es 100% gratuita para los usuarios, todos los costos van a cargo de quien compre los productos de tu lista.',
     },
 
     /*  {
@@ -50,7 +51,14 @@ const FreqQuestion = () => {
   return (
     <Grid container justifyContent="center" sx={{ color: 'white' }}>
       <Grid item xs={12} display="flex" justifyContent="center">
-        <Typography textAlign="center" variant="h4" sx={{ fontWeight: 'bold' }}>
+        <Typography
+          textAlign="center"
+          variant="h4"
+          sx={{
+            fontWeight: 'bold',
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+          }}
+        >
           Preguntas frecuentes
         </Typography>
       </Grid>
@@ -86,7 +94,10 @@ const FreqQuestion = () => {
             >
               <Typography
                 variant="h6"
-                sx={{ color: 'customGold.at254a1' }}
+                sx={{
+                  color: 'customGold.at254a1',
+                  textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+                }}
                 fontWeight="bold"
               >
                 {accordionItem.title}

@@ -7,7 +7,15 @@ const HowItWork = () => {
   return (
     <Grid container justifyContent="center" sx={{ color: 'white' }}>
       <Grid item xs={12} display="flex" justifyContent="center">
-        <Typography textAlign="center" variant="h4" sx={{ fontWeight: 'bold' }}>
+        <Typography
+          textAlign="center"
+          variant="h4"
+          sx={{
+            fontWeight: 'bold',
+            textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+            color: 'customGold.at254a1',
+          }}
+        >
           Como funciona Fiumbi
         </Typography>
       </Grid>
@@ -41,7 +49,15 @@ const HowItWork = () => {
             flexDirection="column"
           >
             <Grid item>
-              <Typography mb={1} variant="h5" sx={{ fontWeight: 'bold' }}>
+              <Typography
+                mb={1}
+                variant="h5"
+                sx={{
+                  fontWeight: 'bold',
+                  textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+                  color: 'customGold.at254a1',
+                }}
+              >
                 Creá tu cuenta
               </Typography>
             </Grid>
@@ -51,24 +67,40 @@ const HowItWork = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography mb={1} variant="h5" sx={{ fontWeight: 'bold' }}>
+              <Typography
+                mb={1}
+                variant="h5"
+                sx={{
+                  fontWeight: 'bold',
+                  textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+                  color: 'customGold.at254a1',
+                }}
+              >
                 Vincula con ML
               </Typography>
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Vincula tu cuenta con MercadoLibre* para crear tu lista
-                regalos
+                Vincula tu cuenta con MercadoLibre* para crear tu lista regalos
               </Typography>
             </Grid>
             <Grid item>
-              <Typography mb={1} variant="h5" sx={{ fontWeight: 'bold' }}>
+              <Typography
+                mb={1}
+                variant="h5"
+                sx={{
+                  fontWeight: 'bold',
+                  textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+                  color: 'customGold.at254a1',
+                }}
+              >
                 Comparti tu Fiumbi!
               </Typography>
             </Grid>
             <Grid item sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Comparti tu Fiumbi en redes sociales para comenzar a recibir regalos en tu domicilio!
+                Comparti tu Fiumbi en redes sociales para comenzar a recibir
+                regalos en tu domicilio!
               </Typography>
             </Grid>
           </Grid>
