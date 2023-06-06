@@ -25,7 +25,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           >
             mas fácil
           </Typography>
-          &nbsp;de recibir los regalos que te mereces
+          &nbsp;de recibir regalos
         </Typography>
       </Box>
     ),
