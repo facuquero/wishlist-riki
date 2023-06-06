@@ -4,8 +4,9 @@ import {
   getUsername,
   getUserToken,
 } from '../src/utils/localStorageManagment'
+import { baseUrlBackAPI } from '../src/utils/globalConst'
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:3000' })
+const axiosInstance = axios.create({ baseURL: baseUrlBackAPI })
 
 axiosInstance.interceptors.request.use((defaultConfig) => {
   const isUserToken = getUserToken()
