@@ -54,7 +54,7 @@ const HamburgueMenu = () => {
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          color="secondary"
+          sx={{ color: 'white' }}
           onClick={handleClick}
         >
           {!open && <MenuIcon />}
