@@ -57,19 +57,18 @@ const HowItWork = () => {
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Vuncula tu cuenta con Mercado libre para poder crea tu lista
+                Vincula tu cuenta con MercadoLibre* para crear tu lista
                 regalos
               </Typography>
             </Grid>
             <Grid item>
               <Typography mb={1} variant="h5" sx={{ fontWeight: 'bold' }}>
-                Disfrutar!!!
+                Comparti tu Fiumbi!
               </Typography>
             </Grid>
             <Grid item sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Ahora solo comparte tu link de la cuenta para que se puedas
-                recibir regalos
+                Comparti tu Fiumbi en redes sociales para comenzar a recibir regalos en tu domicilio!
               </Typography>
             </Grid>
           </Grid>

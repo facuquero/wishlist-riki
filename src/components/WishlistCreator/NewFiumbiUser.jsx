@@ -70,7 +70,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           mb: 2,
         }}
       >
-        Has tu wishlist y compártela para&nbsp;
+        Crea tu fiumbi y compartila para&nbsp;
         <Typography
           component="span"
           color={theme.palette.customGold.at254a1}
@@ -115,7 +115,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
             disabled={!isFiumbiFree || !reayToChecKUsername}
           >
             <Typography sx={{ fontWeight: 700 }} variant="h5">
-              CREAR WISHLIST
+              CREAR FIUMBI
             </Typography>
           </SpecialCommonButton>
         </Box>
