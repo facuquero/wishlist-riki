@@ -9,7 +9,6 @@ import styles from '../../assets/styles/DialogFiumbi.module.scss'
 import { SlideTransition } from '../SlideTransition'
 import Typography from '../commons/Typography'
 import TextField from '../commons/TextField'
-import { SpecialCommonButton } from '../commons/SpecialButtons'
 import StyledDialog from '../commons/Dialog'
 
 const DialogFiumbi = ({

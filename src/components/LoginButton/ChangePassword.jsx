@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Grid } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '../commons/Typography'
@@ -136,7 +136,7 @@ const ChangePassword = ({ user, token }) => {
                 </Grid>
               </Form>
             )}
-          </Formik>{' '}
+          </Formik>
         </Grid>
       )}
     </Grid>

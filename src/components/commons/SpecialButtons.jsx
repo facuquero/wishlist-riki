@@ -23,7 +23,12 @@ const CommonButton = styled(MUIButton)(({ theme }) => ({
 }))
 
 export const SpecialLoginButton = (props) => (
-  <CommonButton sx={{ px: 4, borderRadius: 8 }} {...props} />
+  <CommonButton
+    sx={{ px: 4, borderRadius: 8, textTransform: 'none' }}
+    {...props}
+  />
 )
 
-export const SpecialCommonButton = (props) => <CommonButton {...props} />
+export const SpecialCommonButton = (props) => (
+  <CommonButton sx={{ textTransform: 'none' }} {...props} />
+)

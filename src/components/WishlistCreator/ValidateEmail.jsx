@@ -113,12 +113,11 @@ const ValidateEmail = ({ wishlistName }) => {
             <SpecialCommonButton
               variant="contained"
               color="primary"
-              sx={{ borderRadius: 10 }}
               size="large"
               disabled={data}
               onClick={handleClickValidateEmail}
             >
-              <Typography>Validar</Typography>{' '}
+              <Typography>Validar</Typography>
             </SpecialCommonButton>
           )}
           {isLoading && <CircularProgress sx={{ color: 'white' }} />}
