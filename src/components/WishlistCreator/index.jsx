@@ -35,7 +35,7 @@ const WishlistCreator = () => {
   useEffect(() => {
     if (auth?.username) {
       setActiveStep(
-        auth.active === 'true'
+        auth.active == 'true' || auth.active == true
           ? posibleViews.createFiumbiName
           : posibleViews.createFiumbiSuccess
       )
@@ -49,7 +49,7 @@ const WishlistCreator = () => {
   useEffect(() => {
     if (auth?.username) {
       setActiveStep(
-        auth.active === 'true'
+        auth.active == 'true' || auth.active == true
           ? posibleViews.createFiumbiName
           : posibleViews.createFiumbiSuccess
       )
