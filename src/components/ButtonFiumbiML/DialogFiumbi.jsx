@@ -115,6 +115,7 @@ const DialogFiumbi = ({
               onClick={handleClickFiumbiML}
               sx={{
                 background: `linear-gradient(315deg, ${theme.palette.customGold.at254a1} 0%,${theme.palette.customGold.at200a04red} 50%, ${theme.palette.customGold.at254a1} 100%)`,
+                textTransform: 'none',
               }}
             >
               {!isLoading && <Typography color="black">Ir a pagar</Typography>}

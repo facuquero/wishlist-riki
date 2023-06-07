@@ -37,6 +37,7 @@ const Header = () => {
               sx={{
                 color: theme.palette.customText.textWhiteLight,
                 fontWeight: 'bold',
+                textAlign: 'center',
               }}
               variant="h6"
             >

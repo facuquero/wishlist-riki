@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Formik, Form, Field } from 'formik'
 import {
   Checkbox,
   CircularProgress,
-  ClickAwayListener,
   Fade,
   FormControlLabel,
-  Tooltip,
   useTheme,
 } from '@mui/material'
 import { Box } from '@mui/system'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { useNavigate } from 'react-router-dom'
 import { useCreateUser } from '../../../api/useUsersAPI'
 import { NewUserSchema } from '../../utils/schemasForm'
 import { setNewFiumbiUserToCreate } from '../../utils/localStorageManagment'
@@ -23,18 +19,8 @@ const RegisterFiumbi = ({
   handleClickCreatUser,
   setWishlisUser,
 }) => {
-  const [open, setOpen] = useState(false)
   const theme = useTheme()
   const { execute, data, isLoading, isError, error } = useCreateUser()
-
-  const handleTooltipClose = () => {
-    setOpen(false)
-  }
-
-  const handleTooltipOpen = () => {
-    setOpen(true)
-  }
-  const navigate = useNavigate()
 
   const fieldInputsItems = [
     {
@@ -207,6 +193,8 @@ const RegisterFiumbi = ({
                               errors[fieldItem.field] &&
                               touched[fieldItem.field]
                             }
+                            autoComplete="off"
+                            inputProps={{ autoComplete: 'off' }}
                             size="small"
                           />
                           {fieldItem.infoIcon || null}
@@ -233,7 +221,12 @@ const RegisterFiumbi = ({
                   sx={{ color: theme.palette.customText.textWhiteLight }}
                   control={
                     <Checkbox
-                      sx={{ color: theme.palette.customText.textWhiteLight }}
+                      sx={{
+                        color: theme.palette.customText.textWhiteLight,
+                        '&.Mui-checked': {
+                          color: theme.palette.customGold.lightHover,
+                        },
+                      }}
                     />
                   }
                   label={
@@ -243,9 +236,9 @@ const RegisterFiumbi = ({
                   }
                 />
                 {errors.termsAndConditions && touched.termsAndConditions ? (
-                  <div style={{ color: 'red' }}>
+                  <Typography color="error.main">
                     {errors.termsAndConditions}
-                  </div>
+                  </Typography>
                 ) : null}
               </Box>
               <SpecialCommonButton

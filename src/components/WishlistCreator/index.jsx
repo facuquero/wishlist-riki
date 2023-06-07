@@ -34,7 +34,7 @@ const WishlistCreator = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Box mt={{ xs: 2, sm: 6 }}>
+      <Box mt={{ xs: 4, sm: 6 }}>
         <StepTitles
           activeStep={activeStep}
           wishlistEmail={wishlistUser.email}
@@ -48,14 +48,15 @@ const WishlistCreator = () => {
           },
           background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
           px: {
-            xs: 4,
+            xs: 2,
             sm: 10,
           },
           py: {
             xs: 4,
             sm: 6,
           },
-          m: { xs: 4, sm: 6 },
+          my: { xs: 2, sm: 6 },
+          mx: { xs: 1, sm: 6 },
           borderRadius: 5,
           boxShadow: '0 1px 5px black',
         }}

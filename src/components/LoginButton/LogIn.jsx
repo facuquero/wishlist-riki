@@ -82,7 +82,7 @@ const LogIn = ({ handleChangeView }) => {
                   )}
                 </Field>
                 {errors[fieldItem.field] && touched[fieldItem.field] ? (
-                  <Typography my={1} sx={{ color: 'red' }}>
+                  <Typography my={1} color="error.main">
                     {errors[fieldItem.field]}
                   </Typography>
                 ) : null}

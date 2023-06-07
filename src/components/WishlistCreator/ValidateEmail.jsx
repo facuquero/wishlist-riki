@@ -86,7 +86,11 @@ const ValidateEmail = ({ wishlistName }) => {
         </Typography>
         <Grid container justifyContent="center">
           {emailCode.map((value, index) => (
-            <Grid item mx={1} key={`texfield-item-validateEmail-${index}`}>
+            <Grid
+              item
+              mx={{ xs: 0.5, sm: 1 }}
+              key={`texfield-item-validateEmail-${index}`}
+            >
               <TextField
                 key={index}
                 type="text"
@@ -98,7 +102,23 @@ const ValidateEmail = ({ wishlistName }) => {
                 inputRef={(el) => (inputRefs.current[index] = el)}
                 onChange={(event) => handleInputChange(event, index)}
                 onPaste={handlePaste}
-                style={{ width: '2.5rem' }}
+                sx={{
+                  width: '2.5rem',
+                  height: '2.5rem',
+                  /*  lineHeight: '1.25rem',
+                  fieldset: {
+                    height: '1.25rem',
+                    minHeight: '0',
+                    lineHeight: '1.25rem',
+                  }, */
+                }}
+                /*   inputProps={{
+                  sx: {
+                    height: '1.25rem',
+                    minHeight: '0',
+                    lineHeight: '1.25rem',
+                  },
+                }} */
               />
             </Grid>
           ))}
