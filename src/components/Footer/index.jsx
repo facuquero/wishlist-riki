@@ -21,6 +21,21 @@ const Footer = () => {
         p: { xs: 2, sm: 4 },
       }}
     >
+      <Grid item xs={12} display="flex">
+        <Grid
+          container
+          alignItems="center"
+          justifyContent="center"
+          flexGrow="1"
+        >
+          <Grid item mb={2}>
+            <Typography color="white" textAlign="center">
+              No tenemos relación con MercadoLibre
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+
       <Grid item xs={12} sm={6} sx={{ textAlign: 'center', color: 'white' }}>
         <Grid container>
           <Grid item xs={12} mb={2}>
@@ -68,6 +83,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Grid>
+
       <Grid item xs={12} sm={6} display="flex" mt={{ xs: 1, sm: 0 }}>
         <Grid
           container
