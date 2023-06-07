@@ -5,7 +5,9 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
   const theme = useTheme()
   const stepTitle = {
     createFiumbiName: (
-      <Box sx={{ width: 'max(340px, 80%)', mx: 'auto' }}>
+      <Box
+        sx={{ width: 'max(340px, 80%)', mx: 'auto', width: 'min(80%, 560px)' }}
+      >
         <Typography
           paragraph
           width="auto"

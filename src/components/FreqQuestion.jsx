@@ -49,7 +49,11 @@ const FreqQuestion = () => {
     }, */
   ]
   return (
-    <Grid container justifyContent="center" sx={{ color: 'white' }}>
+    <Grid
+      container
+      justifyContent="center"
+      sx={{ color: 'white', width: 'min(95%, 1200px)', mx: 'auto' }}
+    >
       <Grid item xs={12} display="flex" justifyContent="center">
         <Typography
           textAlign="center"
@@ -67,7 +71,7 @@ const FreqQuestion = () => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        mx={{ xs: 2, sm: 16 }}
+        mx={{ xs: 3, sm: 3 }}
       >
         {accordionItems.map((accordionItem, index) => (
           <Accordion

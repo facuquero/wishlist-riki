@@ -105,20 +105,7 @@ const ValidateEmail = ({ wishlistName }) => {
                 sx={{
                   width: '2.5rem',
                   height: '2.5rem',
-                  /*  lineHeight: '1.25rem',
-                  fieldset: {
-                    height: '1.25rem',
-                    minHeight: '0',
-                    lineHeight: '1.25rem',
-                  }, */
                 }}
-                /*   inputProps={{
-                  sx: {
-                    height: '1.25rem',
-                    minHeight: '0',
-                    lineHeight: '1.25rem',
-                  },
-                }} */
               />
             </Grid>
           ))}

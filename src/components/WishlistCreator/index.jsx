@@ -46,6 +46,7 @@ const WishlistCreator = () => {
             xs: '80%',
             sm: 400,
           },
+          width: 'min(100%, 560px)',
           background: `linear-gradient(120deg, ${theme.palette.customGold.at254a1}, ${theme.palette.customGold.at254a04} 25%)`,
           px: {
             xs: 2,

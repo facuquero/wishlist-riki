@@ -12,7 +12,7 @@ const Header = () => {
     <Grid
       container
       justifyContent="space-between"
-      p={2}
+      p={3}
       alignItems="center"
       sx={{
         background: theme.palette.customBlack.at90,
