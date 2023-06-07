@@ -76,12 +76,12 @@ const HowItWork = () => {
                   color: 'customGold.at254a1',
                 }}
               >
-                Vincula con ML
+                Vinculá con ML
               </Typography>
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Vincula tu cuenta con MercadoLibre* para crear tu lista regalos
+                Vinculá tu cuenta con MercadoLibre* para crear tu lista regalos
               </Typography>
             </Grid>
             <Grid item>
@@ -94,12 +94,12 @@ const HowItWork = () => {
                   color: 'customGold.at254a1',
                 }}
               >
-                Comparti tu Fiumbi!
+                Compartí tu Fiumbi!
               </Typography>
             </Grid>
             <Grid item sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Comparti tu Fiumbi en redes sociales para comenzar a recibir
+                Compartí tu Fiumbi en redes sociales para comenzar a recibir
                 regalos en tu domicilio!
               </Typography>
             </Grid>
