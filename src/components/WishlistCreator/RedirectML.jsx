@@ -40,9 +40,14 @@ const RedirectML = () => {
                 color="customGold.at254a1"
                 variant="h5"
               >
-                Sincroniza&nbsp;
+                Sincronizá&nbsp;
               </Typography>
-              tu cuenta de mercado libre para terminar de crear tu wishlist!
+              tu cuenta de ML para terminar de crear tu fiumbi!
+            </Typography>
+          </Grid>
+          <Grid item xs={12} color="customText.textWhiteLight" mb={2} S>
+            <Typography textAlign="center" sx={{ verticalAlign: 'middle' }}>
+              Obtendremos tu lista de favoritos para armar tu lista de regalos
             </Typography>
           </Grid>
           <Grid item xs={12} color="customText.textWhiteLight" mb={2} S>

@@ -153,7 +153,7 @@ const RegisterFiumbi = ({
               color: theme.palette.customText.textWhiteLight,
             }}
           >
-            Recuerda que los datos deben ser de quien recibira los regalos
+            Recuerda que los datos deben ser de quien recibirá los regalos
           </Typography>
         </Box>
         <Formik

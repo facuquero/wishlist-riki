@@ -20,12 +20,12 @@ const FreqQuestion = () => {
     {
       title: 'Qué es Fiumbi?',
       content:
-        'Fiumbi es una plataforma que te permite compartir con tus fans tu listado de productos para que puedan regalarte los artículos que necesitas',
+        'Fiumbi es una plataforma que te permite compartir con tus fans tu listado de productos favoritos de MercadoLibre para que puedan regalarte los artículos que necesitas de manera anonima',
     },
     {
       title: 'Cómo se usa Fiumbi?',
       content:
-        'Para usar Fiumbi, primero debes crear tu cuenta rellenando el formulario y luego tienes que enlazar tu cuenta de Mercado Libre con Fiumbi. Una vez hecho esto, puedes compartir tu Fiumbi con tus fans.',
+        'Para usar Fiumbi, primero debes crear tu cuenta rellenando el formulario y luego tienes que enlazar tu cuenta de MercadoLibre con Fiumbi. Una vez hecho esto, puedes compartir tu Fiumbi con tus fans.',
     },
     {
       title: 'Cómo funciona Fiumbi?',
