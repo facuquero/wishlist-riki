@@ -8,11 +8,13 @@ import { Formik, Form, Field } from 'formik'
 import useAuth from '../../hooks/useAuth'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 import TextField from '../commons/TextField'
+import { useNavigate } from 'react-router-dom'
 
 const LogIn = ({ handleChangeView }) => {
   const { logIn } = useAuth()
   const { execute, data, isLoading, isError } = useLogin()
   const [usernameLogin, setUsernameLogin] = useState()
+  const navigate = useNavigate()
 
   const handleClickLogin = ({ username, password }) => {
     if (isLoading) return
@@ -39,7 +41,11 @@ const LogIn = ({ handleChangeView }) => {
 
   useEffect(() => {
     if (data?.status === 200) {
-      logIn({ newUsername: usernameLogin, newUserToken: data.data.token })
+      logIn({
+        newUsername: usernameLogin,
+        newUserToken: data.data.token,
+        bypassRedirectForced: navigate,
+      })
     }
   }, [isLoading, data])
 

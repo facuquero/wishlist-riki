@@ -27,11 +27,17 @@ export const AuthProvider = ({ children }) => {
     localStorageLogOut()
     setAuth({})
   }
-
-  const logIn = ({ newUsername, newUserToken, userdata = '' }) => {
+  const logIn = ({
+    newUsername,
+    newUserToken,
+    userdata = '',
+    //dios perdoname lo q voy a hacer
+    bypassRedirectForced,
+  }) => {
     localStorageLogOut()
     setNewFiumbiUserToCreate({ username: newUsername, token: newUserToken })
     setAuth({ username: newUsername, token: newUserToken, userdata })
+    bypassRedirectForced(`/${newUsername}`) //mas duro q la realidad
   }
 
   const shadowLogIn = ({ newUsername, newUserToken, userdata = '' }) => {
