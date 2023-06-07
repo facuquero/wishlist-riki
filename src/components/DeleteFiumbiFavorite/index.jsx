@@ -2,7 +2,10 @@ import { Box, Button, ButtonBase, Typography, useTheme } from '@mui/material'
 import React, { useState } from 'react'
 import DeleteFiumbiFavoriteModal from './DeleteFiumbiFavoriteModal'
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
-import { SpecialCommonButton } from '../commons/SpecialButtons'
+import {
+  SpecialCommonButton,
+  SpecialCommonButtonOutlined,
+} from '../commons/SpecialButtons'
 
 const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
   const [showModalDeleteFiumbiFavorite, setShowModalDeleteFiumbiFavorite] =
@@ -22,22 +25,16 @@ const DeleteFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
 
   return (
     <Box>
-      <Button
-        variant="contained"
+      <SpecialCommonButton
         onClick={handleClickOpen}
         sx={{
           alignItems: 'center',
-          background: `linear-gradient(315deg, white 0%, gray 50%, white 100%)`,
-          color: 'black',
-          display: 'block',
-          width: 'min-content',
+          display: 'flex',
         }}
       >
-        <HeartBrokenIcon
-          sx={{ width: 'min(100%, 50px)', height: 'min(100%, 50px)' }}
-        />
-        <Typography>Sacar de favoritos </Typography>
-      </Button>
+        <Typography>Desactivar</Typography>
+        <HeartBrokenIcon sx={{ ml: 1 }} />
+      </SpecialCommonButton>
       {showModalDeleteFiumbiFavorite && (
         <DeleteFiumbiFavoriteModal
           showModal={showModalDeleteFiumbiFavorite}

@@ -78,12 +78,7 @@ const RegisterFiumbi = ({
 
   useEffect(() => {
     if (data?.status === 201) {
-      setNewFiumbiUserToCreate({
-        username: wishlistName,
-        token: data.data.token,
-      })
       handleClickCreatUser()
-      return
     }
     if (isError) {
       console.log('error', error)

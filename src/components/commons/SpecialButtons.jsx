@@ -22,6 +22,17 @@ const CommonButton = styled(MUIButton)(({ theme }) => ({
   },
 }))
 
+const CommonButtonOutlined = styled(MUIButton)(({ theme }) => ({
+  color: theme.palette.customGold.dark,
+  background: `transparent`,
+  borderColor: theme.palette.customGold.dark,
+  /*  
+  '&:disabled': {
+    color: theme.palette.customText.textWhiteLightAt30,
+    background: theme.palette.customText.textWhite111,
+  }, */
+}))
+
 export const SpecialLoginButton = (props) => (
   <CommonButton
     sx={{ px: 4, borderRadius: 8, textTransform: 'none' }}
@@ -31,4 +42,12 @@ export const SpecialLoginButton = (props) => (
 
 export const SpecialCommonButton = (props) => (
   <CommonButton sx={{ textTransform: 'none' }} {...props} />
+)
+
+export const SpecialCommonButtonOutlined = (props) => (
+  <CommonButtonOutlined
+    variant="outlined"
+    sx={{ textTransform: 'none' }}
+    {...props}
+  />
 )

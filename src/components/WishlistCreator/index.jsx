@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, useTheme } from '@mui/material'
 import NewFiumbiUser from './NewFiumbiUser'
 import RegisterFiumbi from './RegisterFiumbi'
 import ValidateEmail from './ValidateEmail'
-import Typography from '../commons/Typography'
 import StepTitles from './StepTitles'
+import useAuth from '../../hooks/useAuth'
 
 const posibleViews = {
   createFiumbiName: 'createFiumbiName',
@@ -13,7 +13,13 @@ const posibleViews = {
 }
 
 const WishlistCreator = () => {
-  const [activeStep, setActiveStep] = useState(posibleViews.createFiumbiName)
+  const { auth } = useAuth()
+  console.log('auth', auth)
+  const [activeStep, setActiveStep] = useState(
+    auth.active === 'true'
+      ? posibleViews.createFiumbiName
+      : posibleViews.createFiumbiSuccess
+  )
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
   const theme = useTheme()
@@ -26,6 +32,33 @@ const WishlistCreator = () => {
   const handleClickCreatUser = () => {
     setActiveStep(posibleViews.createFiumbiSuccess)
   }
+  useEffect(() => {
+    if (auth?.username) {
+      setActiveStep(
+        auth.active === 'true'
+          ? posibleViews.createFiumbiName
+          : posibleViews.createFiumbiSuccess
+      )
+      setWishlistName(auth?.username)
+    }
+    if (!auth?.username) {
+      setActiveStep(posibleViews.createFiumbiName)
+    }
+  }, [auth])
+
+  useEffect(() => {
+    if (auth?.username) {
+      setActiveStep(
+        auth.active === 'true'
+          ? posibleViews.createFiumbiName
+          : posibleViews.createFiumbiSuccess
+      )
+      setWishlistName(auth?.username)
+    }
+    if (!auth?.username) {
+      setActiveStep(posibleViews.createFiumbiName)
+    }
+  }, [])
 
   return (
     <Box

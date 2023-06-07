@@ -43,8 +43,15 @@ export const NewUserSchema = Yup.object().shape({
 })
 
 export const LoginUserSchema = Yup.object().shape({
-  username: Yup.string().required('Usuario por favor'),
-  password: Yup.string().required('Contraseña por favor'),
+  username: Yup.string()
+    .required('Usuario por favor')
+    .matches(
+      /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
+      'Debes ingresar con tu nombre de usuario.'
+    ),
+  password: Yup.string()
+    .required('Contraseña por favor')
+    .min(4, 'La contraseña debe tener más de 4 caracteres'),
 })
 
 export const PasswordLostSchema = Yup.object().shape({

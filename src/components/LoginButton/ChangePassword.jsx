@@ -43,6 +43,7 @@ const ChangePassword = ({ user, token }) => {
       logIn({
         newUsername: user,
         newUserToken: token,
+        active: true,
         bypassRedirectForced: navigate,
       })
     }

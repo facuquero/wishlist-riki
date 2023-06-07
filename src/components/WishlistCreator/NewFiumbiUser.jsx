@@ -124,8 +124,12 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
         </Box>
         {isError && (
           <Box mt={2} sx={{ textAlign: 'center' }}>
-            <Typography>A ocurrido un error:</Typography>
-            <Typography>{error?.response?.data?.data}</Typography>
+            <Typography color="customText.textWhiteLight">
+              A ocurrido un error:
+            </Typography>
+            <Typography color="customText.textWhiteLight">
+              {error?.response?.data?.data}
+            </Typography>
           </Box>
         )}
       </Box>

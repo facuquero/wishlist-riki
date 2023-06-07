@@ -3,6 +3,7 @@ import {
   getTokenML,
   getUserToken,
   getUsername,
+  getActive,
   localStorageLogOut,
   setNewFiumbiUserToCreate,
   setShadowLogInFiumbiUser,
@@ -16,7 +17,8 @@ export const AuthProvider = ({ children }) => {
     const username = getUsername()
     const token = getUserToken()
     const tokenML = getTokenML()
-    if (username && token) return { username, token, tokenML }
+    const active = getActive()
+    if (username && token) return { username, token, tokenML, active }
     localStorageLogOut()
     return {}
   }
@@ -31,13 +33,22 @@ export const AuthProvider = ({ children }) => {
     newUsername,
     newUserToken,
     userdata = '',
+    active,
     //dios perdoname lo q voy a hacer
     bypassRedirectForced,
   }) => {
     localStorageLogOut()
-    setNewFiumbiUserToCreate({ username: newUsername, token: newUserToken })
-    setAuth({ username: newUsername, token: newUserToken, userdata })
-    bypassRedirectForced(`/${newUsername}`) //mas duro q la realidad
+    setNewFiumbiUserToCreate({
+      username: newUsername,
+      token: newUserToken,
+      active: active,
+    })
+    setAuth({ username: newUsername, token: newUserToken, userdata, active })
+    if (active) {
+      bypassRedirectForced(`/${newUsername}`) //mas duro q la realidad
+      return
+    }
+    bypassRedirectForced(`/`) //mas duro q la realidad
   }
 
   const shadowLogIn = ({ newUsername, newUserToken, userdata = '' }) => {

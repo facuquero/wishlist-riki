@@ -44,6 +44,7 @@ const LogIn = ({ handleChangeView }) => {
       logIn({
         newUsername: usernameLogin,
         newUserToken: data.data.token,
+        active: data.data.active,
         bypassRedirectForced: navigate,
       })
     }

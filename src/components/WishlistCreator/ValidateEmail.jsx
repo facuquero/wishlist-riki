@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Box, CircularProgress, Grid, TextField } from '@mui/material'
 import { useValidateCode } from '../../../api/useUsersAPI'
 
 import Typography from '../commons/Typography'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
 import RedirectML from './RedirectML'
+import useAuth from '../../hooks/useAuth'
 
 const ValidateEmail = ({ wishlistName }) => {
   const { execute, data, isLoading, isError, error } = useValidateCode()
+  const { logIn } = useAuth()
   const handleClickValidateEmail = () => {
     execute({
       data: {
@@ -68,7 +70,16 @@ const ValidateEmail = ({ wishlistName }) => {
     })
     setEmailCode(newPin)
   }
-
+  useEffect(() => {
+    if (data?.status === 201) {
+      logIn({
+        newUsername: wishlistName,
+        newUserToken: data.data.token,
+        active: true,
+        bypassRedirectForced: () => {},
+      })
+    }
+  }, [data, isLoading])
   return (
     <Box>
       <Box sx={{ width: '100%' }}>
@@ -121,7 +132,7 @@ const ValidateEmail = ({ wishlistName }) => {
               variant="contained"
               color="primary"
               size="large"
-              disabled={data}
+              disabled={!!data}
               onClick={handleClickValidateEmail}
             >
               <Typography>Validar</Typography>
@@ -131,11 +142,15 @@ const ValidateEmail = ({ wishlistName }) => {
         </Box>
       </Box>
 
-      {data?.status === 200 && <RedirectML />}
+      {data?.status === 201 && <RedirectML />}
       {isError && (
-        <Box mt={2} sx={{ textAlign: 'center', color: 'white' }}>
-          <Typography>A ocurrido un error:</Typography>
-          <Typography>{error?.response?.data?.message}</Typography>
+        <Box mt={2} sx={{ textAlign: 'center' }}>
+          <Typography color="customText.textWhiteLight">
+            A ocurrido un error:
+          </Typography>
+          <Typography color="customText.textWhiteLight">
+            {error?.response?.data?.message}
+          </Typography>
         </Box>
       )}
     </Box>

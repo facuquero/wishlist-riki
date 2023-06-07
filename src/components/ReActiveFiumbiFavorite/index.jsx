@@ -22,14 +22,13 @@ const ReActiveFiumbiFavorite = ({ id, fiumbiTitle, reloadSearch }) => {
   return (
     <Box>
       <SpecialCommonButton
-        variant="contained"
         onClick={handleClickOpen}
         sx={{
           alignItems: 'center',
           display: 'flex',
         }}
       >
-        Agregar a favoritos <FavoriteIcon sx={{ ml: 1 }} />
+        Activar <FavoriteIcon sx={{ ml: 1 }} />
       </SpecialCommonButton>
       {showModalReActiveFiumbiFavorite && (
         <DeleteFiumbiFavoriteModal
