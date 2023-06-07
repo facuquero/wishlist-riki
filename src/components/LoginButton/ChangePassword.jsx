@@ -8,10 +8,12 @@ import { Formik, Form, Field } from 'formik'
 import { SpecialLoginButton } from '../commons/SpecialButtons'
 import TextField from '../commons/TextField'
 import useAuth from '../../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const ChangePassword = ({ user, token }) => {
   const { execute, data, isLoading, isError } = useChangePassword()
   const { logIn } = useAuth()
+  const navigate = useNavigate()
 
   const handleClickPasswordLost = ({ password }) => {
     if (isLoading) return
@@ -38,7 +40,11 @@ const ChangePassword = ({ user, token }) => {
 
   useEffect(() => {
     if (data?.status === 200) {
-      logIn({ newUsername: user, newUserToken: token })
+      logIn({
+        newUsername: user,
+        newUserToken: token,
+        bypassRedirectForced: navigate,
+      })
     }
   }, [isLoading, data])
 
@@ -97,7 +103,7 @@ const ChangePassword = ({ user, token }) => {
                         )}
                       </Field>
                       {errors[fieldItem.field] && touched[fieldItem.field] ? (
-                        <Typography my={1} sx={{ color: 'red' }}>
+                        <Typography my={1} color="error.main">
                           {errors[fieldItem.field]}
                         </Typography>
                       ) : null}

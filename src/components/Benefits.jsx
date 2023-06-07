@@ -22,7 +22,11 @@ const Benefits = () => {
     },
   ]
   return (
-    <Grid container justifyContent="center" sx={{ color: 'white' }}>
+    <Grid
+      container
+      justifyContent="center"
+      sx={{ color: 'white', width: 'min(100%, 560px)', mx: 'auto' }}
+    >
       <Grid item xs={12} display="flex" justifyContent="center">
         <Typography
           textAlign="center"
@@ -49,7 +53,7 @@ const Benefits = () => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        mx={{ xs: 2, sm: 16 }}
+        mx={{ xs: 3, sm: 0 }}
       >
         {cardsItems.map((cardItem, index) => (
           <Grid

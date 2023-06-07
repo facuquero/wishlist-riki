@@ -5,7 +5,9 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
   const theme = useTheme()
   const stepTitle = {
     createFiumbiName: (
-      <Box sx={{ width: 'max(340px, 80%)', mx: 'auto' }}>
+      <Box
+        sx={{ width: 'max(340px, 80%)', mx: 'auto', width: 'min(80%, 560px)' }}
+      >
         <Typography
           paragraph
           width="auto"
@@ -37,7 +39,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
           width="auto"
           sx={{
             fontWeight: 'bold',
-            fontSize: { xs: '2rem', sm: '3rem' },
+            fontSize: { xs: '1.5rem', sm: '2rem' },
             textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
@@ -65,7 +67,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
         <Typography
           sx={{
             fontWeight: 'bold',
-            fontSize: { xs: '2rem', sm: '3rem' },
+            fontSize: { xs: '1.25rem', sm: '2rem' },
             textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
@@ -74,7 +76,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
         <Typography
           sx={{
             fontWeight: 'bold',
-            fontSize: { xs: '2rem', sm: '3rem' },
+            fontSize: { xs: '1.25rem', sm: '2rem' },
             textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
           color={theme.palette.customGold.at254a1}
@@ -84,7 +86,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
         <Typography
           sx={{
             fontWeight: 'bold',
-            fontSize: { xs: '2rem', sm: '3rem' },
+            fontSize: { xs: '1.25rem', sm: '2rem' },
             textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
           }}
         >
@@ -105,7 +107,7 @@ const StepTitles = ({ activeStep, wishlistEmail }) => {
     ),
   }
   return (
-    <Box sx={{ color: 'white', textAlign: 'center' }}>
+    <Box sx={{ color: 'white', textAlign: 'center', mx: 2 }}>
       {stepTitle[activeStep] || null}
     </Box>
   )

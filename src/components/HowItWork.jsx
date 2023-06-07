@@ -5,7 +5,15 @@ import styles from '../assets/styles/howItWork.module.scss'
 
 const HowItWork = () => {
   return (
-    <Grid container justifyContent="center" sx={{ color: 'white' }}>
+    <Grid
+      container
+      justifyContent="center"
+      sx={{
+        color: 'white',
+        width: 'min(95%, 560px)',
+        mx: 'auto',
+      }}
+    >
       <Grid item xs={12} display="flex" justifyContent="center">
         <Typography
           textAlign="center"

@@ -88,6 +88,8 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
           label={`www.fiumbi/${wishlist}`}
           placeholder="Nombre de tu wishlist"
           fullWidth
+          autoComplete="off"
+          inputProps={{ autoComplete: 'off' }}
           onChange={onChangeWishlistName}
           InputProps={{
             startAdornment: (
