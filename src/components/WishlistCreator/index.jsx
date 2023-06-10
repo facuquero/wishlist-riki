@@ -14,7 +14,6 @@ const posibleViews = {
 
 const WishlistCreator = () => {
   const { auth } = useAuth()
-  console.log('auth', auth)
   const [activeStep, setActiveStep] = useState(
     auth.active === 'true'
       ? posibleViews.createFiumbiName

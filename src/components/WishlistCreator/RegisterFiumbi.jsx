@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field, useFormikContext } from 'formik'
 import {
   Checkbox,
   CircularProgress,
@@ -10,10 +10,10 @@ import {
 import { Box } from '@mui/system'
 import { useCreateUser } from '../../../api/useUsersAPI'
 import { NewUserSchema } from '../../utils/schemasForm'
-import { setNewFiumbiUserToCreate } from '../../utils/localStorageManagment'
 import Typography from '../commons/Typography'
 import { TextField } from '../commons/TextField'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
+import TextFieldZipCode from './TextFields/TextFieldZipCode'
 const RegisterFiumbi = ({
   wishlistName,
   handleClickCreatUser,
@@ -22,6 +22,7 @@ const RegisterFiumbi = ({
   const theme = useTheme()
   const { execute, data, isLoading, isError, error } = useCreateUser()
 
+  const NewUserSchemaToUse = NewUserSchema()
   const fieldInputsItems = [
     {
       field: 'password',
@@ -61,6 +62,7 @@ const RegisterFiumbi = ({
     {
       field: 'zip_code',
       label: 'Código postal',
+      custom: 'zip_code',
     },
   ]
 
@@ -79,9 +81,6 @@ const RegisterFiumbi = ({
   useEffect(() => {
     if (data?.status === 201) {
       handleClickCreatUser()
-    }
-    if (isError) {
-      console.log('error', error)
     }
   }, [data, isLoading, isError, error])
 
@@ -149,7 +148,7 @@ const RegisterFiumbi = ({
             lastname: '',
             zip_code: '',
           }}
-          validationSchema={NewUserSchema}
+          validationSchema={NewUserSchemaToUse}
           onSubmit={(values) => {
             handleSubmitNewUser({
               newUser: values,
@@ -172,30 +171,56 @@ const RegisterFiumbi = ({
                         Usuario: {wishlistName || ''}
                       </Typography>
                     )}
-                    <Field
-                      name={fieldItem.field}
-                      validate={fieldItem.validate || null}
-                    >
-                      {({ field }) => (
-                        <Box sx={{ display: 'flex' }}>
-                          <TextField
-                            fullWidth
-                            label={fieldItem.label}
-                            variant="outlined"
-                            type={fieldItem.type || 'text'}
-                            {...field}
-                            error={
-                              errors[fieldItem.field] &&
-                              touched[fieldItem.field]
-                            }
-                            autoComplete="off"
-                            inputProps={{ autoComplete: 'off' }}
-                            size="small"
-                          />
-                          {fieldItem.infoIcon || null}
-                        </Box>
-                      )}
-                    </Field>
+                    {!fieldItem.custom && (
+                      <Field
+                        name={fieldItem.field}
+                        validate={fieldItem.validate || null}
+                      >
+                        {({ field }) => (
+                          <Box sx={{ display: 'flex' }}>
+                            <TextField
+                              fullWidth
+                              label={fieldItem.label}
+                              variant="outlined"
+                              type={fieldItem.type || 'text'}
+                              {...field}
+                              error={
+                                errors[fieldItem.field] &&
+                                touched[fieldItem.field]
+                              }
+                              autoComplete="off"
+                              inputProps={{ autoComplete: 'off' }}
+                              size="small"
+                            />
+                          </Box>
+                        )}
+                      </Field>
+                    )}
+                    {fieldItem.custom === 'zip_code' && (
+                      <Field
+                        name={fieldItem.field}
+                        validate={fieldItem.validate || null}
+                      >
+                        {({ field }) => (
+                          <Box sx={{ display: 'flex' }}>
+                            <TextFieldZipCode
+                              fullWidth
+                              label={fieldItem.label}
+                              variant="outlined"
+                              type={fieldItem.type || 'text'}
+                              {...field}
+                              error={
+                                errors[fieldItem.field] &&
+                                touched[fieldItem.field]
+                              }
+                              autoComplete="off"
+                              inputProps={{ autoComplete: 'off' }}
+                              size="small"
+                            />
+                          </Box>
+                        )}
+                      </Field>
+                    )}
                     {errors[fieldItem.field] && touched[fieldItem.field] ? (
                       <Typography
                         color={theme.palette.customRed.errorRed}

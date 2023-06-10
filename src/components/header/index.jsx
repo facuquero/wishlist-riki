@@ -41,7 +41,17 @@ const Header = () => {
               }}
               variant="h6"
             >
-              Bienvenido {auth.username}
+              Bienvenido&nbsp;
+              <Typography
+                sx={{
+                  color: theme.palette.customGold.at254a1,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}
+                variant="span"
+              >
+                @{auth.username}
+              </Typography>
             </Typography>
           </NavLink>
         </Grid>

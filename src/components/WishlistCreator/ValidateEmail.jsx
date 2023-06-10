@@ -6,10 +6,12 @@ import Typography from '../commons/Typography'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
 import RedirectML from './RedirectML'
 import useAuth from '../../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const ValidateEmail = ({ wishlistName }) => {
   const { execute, data, isLoading, isError, error } = useValidateCode()
   const { logIn } = useAuth()
+  const navigate = useNavigate()
   const handleClickValidateEmail = () => {
     execute({
       data: {
@@ -70,16 +72,18 @@ const ValidateEmail = ({ wishlistName }) => {
     })
     setEmailCode(newPin)
   }
+
   useEffect(() => {
     if (data?.status === 201) {
       logIn({
         newUsername: wishlistName,
         newUserToken: data.data.token,
         active: true,
-        bypassRedirectForced: () => {},
+        bypassRedirectForced: navigate,
       })
     }
   }, [data, isLoading])
+
   return (
     <Box>
       <Box sx={{ width: '100%' }}>

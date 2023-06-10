@@ -9,7 +9,6 @@ const UserConfig = () => {
   let initialized = false
 
   const { auth } = useAuth()
-  console.log('auth', auth)
   useEffect(() => {
     if (!initialized) {
       initialized = true
@@ -42,7 +41,6 @@ const UserConfig = () => {
       field: 'zip_code',
     },
   ]
-  console.log('data', data)
   return (
     <Grid
       container

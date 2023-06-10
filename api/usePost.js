@@ -15,9 +15,9 @@ export const usePost = ({ url }) => {
       const response = await axiosInstance.post(url, data)
       setData(response)
     } catch (e) {
+      console.log('e', e)
       setData(undefined)
       setError(e)
-      console.log('e', e)
       setIsError(true)
     } finally {
       setIsLoading(false)

@@ -59,3 +59,8 @@ export const validateCodeForgot = () => {
   const url = '/validate-code-forgot'
   return usePost({ url })
 }
+
+export const usevalidateZipcode = () => {
+  const url = '/validate-zipcode'
+  return usePost({ url })
+}
