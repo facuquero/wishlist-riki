@@ -10,6 +10,7 @@ import { SlideTransition } from '../SlideTransition'
 import Typography from '../commons/Typography'
 import TextField from '../commons/TextField'
 import StyledDialog from '../commons/Dialog'
+import ShippingPrice from './ShippingPrice'
 
 const DialogFiumbi = ({
   productID,
@@ -19,6 +20,7 @@ const DialogFiumbi = ({
   showModalML,
   handleClose,
   fiumbiPrice,
+  fiumbiPriceOriginal,
 }) => {
   const { execute, data, isLoading, isError } = generateLinkML()
   const theme = useTheme()
@@ -73,8 +75,18 @@ const DialogFiumbi = ({
           >
             {fiumbiTitle}
           </Grid>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography color="white">
+              Producto: $ {fiumbiPriceOriginal}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography color="white">Comision: $ {fiumbiPrice} </Typography>
+          </Grid>
           <Grid item xs={12} mb={2} display="flex" justifyContent="center">
-            <Typography color="white">$ {fiumbiPrice} + Envío</Typography>
+            <Typography color="white">
+              <ShippingPrice productID={productID} />
+            </Typography>
           </Grid>
         </Grid>
       </DialogTitle>

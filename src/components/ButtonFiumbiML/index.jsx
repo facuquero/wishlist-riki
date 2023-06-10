@@ -11,6 +11,7 @@ const ButtonFiumbiML = ({
   fiumbiTitle,
   imgThumbnail,
   fiumbiPrice,
+  fiumbiPriceOriginal,
 }) => {
   const [showModalML, setShowModalML] = useState(false)
   const theme = useTheme()
@@ -60,6 +61,7 @@ const ButtonFiumbiML = ({
           showModalML={showModalML}
           handleClose={handleClose}
           fiumbiPrice={fiumbiPrice}
+          fiumbiPriceOriginal={fiumbiPriceOriginal}
         />
       )}
     </Box>

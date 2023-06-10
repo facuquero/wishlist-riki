@@ -64,3 +64,8 @@ export const usevalidateZipcode = () => {
   const url = '/validate-zipcode'
   return usePost({ url })
 }
+
+export const useCalculateShippingCost = () => {
+  const url = '/calculate-shipping-cost'
+  return usePost({ url })
+}

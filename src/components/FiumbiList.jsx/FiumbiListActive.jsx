@@ -45,7 +45,7 @@ const FiumbiListActive = () => {
       },
     })
   }
-
+  console.log('data', data)
   return (
     <Grid container>
       <Grid item xs={12} sx={{ pb: 2 }} flex>
@@ -163,7 +163,7 @@ const FiumbiListActive = () => {
                             mb: 0,
                           }}
                         >
-                          ${favItem.price} + Envío
+                          ${favItem.price_original} + Comision + Envío
                         </Typography>
                       </Grid>
                     </Grid>
@@ -183,6 +183,7 @@ const FiumbiListActive = () => {
                         fiumbiUsername={loaderData.params.fiumbiListUsername}
                         imgThumbnail={favItem.thumbnail}
                         fiumbiPrice={favItem.price}
+                        fiumbiPriceOriginal={favItem.price_original}
                       />
                     )}
                     {isSameUserAsFiumbiUser && (
