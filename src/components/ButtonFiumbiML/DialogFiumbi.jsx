@@ -81,7 +81,7 @@ const DialogFiumbi = ({
             </Typography>
           </Grid>
           <Grid item xs={12} display="flex" justifyContent="center">
-            <Typography color="white">Comision: $ {fiumbiPrice} </Typography>
+            <Typography color="white">Costo: $ {fiumbiPrice} </Typography>
           </Grid>
           <Grid item xs={12} mb={2} display="flex" justifyContent="center">
             <Typography color="white">
