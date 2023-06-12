@@ -55,7 +55,19 @@ const TermsConditions = () => {
           Fiumbi actúa como intermediario para facilitar la transacción entre
           los Usuarios y los Proveedores, permitiendo que los Usuarios reciban
           los productos seleccionados.
+          En caso de no encontrarse en stock el producto publicado por el Usuario, 
+          el Asesor brindará alternativas definidas segun las politicas internas de la empresa.
+          <Typography paragraph>
+        </Typography>
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          Asesor:
+        </Typography>
+        <Typography paragraph>
+          Persona fisica encargada del aviso hacia los usuarios sobre la transaccion generada gracias al cliente.
+        </Typography>
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
           <strong>No afiliación con MercadoLibre</strong>
+        </Typography>
           Fiumbi desea dejar en claro que no tenemos ninguna relación,
           asociación o afiliación con MercadoLibre. No tenemos ningún contrato
           ni acuerdo con MercadoLibre, ni utilizamos su marca de manera indebida

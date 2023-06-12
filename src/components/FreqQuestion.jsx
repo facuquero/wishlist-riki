@@ -20,22 +20,22 @@ const FreqQuestion = () => {
     {
       title: 'Qué es Fiumbi?',
       content:
-        'Fiumbi es una plataforma que te permite compartir con tus fans tu listado de productos favoritos de MercadoLibre para que puedan regalarte los artículos que necesitas de manera anonima',
+        'Fiumbi es una plataforma que te permite compartir con tu comunidad tu listado de productos favoritos de MercadoLibre para que puedan regalarte los artículos que necesitas de manera anonima',
     },
     {
       title: 'Cómo se usa Fiumbi?',
       content:
-        'Para usar Fiumbi, primero debes crear tu cuenta rellenando el formulario y luego tienes que enlazar tu cuenta de MercadoLibre con Fiumbi. Una vez hecho esto, puedes compartir tu Fiumbi con tus fans.',
+        'Para usar Fiumbi, primero debes crear tu cuenta rellenando el formulario y luego tienes que enlazar tu cuenta de MercadoLibre con Fiumbi. Una vez hecho esto, puedes compartir tu Fiumbi con tu comunidad.',
     },
     {
-      title: 'Cómo funciona Fiumbi?',
+      title: 'Como agrego productos a mi Fiumbi?',
       content:
-        'Una vez creada la cuenta y enlazada con Mercado Libre puedes publicar tu wishlist en redes sociales o pasárselo a tus fanes para que vean tu perfil y puedan regalarte los artículos que tengas.',
+        'Los productos que se reflejan en la lista son los productos que tengas marcado como favorito en Mercadolibre, una vez agregado el producto deberás sincronizar la lista para que se refleje en tu Fiumbi',
     },
     {
-      title: 'Quienes usan Fiumbi?',
+      title: 'Agregué productos pero no se muestran en mi lista',
       content:
-        'Creadores de contenido, streamers, ONGs, proyectos o personas que quieran recibir regalos de sus fans, Fiumbi está abierto para cualquier tipo de público.',
+        'En el caso de publicaciones que fueron marcadas como favorito hace mucho tiempo, deberás desmarcar y marcar nuevamente el producto como favorito y luego sincronizar. Sin embargo, no gestionamos pedidos en dolares ni inmuebles o vehiculos. ',
     },
     {
       title: 'Tiene algun costo?',

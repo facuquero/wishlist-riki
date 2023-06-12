@@ -9,7 +9,7 @@ const Benefits = () => {
   const theme = useTheme()
   const cardsItems = [
     {
-      title: 'Recibe regalos de tus fans',
+      title: 'Recibe regalos de tu comunidad',
       icon: benefitsKing,
     },
     {

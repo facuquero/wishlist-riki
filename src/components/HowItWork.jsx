@@ -89,7 +89,7 @@ const HowItWork = () => {
             </Grid>
             <Grid item mb={3} sx={{ maxWidth: '300px', textAlign: 'center' }}>
               <Typography>
-                Vinculá tu cuenta con MercadoLibre* para crear tu lista regalos
+                Creá tu lista de regalos a partir de tu lista de favoritos en MercadoLibre*
               </Typography>
             </Grid>
             <Grid item>
