@@ -8,7 +8,7 @@ import { SlideTransition } from '../SlideTransition'
 import { reActiveProduct } from '../../../api/fiumbiProducts'
 import Typography from '../commons/Typography'
 import CloseIcon from '@mui/icons-material/Close'
-
+import StyledDialog from '../commons/Dialog'
 const ReActiveFiumbiFavoriteModal = ({
   showModal,
   handleClose,
@@ -31,7 +31,7 @@ const ReActiveFiumbiFavoriteModal = ({
   }
 
   return (
-    <Dialog
+    <StyledDialog
       open={showModal}
       TransitionComponent={SlideTransition}
       keepMounted
@@ -40,7 +40,13 @@ const ReActiveFiumbiFavoriteModal = ({
     >
       <DialogTitle>
         <Grid container flexWrap="nowrap" alignItems="center">
-          <Typography sx={{ overflowWrap: 'break-word' }} variant="h6">
+          <Typography
+            sx={{
+              overflowWrap: 'break-word',
+              color: 'customText.textWhiteLight',
+            }}
+            variant="h6"
+          >
             Seguro que desea agregar este item de sus favoritos?
           </Typography>
           <Grid item xs="auto" sx={{ ml: 'auto', mr: 1 }}>
@@ -63,7 +69,9 @@ const ReActiveFiumbiFavoriteModal = ({
             xs={12}
             sx={{ display: 'flex', justifyContent: 'center', my: 2 }}
           >
-            <Typography>{fiumbiTitle}</Typography>
+            <Typography sx={{ color: 'customText.textWhiteLight' }}>
+              {fiumbiTitle}
+            </Typography>
           </Grid>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
             {!data && (
@@ -74,13 +82,15 @@ const ReActiveFiumbiFavoriteModal = ({
             )}
             {data && (
               <Button onClick={modalClose}>
-                <Typography>Listo</Typography>
+                <Typography sx={{ color: 'customText.textWhiteLight' }}>
+                  Listo
+                </Typography>
               </Button>
             )}
           </Grid>
         </Grid>
       </DialogContent>
-    </Dialog>
+    </StyledDialog>
   )
 }
 

@@ -73,7 +73,7 @@ const FiumbiListInactive = () => {
                 }}
               >
                 <Grid
-                  container
+                  item
                   display={{ xs: 'flex' }}
                   justifyContent="center"
                   xs={12}

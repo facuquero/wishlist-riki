@@ -69,3 +69,8 @@ export const useCalculateShippingCost = () => {
   const url = '/calculate-shipping-cost'
   return usePost({ url })
 }
+
+export const useContactUs = () => {
+  const url = '/contact-us'
+  return usePost({ url })
+}

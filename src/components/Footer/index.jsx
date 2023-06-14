@@ -7,6 +7,7 @@ import styles from '../../assets/styles/header.module.scss'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
+import ContactButton from './Contact'
 
 const Footer = () => {
   const theme = useTheme()
@@ -111,7 +112,7 @@ const Footer = () => {
             </NavLink>
           </Grid>
           <Grid item>
-            <Typography color="white">Contácto</Typography>
+            <ContactButton />
           </Grid>
         </Grid>
       </Grid>

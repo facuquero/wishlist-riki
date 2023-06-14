@@ -10,6 +10,7 @@ import useAuth from '../hooks/useAuth'
 import FiumbiListInactive from '../components/FiumbiList.jsx/FiumbiListInactive'
 import SincFav from '../components/SincFav'
 import { styled } from '@mui/material/styles'
+import FiumbiOrdersList from '../components/FiumbiList.jsx/FiumbiOrdersList'
 
 const StyledSelect = styled(Select)(({ theme }) => ({
   '& .MuiSelect-select': {
@@ -17,17 +18,18 @@ const StyledSelect = styled(Select)(({ theme }) => ({
   },
 }))
 
+const viewsTypes = {
+  active: 'Activos',
+  inactive: 'Inactivos',
+  orders: 'Ordenes',
+}
+
 const FiumbiList = () => {
   const loaderData = useLoaderData()
   const { auth } = useAuth()
 
   const isSameUserAsFiumbiUser =
     auth?.username == loaderData?.params?.fiumbiListUsername
-
-  const viewsTypes = {
-    active: 'Activos',
-    inactive: 'Inactivos',
-  }
 
   const [viewRender, setViewRender] = useState(viewsTypes.active)
 
@@ -76,6 +78,9 @@ const FiumbiList = () => {
                 <MenuItem value={viewsTypes.inactive}>
                   {viewsTypes.inactive}
                 </MenuItem>
+                <MenuItem value={viewsTypes.orders}>
+                  {viewsTypes.orders}
+                </MenuItem>
               </StyledSelect>
             </FormControl>
           </Grid>
@@ -112,6 +117,7 @@ const FiumbiList = () => {
       >
         {viewRender === viewsTypes.active && <FiumbiListActive />}
         {viewRender === viewsTypes.inactive && <FiumbiListInactive />}
+        {viewRender === viewsTypes.orders && <FiumbiOrdersList />}
       </Grid>
     </Grid>
   )

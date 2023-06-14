@@ -45,7 +45,7 @@ const FiumbiListActive = () => {
       },
     })
   }
-  console.log('data', data)
+  
   return (
     <Grid container>
       <Grid item xs={12} sx={{ pb: 2 }} flex>

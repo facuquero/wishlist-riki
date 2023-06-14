@@ -6,11 +6,15 @@ const Layout = () => {
   const theme = useTheme()
   return (
     <Grid container>
-      <Grid item xs={12}
-            sx={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 999}}>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 999,
+        }}
+      >
         <Header />
       </Grid>
       <Grid
