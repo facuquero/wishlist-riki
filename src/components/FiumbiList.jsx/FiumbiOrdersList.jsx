@@ -1,4 +1,4 @@
-import { Grid, useTheme } from '@mui/material'
+import { Grid, Pagination, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/fiumbiOrdersList.module.scss'
@@ -91,13 +91,17 @@ const FiumbiOrdersList = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          <Grid container justifyContent="center" mt={3}>
+            <Pagination
+              color="primary"
+              page={page}
+              count={count}
+              onPageChange={handleChangePagination}
+            />
+          </Grid>
         </Grid>
       )}
-      <Pagination
-        page={page}
-        count={count}
-        onPageChange={handleChangePagination}
-      />
+
       {!isRenderFiumbiList && !isLoading && (
         <Grid container justifyContent="center">
           <Grid item>

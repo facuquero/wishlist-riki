@@ -11,6 +11,7 @@ import FiumbiListInactive from '../components/FiumbiList.jsx/FiumbiListInactive'
 import SincFav from '../components/SincFav'
 import { styled } from '@mui/material/styles'
 import FiumbiOrdersList from '../components/FiumbiList.jsx/FiumbiOrdersList'
+import { SpecialCommonButton } from '../components/commons/SpecialButtons'
 
 const StyledSelect = styled(Select)(({ theme }) => ({
   '& .MuiSelect-select': {
@@ -52,39 +53,8 @@ const FiumbiList = () => {
       container
     >
       {isSameUserAsFiumbiUser && (
-        <Grid
-          container
-          justifyContent={{ xs: 'center', sm: 'space-between' }}
-          alignItems="center"
-          sx={{
-            maxWidth: 1200,
-            mx: 'auto',
-            width: '100%',
-          }}
-        >
-          <Grid item xs={12} sm={3}>
-            <FormControl sx={{ width: { xs: '100%', sm: 'auto' } }}>
-              <Typography color="customText.textWhiteLight">
-                Productos
-              </Typography>
-              <StyledSelect
-                labelId="fiumbiLabilListaActive"
-                value={viewRender}
-                onChange={handleChange}
-              >
-                <MenuItem value={viewsTypes.active}>
-                  {viewsTypes.active}
-                </MenuItem>
-                <MenuItem value={viewsTypes.inactive}>
-                  {viewsTypes.inactive}
-                </MenuItem>
-                <MenuItem value={viewsTypes.orders}>
-                  {viewsTypes.orders}
-                </MenuItem>
-              </StyledSelect>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={3} pt={{ xs: 3, sm: 0 }}>
+        <Grid container>
+          <Grid item xs={12} pt={{ xs: 3, sm: 0 }}>
             <Typography
               color="customText.textWhiteLight"
               sx={{
@@ -97,13 +67,68 @@ const FiumbiList = () => {
             </Typography>
           </Grid>
           <Grid
-            item
-            xs={12}
-            sm={3}
-            pt={{ xs: 3, sm: 0 }}
-            sx={{ display: 'flex', justifyContent: 'flex-end' }}
+            container
+            justifyContent={{ xs: 'center', sm: 'space-between' }}
+            alignItems="center"
+            sx={{
+              maxWidth: 1200,
+              mx: 'auto',
+              width: '100%',
+            }}
           >
-            <SincFav />
+            <Grid
+              item
+              xs={12}
+              sm={3}
+              display="flex"
+              alignItems="center"
+              flexWrap="wrap"
+            >
+              <FormControl sx={{ width: { xs: '100%', sm: 'auto' } }}>
+                <Typography color="customText.textWhiteLight">
+                  Productos
+                </Typography>
+                <StyledSelect
+                  labelId="fiumbiLabilListaActive"
+                  value={viewRender}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={viewsTypes.active}>
+                    {viewsTypes.active}
+                  </MenuItem>
+                  <MenuItem value={viewsTypes.inactive}>
+                    {viewsTypes.inactive}
+                  </MenuItem>
+                </StyledSelect>
+              </FormControl>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sm="auto"
+              pt={{ xs: 3, sm: 0 }}
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                flexWrap: 'wrap',
+              }}
+            >
+              <SpecialCommonButton
+                variant="contained"
+                color="success"
+                sx={{
+                  width: { xs: '100%', sm: 'auto' },
+                  mx: { xs: 'auto', sm: 2 },
+                  my: { xs: 2, sm: 'auto' },
+                }}
+                onClick={() => setViewRender(viewsTypes.orders)}
+              >
+                Mis regalos
+              </SpecialCommonButton>
+
+              <SincFav />
+            </Grid>
           </Grid>
         </Grid>
       )}
