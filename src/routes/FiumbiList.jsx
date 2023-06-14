@@ -99,6 +99,9 @@ const FiumbiList = () => {
                   <MenuItem value={viewsTypes.inactive}>
                     {viewsTypes.inactive}
                   </MenuItem>
+                  <MenuItem value={viewsTypes.orders}>
+                    {viewsTypes.orders}
+                  </MenuItem>
                 </StyledSelect>
               </FormControl>
             </Grid>
