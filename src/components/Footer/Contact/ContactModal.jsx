@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Box, Grid } from '@mui/material'
+import { Box, CircularProgress, Grid } from '@mui/material'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import { SlideTransition } from '../../SlideTransition'
@@ -11,7 +11,7 @@ import { useContactUs } from '../../../../api/useUsersAPI'
 import { SpecialCommonButton } from '../../commons/SpecialButtons'
 
 const ContactModal = ({ showModalContact, handleClose }) => {
-  const { execute, data, isLoading } = useContactUs()
+  const { execute, data, isLoading, isError } = useContactUs()
 
   const emailRef = useRef(null)
   const messageRef = useRef(null)
@@ -21,6 +21,7 @@ const ContactModal = ({ showModalContact, handleClose }) => {
   }
 
   const handleClickSendEmail = () => {
+    if (isLoading) return
     execute({
       data: {
         email: emailRef.current.value,
@@ -71,12 +72,36 @@ const ContactModal = ({ showModalContact, handleClose }) => {
               <Grid item xs={12} mb={2}>
                 <TextField multiline rows={4} fullWidth inputRef={messageRef} />
               </Grid>
-
               <Grid item xs={12}>
                 <SpecialCommonButton onClick={handleClickSendEmail} fullWidth>
-                  Mandar
+                  {!isLoading && (
+                    <Typography color="customText.textWhiteLight">
+                      Mandar
+                    </Typography>
+                  )}
+                  {isLoading && <CircularProgress sx={{ color: 'white' }} />}
                 </SpecialCommonButton>
               </Grid>
+              {data?.status === 200 && !isLoading && (
+                <Grid item xs={12} mt={2}>
+                  <Typography
+                    color="customText.textWhiteLight"
+                    sx={{ textAlign: 'center' }}
+                  >
+                    Enviado
+                  </Typography>
+                </Grid>
+              )}
+              {isError && (
+                <Grid item xs={12} mt={2}>
+                  <Typography
+                    color="customText.textWhiteLight"
+                    sx={{ textAlign: 'center' }}
+                  >
+                    Ha ocurrido un error
+                  </Typography>
+                </Grid>
+              )}
             </Grid>
           </Fade>
         </DialogContent>
