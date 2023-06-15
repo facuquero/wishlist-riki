@@ -34,10 +34,6 @@ const FiumbiListActive = () => {
     }
   }, [])
 
-  if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
-    return <Navigate to="/" />
-  }
-
   useEffect(() => {
     execute({
       data: {
@@ -52,6 +48,10 @@ const FiumbiListActive = () => {
         userId: loaderData.params.fiumbiListUsername,
       },
     })
+  }
+
+  if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
+    return <Navigate to="/" />
   }
 
   return (
