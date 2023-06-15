@@ -31,7 +31,7 @@ const Footer = () => {
         >
           <Grid item mb={2}>
             <Typography color="white" textAlign="center">
-              No tenemos relación con MercadoLibre
+              Fiumbi no tiene ningun tipo de relación comercial con MercadoLibre.
             </Typography>
           </Grid>
         </Grid>
@@ -55,7 +55,7 @@ const Footer = () => {
           </Grid>
           <Grid container justifyContent="center">
             <Grid item>
-              <NavLink to="/">
+              <NavLink to="https://twitter.com/FiumbiArg">
                 <IconButton>
                   <TwitterIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}
@@ -64,7 +64,7 @@ const Footer = () => {
               </NavLink>
             </Grid>
             <Grid item>
-              <NavLink to="/">
+              <NavLink to="https://instagram.com/fiumbi.arg">
                 <IconButton>
                   <InstagramIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}
