@@ -18,7 +18,7 @@ const ContactButton = ({}) => {
   return (
     <Box>
       <NavLink onClick={handleClickOpen} style={{ textDecoration: 'none' }}>
-        <Typography color="white">Contácto</Typography>
+        <Typography color="white">Contacto</Typography>
       </NavLink>
       {showModalContact && (
         <ContactModal

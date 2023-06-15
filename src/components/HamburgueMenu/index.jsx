@@ -80,22 +80,22 @@ const HamburgueMenu = () => {
           onClick={() => handleClickOptions({ goTo: 'options' })}
           sx={{ color: theme.palette.customText.textWhiteLight }}
         >
-          Mis Datos
+          Mis datos
         </MenuItem>
         <MenuItem
           onClick={() => handleClickOptions({ goTo: 'newAddres' })}
           sx={{ color: theme.palette.customText.textWhiteLight }}
         >
-          Editar direccion
+          Editar dirección
         </MenuItem>
         <MenuItem
           onClick={() => handleClickOptions({ goTo: 'newPassword' })}
           sx={{ color: theme.palette.customText.textWhiteLight }}
         >
-          Cambiar password
+          Cambiar contraseña
         </MenuItem>
         <MenuItem onClick={() => handleClickOptions({ goTo: 'logOut' })}>
-          <SpecialLoginButton>Cerrar sesion</SpecialLoginButton>
+          <SpecialLoginButton>Cerrar sesión</SpecialLoginButton>
         </MenuItem>
       </StyledMenu>
     </Box>

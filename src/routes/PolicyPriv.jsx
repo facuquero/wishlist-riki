@@ -82,10 +82,10 @@ const PolicyPriv = () => {
           Usuario. No se divulgará ni se utilizará dicha información con fines
           distintos a los necesarios para completar la transacción de manera
           segura y eficiente. En ninguna situación se revelará información
-          personal de los Usuarios hacia terceros. Uso
+          personal de los Usuarios hacia terceros.
         </Typography>
         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-          Adecuado :
+          Uso Adecuado :
         </Typography>
         <Typography paragraph>
           El servicio adquiridos a través de "https://fiumbi.com/" deben ser
