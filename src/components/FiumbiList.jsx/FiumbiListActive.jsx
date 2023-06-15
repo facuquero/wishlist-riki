@@ -204,9 +204,20 @@ const FiumbiListActive = () => {
           </Grid>
         )}
         {!isRenderFiumbiList && !isLoading && (
-          <Grid container justifyContent="center">
-            <Grid item>
+          <Grid
+            container
+            justifyContent="center"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Grid item my={2}>
               <Typography sx={{ color: 'white' }}>Sin favoritos</Typography>
+            </Grid>
+            <Grid item>
+              <Typography sx={{ color: 'white' }}>
+                Debes marcar como favoritos en Mercadolibre los productos que
+                quieras recibir y presionar "Sincronizar Favoritos"
+              </Typography>
             </Grid>
           </Grid>
         )}
