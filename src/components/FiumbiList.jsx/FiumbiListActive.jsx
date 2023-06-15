@@ -15,7 +15,6 @@ const FiumbiListActive = () => {
   const loaderData = useLoaderData()
   const { auth } = useAuth()
   const theme = useTheme()
-  //const route = useRoutes()
   const isSameUserAsFiumbiUser =
     auth?.username == loaderData?.params?.fiumbiListUsername
 
