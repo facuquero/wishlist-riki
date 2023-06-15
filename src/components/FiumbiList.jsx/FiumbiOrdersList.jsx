@@ -58,7 +58,7 @@ const FiumbiOrdersList = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>Producto</TableCell>
-                  <TableCell>Nota</TableCell>
+                  <TableCell>Nota del comprador</TableCell>
                   <TableCell>Estado</TableCell>
                 </TableRow>
               </TableHead>
