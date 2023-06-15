@@ -14,11 +14,14 @@ const posibleViews = {
 
 const WishlistCreator = () => {
   const { auth } = useAuth()
-  const [activeStep, setActiveStep] = useState(
-    auth.active === 'true'
-      ? posibleViews.createFiumbiName
-      : posibleViews.createFiumbiSuccess
-  )
+  const setActiveOnLoadStep = () => {
+    const posibleStep = {
+      true: posibleViews.createFiumbiName,
+      false: posibleViews.createFiumbiSuccess,
+    }
+    return posibleStep[auth?.active] || posibleStep.true
+  }
+  const [activeStep, setActiveStep] = useState(() => setActiveOnLoadStep())
   const [wishlistName, setWishlistName] = useState('')
   const [wishlistUser, setWishlisUser] = useState({})
   const theme = useTheme()
