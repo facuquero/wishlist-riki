@@ -75,12 +75,12 @@ const ValidateEmail = ({ wishlistName }) => {
 
   useEffect(() => {
     if (data?.status === 201) {
-      logIn({
+      /*  logIn({
         newUsername: wishlistName,
         newUserToken: data.data.token,
         active: true,
         bypassRedirectForced: () => {},
-      })
+      }) */
     }
   }, [data, isLoading])
 
@@ -146,7 +146,9 @@ const ValidateEmail = ({ wishlistName }) => {
         </Box>
       </Box>
 
-      {data?.status === 201 && <RedirectML />}
+      {data?.status === 201 && (
+        <RedirectML newUsername={wishlistName} newUserToken={data.data.token} />
+      )}
       {isError && (
         <Box mt={2} sx={{ textAlign: 'center' }}>
           <Typography color="customText.textWhiteLight">

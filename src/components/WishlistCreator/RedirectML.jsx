@@ -9,10 +9,18 @@ import {
 import Typography from '../commons/Typography'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken'
+import useAuth from '../../hooks/useAuth'
 
-const RedirectML = () => {
+const RedirectML = ({ newUsername, newUserToken }) => {
+  const { logIn } = useAuth()
   const goML = () => {
     const to = `https://auth.mercadolibre.com.ar/authorization?response_type=code&client_id=${newFiumbiFormClientid}&redirect_uri=${newFiumbiFormRedirect_uri}&scope=${newFiumbiFormScope}`
+    logIn({
+      newUsername: newUsername,
+      newUserToken: newUserToken,
+      active: true,
+      bypassRedirectForced: () => {},
+    })
     window.location.href = to
   }
   return (
