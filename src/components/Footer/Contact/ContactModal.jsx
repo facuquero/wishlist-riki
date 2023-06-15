@@ -25,9 +25,12 @@ const ContactModal = ({ showModalContact, handleClose }) => {
     execute({
       data: {
         email: emailRef.current.value,
-        message: emailRef.current.value,
+        message: messageRef.current.value,
       },
     })
+    if (data?.status == 200) {
+      handleClose()
+    }
   }
 
   return (
@@ -76,7 +79,7 @@ const ContactModal = ({ showModalContact, handleClose }) => {
                 <SpecialCommonButton onClick={handleClickSendEmail} fullWidth>
                   {!isLoading && (
                     <Typography color="customText.textWhiteLight">
-                      Mandar
+                      Enviar
                     </Typography>
                   )}
                   {isLoading && <CircularProgress sx={{ color: 'white' }} />}
