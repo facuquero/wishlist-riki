@@ -167,7 +167,7 @@ const FiumbiListActive = () => {
                           {(
                             favItem.price_original + favItem.price
                           ).toLocaleString()}
-                          + Envío
+                          &nbsp;+ Envío
                         </Typography>
                       </Grid>
                     </Grid>
