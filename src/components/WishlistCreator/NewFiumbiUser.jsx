@@ -5,7 +5,7 @@ import Typography from '../commons/Typography'
 import { validateUsername } from '../../../api/useUsersAPI'
 import { TextField } from '../commons/TextField'
 import { SpecialCommonButton } from '../commons/SpecialButtons'
-
+const pattern = /^[A-Za-z._-]+$/
 const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
   const theme = useTheme()
   const [wishlist, setWishlist] = useState('')
@@ -29,10 +29,13 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
     if (wishlist?.length > 2) {
       setFaceIsLoading(true)
     }
-    if (!reayToChecKUsername) {
+    const isInputValuePatternCorret = pattern.test(wishlist)
+
+    if (!reayToChecKUsername || !isInputValuePatternCorret) {
       setIsFiumbiFree(false)
+      setFaceIsLoading(false)
     }
-    if (reayToChecKUsername) {
+    if (reayToChecKUsername && isInputValuePatternCorret) {
       const checking = setTimeout(() => {
         if (!initialized) {
           initialized = true
@@ -102,6 +105,7 @@ const NewFiumbiUser = ({ handleClickCreateWishlist }) => {
                 {(isLoading || fakeIsLoading) && <CircularProgress />}
               </InputAdornment>
             ),
+            pattern: '[A-Za-z._-]*',
           }}
         />
         <Box

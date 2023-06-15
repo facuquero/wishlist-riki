@@ -45,7 +45,7 @@ const FiumbiListActive = () => {
       },
     })
   }
-  
+
   return (
     <Grid container>
       <Grid item xs={12} sx={{ pb: 2 }} flex>
@@ -163,7 +163,7 @@ const FiumbiListActive = () => {
                             mb: 0,
                           }}
                         >
-                          ${favItem.price_original + favItem.price} + Envío
+                          ${favItem.price_original + favItem.price} + Comisión
                         </Typography>
                       </Grid>
                     </Grid>

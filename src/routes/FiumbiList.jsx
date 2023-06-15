@@ -105,7 +105,6 @@ const FiumbiList = () => {
                 </StyledSelect>
               </FormControl>
             </Grid>
-
             <Grid
               item
               xs={12}

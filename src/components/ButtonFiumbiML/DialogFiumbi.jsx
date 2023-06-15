@@ -1,5 +1,5 @@
-import { Button, Grid, useTheme } from '@mui/material'
-import React, { useEffect, useRef } from 'react'
+import { Checkbox, Grid, useTheme } from '@mui/material'
+import React, { useEffect, useRef, useState } from 'react'
 import { generateLinkML } from '../../../api/fiumbiProducts'
 import CircularProgress from '@mui/material/CircularProgress'
 import DialogActions from '@mui/material/DialogActions'
@@ -11,6 +11,8 @@ import Typography from '../commons/Typography'
 import TextField from '../commons/TextField'
 import StyledDialog from '../commons/Dialog'
 import ShippingPrice from './ShippingPrice'
+import { NavLink } from 'react-router-dom'
+import { SpecialCommonButton } from '../commons/SpecialButtons'
 
 const DialogFiumbi = ({
   productID,
@@ -24,8 +26,15 @@ const DialogFiumbi = ({
 }) => {
   const { execute, data, isLoading, isError } = generateLinkML()
   const theme = useTheme()
+  const [checked, setChecked] = useState(false)
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked)
+  }
+
   const handleClickFiumbiML = (e) => {
     const message = messageTextRef?.current?.value || ''
+    if (!checked) return
     execute({
       data: { username: fiumbiUsername, product_id: productID, message },
     })
@@ -77,12 +86,10 @@ const DialogFiumbi = ({
           </Grid>
           <Grid item xs={12} display="flex" justifyContent="center">
             <Typography color="white">
-              Producto: $ {fiumbiPriceOriginal}
+              Producto: $ {fiumbiPriceOriginal + fiumbiPrice}
             </Typography>
           </Grid>
-          <Grid item xs={12} display="flex" justifyContent="center">
-            <Typography color="white">Costo: $ {fiumbiPrice} </Typography>
-          </Grid>
+
           <Grid item xs={12} mb={2} display="flex" justifyContent="center">
             <Typography color="white">
               <ShippingPrice productID={productID} />
@@ -122,17 +129,50 @@ const DialogFiumbi = ({
       </DialogContent>
       <DialogActions>
         <Grid container justifyContent="center" mb={1}>
-          {!data && (
-            <Button
-              onClick={handleClickFiumbiML}
+          <Grid
+            item
+            xs={12}
+            mb={1}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Checkbox
+              checked={checked}
+              onChange={handleChange}
               sx={{
-                background: `linear-gradient(315deg, ${theme.palette.customGold.at254a1} 0%,${theme.palette.customGold.at200a04red} 50%, ${theme.palette.customGold.at254a1} 100%)`,
-                textTransform: 'none',
+                color: theme.palette.customText.textWhiteLight,
+                '&.Mui-checked': {
+                  color: theme.palette.customGold.lightHover,
+                },
               }}
+            />
+            <Typography color="white" sx={{ textAlign: 'center' }}>
+              Acepto los&nbsp;
+              <NavLink
+                target="_blank"
+                to="/terminos-y-condiciones"
+                sx={{ color: 'white' }}
+              >
+                <Typography
+                  component="span"
+                  color="white"
+                  sx={{ textAlign: 'center', textDecoration: 'none' }}
+                >
+                  terminos y condiciones
+                </Typography>
+              </NavLink>
+            </Typography>
+          </Grid>
+
+          {!data && (
+            <SpecialCommonButton
+              disabled={!checked}
+              onClick={handleClickFiumbiML}
             >
               {!isLoading && <Typography color="black">Ir a pagar</Typography>}
               {isLoading && <CircularProgress sx={{ color: 'black' }} />}
-            </Button>
+            </SpecialCommonButton>
           )}
           {data && (
             <Typography color="white">Redirigiendo a Mercado Pago</Typography>
