@@ -1,4 +1,4 @@
-import { Grid, Pagination, useTheme } from '@mui/material'
+import { Box, Grid, Pagination, useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import { useEffect, useState } from 'react'
 import styles from '../../assets/styles/fiumbiOrdersList.module.scss'
@@ -81,7 +81,7 @@ const FiumbiOrdersList = () => {
                           loading="lazy"
                           alt={`${index}-image-orders`}
                         />
-                        {order.product.title}
+                        <Box mx={2}>{order.product.title}</Box>
                       </TableCell>
                       <TableCell>{order.note}</TableCell>
                       <TableCell>{order.observation}</TableCell>
