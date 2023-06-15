@@ -86,7 +86,7 @@ const DialogFiumbi = ({
           </Grid>
           <Grid item xs={12} display="flex" justifyContent="center">
             <Typography color="white">
-              Producto: $ {fiumbiPriceOriginal + fiumbiPrice}
+              Producto: $ {(fiumbiPriceOriginal + fiumbiPrice).toLocaleString()}
             </Typography>
           </Grid>
 

@@ -113,7 +113,10 @@ const FiumbiListInactive = () => {
                           fontWeight: 'bold',
                         }}
                       >
-                        ${favItem.price}
+                        $
+                        {(
+                          favItem.price_original + favItem.price
+                        ).toLocaleString()}
                       </Typography>
                     </Grid>
                   </Grid>
