@@ -15,6 +15,7 @@ const FiumbiListActive = () => {
   const loaderData = useLoaderData()
   const { auth } = useAuth()
   const theme = useTheme()
+  //const route = useRoutes()
   const isSameUserAsFiumbiUser =
     auth?.username == loaderData?.params?.fiumbiListUsername
 
@@ -37,6 +38,14 @@ const FiumbiListActive = () => {
   if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
     return <Navigate to="/" />
   }
+
+  useEffect(() => {
+    execute({
+      data: {
+        userId: loaderData.params.fiumbiListUsername,
+      },
+    })
+  }, [auth, loaderData])
 
   const reloadSearch = () => {
     execute({

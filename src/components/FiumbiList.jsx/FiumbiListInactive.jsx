@@ -32,7 +32,6 @@ const FiumbiListInactive = () => {
       })
     }
   }, [])
-
   return (
     <Grid
       container
@@ -117,6 +116,7 @@ const FiumbiListInactive = () => {
                         {(
                           favItem.price_original + favItem.price
                         ).toLocaleString()}
+                        &nbsp;+ Envío
                       </Typography>
                     </Grid>
                   </Grid>
