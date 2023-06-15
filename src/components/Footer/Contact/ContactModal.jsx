@@ -75,16 +75,18 @@ const ContactModal = ({ showModalContact, handleClose }) => {
               <Grid item xs={12} mb={2}>
                 <TextField multiline rows={4} fullWidth inputRef={messageRef} />
               </Grid>
-              <Grid item xs={12}>
-                <SpecialCommonButton onClick={handleClickSendEmail} fullWidth>
-                  {!isLoading && (
-                    <Typography color="customText.textWhiteLight">
-                      Enviar
-                    </Typography>
-                  )}
-                  {isLoading && <CircularProgress sx={{ color: 'white' }} />}
-                </SpecialCommonButton>
-              </Grid>
+              {data?.status != 200 && (
+                <Grid item xs={12}>
+                  <SpecialCommonButton onClick={handleClickSendEmail} fullWidth>
+                    {!isLoading && (
+                      <Typography color="customText.textWhiteLight">
+                        Enviar
+                      </Typography>
+                    )}
+                    {isLoading && <CircularProgress sx={{ color: 'white' }} />}
+                  </SpecialCommonButton>
+                </Grid>
+              )}
               {data?.status === 200 && !isLoading && (
                 <Grid item xs={12} mt={2}>
                   <Typography
