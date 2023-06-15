@@ -140,7 +140,7 @@ const FiumbiListActive = () => {
                   <Grid
                     item
                     xs={12}
-                    md={7}
+                    md={6}
                     sx={{ display: 'flex', flexGrow: 1 }}
                   >
                     <Grid
@@ -163,7 +163,11 @@ const FiumbiListActive = () => {
                             mb: 0,
                           }}
                         >
-                          $ {(favItem.price_original + favItem.price).toLocaleString()} + Envío
+                          ${' '}
+                          {(
+                            favItem.price_original + favItem.price
+                          ).toLocaleString()}{' '}
+                          + Envío
                         </Typography>
                       </Grid>
                     </Grid>
@@ -171,7 +175,7 @@ const FiumbiListActive = () => {
                   <Grid
                     item
                     xs={12}
-                    md={3}
+                    md={4}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"

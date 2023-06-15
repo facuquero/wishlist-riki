@@ -32,26 +32,32 @@ const Header = () => {
       </Grid>
       {auth?.username && (
         <Grid item xs={4} display="flex" justifyContent="center">
-          <NavLink to={`/${auth.username}`} style={{ textDecoration: 'none' }}>
+          <NavLink
+            to={`/${auth.username}`}
+            style={{ textDecoration: 'none', display: 'flex' }}
+          >
             <Typography
               sx={{
                 color: theme.palette.customText.textWhiteLight,
                 fontWeight: 'bold',
                 textAlign: 'center',
+                display: { xs: 'none', sm: 'block' },
               }}
+              component="span"
               variant="h6"
             >
               Bienvenido&nbsp;
-              <Typography
-                sx={{
-                  color: theme.palette.customGold.at254a1,
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}
-                variant="span"
-              >
-                @{auth.username}
-              </Typography>
+            </Typography>
+            <Typography
+              sx={{
+                color: theme.palette.customGold.at254a1,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}
+              component="span"
+              variant="h6"
+            >
+              @{auth.username}
             </Typography>
           </NavLink>
         </Grid>
