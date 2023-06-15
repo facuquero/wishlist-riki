@@ -73,7 +73,7 @@ const Footer = () => {
               </NavLink>
             </Grid>
             <Grid item>
-              <NavLink to="/">
+              <NavLink to="https://instagram.com/fiumbi.arg">
                 <IconButton>
                   <FacebookIcon
                     sx={{ color: theme.palette.customGold.at254a04 }}

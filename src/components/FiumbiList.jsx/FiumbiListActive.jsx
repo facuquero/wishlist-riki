@@ -163,7 +163,7 @@ const FiumbiListActive = () => {
                             mb: 0,
                           }}
                         >
-                          ${favItem.price_original + favItem.price} + Comisión
+                          $ {(favItem.price_original + favItem.price).toLocaleString()} + Envío
                         </Typography>
                       </Grid>
                     </Grid>
