@@ -148,7 +148,7 @@ const ValidateCode = ({ user, email, onClickValidate }) => {
       )}
       {isError && (
         <Box mt={2} sx={{ textAlign: 'center', color: 'white' }}>
-          <Typography>A ocurrido un error:</Typography>
+          <Typography>Ha ocurrido un error:</Typography>
           <Typography>{error?.response?.data?.message}</Typography>
         </Box>
       )}

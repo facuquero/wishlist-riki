@@ -277,7 +277,7 @@ const RegisterFiumbi = ({
         </Formik>
         {isError && (
           <Box my={2} sx={{ textAlign: 'center' }}>
-            <Typography>A ocurrido un error:</Typography>
+            <Typography>Ha ocurrido un error:</Typography>
             <Typography>{error?.response?.data?.message}</Typography>
           </Box>
         )}
