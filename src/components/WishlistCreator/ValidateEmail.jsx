@@ -79,7 +79,7 @@ const ValidateEmail = ({ wishlistName }) => {
         newUsername: wishlistName,
         newUserToken: data.data.token,
         active: true,
-        bypassRedirectForced: navigate,
+        bypassRedirectForced: () => {},
       })
     }
   }, [data, isLoading])
