@@ -21,7 +21,6 @@ const ContactModal = ({ showModalContact, handleClose }) => {
   }
 
   const handleClickSendEmail = () => {
-    return
     execute({
       data: {
         email: emailRef.current.value,
