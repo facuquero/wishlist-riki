@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { Box, Grid, useTheme } from '@mui/material'
+import { useEffect,   } from 'react'
+import {  Grid,   useTheme } from '@mui/material'
 import Typography from '../commons/Typography'
 import ButtonFiumbiML from '../ButtonFiumbiML'
 import { getListActiveByUsername } from '../../../api/fiumbiProducts'
@@ -9,6 +9,7 @@ import styles from '../../assets/styles/fiumbiList.module.scss'
 import DeleteFiumbiFavorite from '../DeleteFiumbiFavorite'
 import { Virtuoso } from 'react-virtuoso'
 import MyPhrase from '../MyPhrase'
+import UserLinkCopy from './UserLinkCopy'
 
 const FiumbiListActive = () => {
   const { execute, data, isLoading } = getListActiveByUsername()
@@ -49,6 +50,7 @@ const FiumbiListActive = () => {
       },
     })
   }
+ 
 
   if (data && data?.data?.listFav === null && !isSameUserAsFiumbiUser) {
     return <Navigate to="/" />
@@ -66,17 +68,9 @@ const FiumbiListActive = () => {
               width: '100%',
             }}
           >
-            <Typography
-              my={1}
-              sx={{
-                color: theme.palette.customGold.at239a1,
-                textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
-              }}
-              variant="h4"
-              fontWeight="bold"
-            >
-              @{loaderData?.params?.fiumbiListUsername}
-            </Typography>
+            <UserLinkCopy
+              fiumbiListUsername={loaderData?.params?.fiumbiListUsername}
+            />
             {isRenderFiumbiList && (
               <MyPhrase actualPhrase={data?.data?.phrase?.phrase} />
             )}
