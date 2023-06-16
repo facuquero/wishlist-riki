@@ -18,19 +18,19 @@ const FreqQuestion = () => {
 
   const accordionItems = [
     {
-      title: 'Qué es Fiumbi?',
+      title: '¿Qué es Fiumbi?',
       content:
         'Fiumbi es una plataforma que te permite compartir con tu comunidad tu listado de productos favoritos de MercadoLibre para que puedan regalarte los artículos que necesitas de manera anonima',
     },
     {
-      title: 'Cómo se usa Fiumbi?',
+      title: '¿Cómo se usa Fiumbi?',
       content:
         'Para usar Fiumbi, primero debes crear tu cuenta rellenando el formulario y luego tienes que enlazar tu cuenta de MercadoLibre con Fiumbi. Una vez hecho esto, puedes compartir tu Fiumbi con tu comunidad.',
     },
     {
-      title: 'Como agrego productos a mi Fiumbi?',
+      title: '¿Cómo agrego productos a mi Fiumbi?',
       content:
-        'Los productos que se reflejan en la lista son los productos que tengas marcado como favorito en Mercadolibre, una vez agregado el producto deberás sincronizar la lista para que se refleje en tu Fiumbi',
+        'Los productos que se reflejan en la lista serán los productos que tengas marcado como favorito en Mercadolibre, una vez agregado el producto deberás sincronizar la lista para que se refleje en tu Fiumbi',
     },
     {
       title: 'Agregué productos pero no se muestran en mi lista',
@@ -38,7 +38,7 @@ const FreqQuestion = () => {
         'En el caso de publicaciones que fueron marcadas como favorito hace mucho tiempo, deberás desmarcar y marcar nuevamente el producto como favorito y luego sincronizar. Sin embargo, no gestionamos pedidos en dolares ni inmuebles o vehiculos. ',
     },
     {
-      title: 'Tiene algun costo?',
+      title: '¿Tiene algún costo?',
       content:
         'No, la plataforma es 100% gratuita para los usuarios, todos los costos van a cargo de quien compre los productos de tu lista.',
     },
