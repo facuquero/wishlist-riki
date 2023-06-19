@@ -4,10 +4,10 @@ import {
   Snackbar,
   SnackbarContent,
   useTheme,
-} from '@mui/material'
-import Typography from '../../commons/Typography'
-import { useState } from 'react'
-import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+} from "@mui/material"
+import Typography from "../../commons/Typography"
+import { useState } from "react"
+import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 
 const UserLinkCopy = ({ fiumbiListUsername }) => {
   const theme = useTheme()
@@ -18,21 +18,21 @@ const UserLinkCopy = ({ fiumbiListUsername }) => {
     navigator.clipboard.writeText(window.location.href)
   }
 
-  const vertical = 'top',
-    horizontal = 'right'
+  const vertical = "top",
+    horizontal = "right"
 
   return (
     <Typography
       my={1}
       sx={{
         color: theme.palette.customGold.at239a1,
-        textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
-        cursor: 'pointer',
-        '-webkit-user-select': 'none',
-        '-ms-user-select': 'none',
-        'user-select': 'none',
+        textShadow: "3px 5px 8px rgba(0, 0, 0, 0.45)",
+        cursor: "pointer",
+        "-webkit-user-select": "none",
+        "-ms-user-select": "none",
+        "user-select": "none",
+        fontSize: { xs: "1.75rem", sm: "2rem" },
       }}
-      variant="h4"
       fontWeight="bold"
       onClick={handleCopy}
     >
@@ -49,9 +49,9 @@ const UserLinkCopy = ({ fiumbiListUsername }) => {
         <SnackbarContent
           message="Link copiado"
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            textAlign: 'center',
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
           }}
         />
       </Snackbar>

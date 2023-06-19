@@ -1,17 +1,17 @@
-import { CircularProgress, Grid, IconButton, useTheme } from '@mui/material'
-import Typography from '../commons/Typography'
-import BorderColorIcon from '@mui/icons-material/BorderColor'
-import useAuth from '../../hooks/useAuth'
-import { useLoaderData } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
-import { useChangePhrase } from '../../../api/useUsersAPI'
-import TextField from '../commons/TextField'
-import CloseIcon from '@mui/icons-material/Close'
-import DoneIcon from '@mui/icons-material/Done'
+import { CircularProgress, Grid, IconButton, useTheme } from "@mui/material"
+import Typography from "../commons/Typography"
+import BorderColorIcon from "@mui/icons-material/BorderColor"
+import useAuth from "../../hooks/useAuth"
+import { useLoaderData } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import { useChangePhrase } from "../../../api/useUsersAPI"
+import TextField from "../commons/TextField"
+import CloseIcon from "@mui/icons-material/Close"
+import DoneIcon from "@mui/icons-material/Done"
 const MyPhrase = ({ actualPhrase }) => {
   const [newPhrase, setNewFhrase] = useState(false)
   const [newPhraseText, setNewFhraseText] = useState(
-    () => actualPhrase || 'Gracias por comprarme regalos!'
+    () => actualPhrase || "Gracias por comprarme regalos!"
   )
   const newPhraseRef = useRef(null)
   const { data, execute, isError, isLoading } = useChangePhrase()
@@ -42,13 +42,13 @@ const MyPhrase = ({ actualPhrase }) => {
       {!newPhrase && (
         <Grid item>
           <Typography
-            variant="h4"
             sx={{
               color: theme.palette.customGold.at239a1,
-              fontStyle: 'italic',
-              whiteSpace: 'normal',
-              lineBreak: 'normal',
-              textShadow: '3px 5px 8px rgba(0, 0, 0, 0.45)',
+              fontStyle: "italic",
+              whiteSpace: "normal",
+              lineBreak: "normal",
+              textShadow: "3px 5px 8px rgba(0, 0, 0, 0.45)",
+              fontSize: { xs: "1.25rem", sm: "2rem" },
             }}
           >
             {newPhraseText}

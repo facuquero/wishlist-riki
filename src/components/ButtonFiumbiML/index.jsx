@@ -1,9 +1,9 @@
-import { Box, Button, Grid } from '@mui/material'
-import React, { useState } from 'react'
-import DialogFiumbi from './DialogFiumbi'
-import Logo from '../../assets/logoblack.svg'
-import styles from '../../assets/styles/ButtonFiumbi.module.scss'
-import { useTheme } from '@emotion/react'
+import { Box, Button, Grid } from "@mui/material"
+import React, { useState } from "react"
+import DialogFiumbi from "./DialogFiumbi"
+import Logo from "../../assets/logoblack.svg"
+import styles from "../../assets/styles/ButtonFiumbi.module.scss"
+import { useTheme } from "@emotion/react"
 
 const ButtonFiumbiML = ({
   productID,
@@ -30,11 +30,11 @@ const ButtonFiumbiML = ({
         onClick={handleClickOpen}
         variant="outlined"
         sx={{
-          width: 'min(100%,250px)',
-          padding: 2,
-          display: 'flex',
-          alignItems: 'center',
-          border: 'none',
+          width: "min(100%,250px)",
+          padding: { xs: 1, sm: 2 },
+          display: "flex",
+          alignItems: "center",
+          border: "none",
           background: `linear-gradient(${theme.palette.customGold.light}, ${theme.palette.customGold.dark});`,
         }}
       >
@@ -45,7 +45,10 @@ const ButtonFiumbiML = ({
           <Grid item ml={2}>
             <Box
               color="black"
-              sx={{ fontSize: '1.25rem', textTransform: 'capitalize' }}
+              sx={{
+                textTransform: "capitalize",
+                fontSize: { xs: "0.8rem", sm: "1.25rem" },
+              }}
             >
               Regalar ahora
             </Box>
