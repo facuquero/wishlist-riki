@@ -98,22 +98,28 @@ const WishlistCreator = () => {
         }}
       >
         {activeStep == posibleViews.createFiumbiName && (
-          <NewFiumbiUser
-            handleClickCreateWishlist={handleClickCreateWishlist}
-          />
+          <Box>
+            <NewFiumbiUser
+              handleClickCreateWishlist={handleClickCreateWishlist}
+            />
+          </Box>
         )}
         {activeStep == posibleViews.createFiumbiUser && (
-          <RegisterFiumbi
-            wishlistName={wishlistName}
-            handleClickCreatUser={handleClickCreatUser}
-            setWishlisUser={setWishlisUser}
-          />
+          <Box>
+            <RegisterFiumbi
+              wishlistName={wishlistName}
+              handleClickCreatUser={handleClickCreatUser}
+              setWishlisUser={setWishlisUser}
+            />
+          </Box>
         )}
         {activeStep == posibleViews.createFiumbiSuccess && (
-          <ValidateEmail
-            wishlistName={wishlistName}
-            wishlistUser={wishlistUser}
-          />
+          <Box>
+            <ValidateEmail
+              wishlistName={wishlistName}
+              wishlistUser={wishlistUser}
+            />
+          </Box>
         )}
       </Box>
     </Box>
